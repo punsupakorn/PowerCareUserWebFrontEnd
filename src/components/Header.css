@@ -1,0 +1,79 @@
+
+.container{
+    max-width: 960px;
+    margin: 0 auto;
+}
+.header{
+    background: #333;
+    height: 80px;
+}
+.header-con{
+    display: flex; /*ทำให้ข้อมูล header ขึ้นมาต่อกัน*/
+    justify-content: space-between; /*ทำให้ข้อมูล headerห่างออกจากกันเท่าๆกัน*/
+    height: 80;
+    align-items: center;
+}
+.logo-container a {
+    color: aliceblue;
+    text-decoration: none; /*ลบเส้นใต้ออก*/
+    font-weight: bold;
+    font-size: 2rem;
+}
+.menu{
+    display: flex; /*ทำให้ menu ต่อกัน*/
+    list-style-type: none; /*เอาจุดของ li ออก*/
+}
+.menu li{
+    padding-right: 2rem; /*ทำให้ li ห่างกัน*/
+}
+.menu li a{
+    text-decoration: none;
+    color :aliceblue;
+}
+.mobile-menu{
+    display: none;  /*ไม่ให้ mobile menu โชว์ในหน้า desktop*/
+}
+
+@media screen and (max-width: 480px) {
+    .mobile-menu{
+        display: block;
+        color: #fff;
+        font-size: 2rem;
+    }
+    .header{
+        padding: 0 2rem;
+    }
+    .menu{
+        width: 100%;
+        height: auto;
+        display: flex;
+        position: absolute;
+        flex-direction: column;  /*ทำให้ li ลงมาต่อกัน*/
+        top: 63px;
+        opacity: 0; 
+        left: -100%; /*ทำให้มันชิดซ้าย เพราะอยากให้โผล่มาจากทางซ้าย*/
+        transition:  0.5s ease;
+        background: black;
+
+    }
+    .menu.active{
+        background: black;
+        left: 0;
+        opacity: 1;
+        z-index: 1;
+        padding-left: 0;
+        align-content: center;
+        transition: 0.5s ease;
+    }
+    .menu li{
+        padding-right: 0;
+    }
+    .menu-link{ /*ทำให้ li ลงมาต่อกัน*/
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 10vw;
+        padding: 10px 0;
+    }
+    
+}
