@@ -24,7 +24,26 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mitr:wght@300&display=swap"
+      rel="stylesheet"
+    />
     <title>React App</title>
+
+    <style>
+      body {
+        font-family: Poppins, Mitr, sans-serif !important;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      p {
+        margin: 0;
+      }
+    </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -40,4 +59,52 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
   </body>
+  <!-- script form  -->
+  <script>
+    const form = document.getElementById('form');
+    const result = document.getElementById('result');
+    
+    form.addEventListener('submit', function(e) {
+        const formData = new FormData(form);
+        e.preventDefault();
+        var object = {};
+        formData.forEach((value, key) => {
+            object[key] = value
+        });
+        var json = JSON.stringify(object);
+        result.innerHTML = "Please wait..."
+    
+        fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: json
+            })
+            .then(async (response) => {
+                let json = await response.json();
+                if (response.status == 200) {
+                    result.innerHTML = json.message;
+                     result.classList.remove('text-gray-500');
+                    result.classList.add('text-green-500');
+                } else {
+                    console.log(response);
+                    result.innerHTML = json.message;
+                     result.classList.remove('text-gray-500');
+                     result.classList.add('text-red-500');
+                }
+            })
+            .catch(error => {
+                console.log(error);
+                result.innerHTML = "Something went wrong!";
+            })
+            .then(function() {
+                form.reset();
+                setTimeout(() => {
+                    result.style.display = "none"; 
+                }, 5000);
+            });
+    })
+    </script>
 </html>
