@@ -1,8 +1,7 @@
-
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-
+import { useState } from "react";
 export default function AppointmentScreen() {
-
+  const [date, setDate] = useState();
   return (
     <div classname="bg-indigo-200 h-screen w-screen">
       <div className="flex items-center min-h-screen bg-indigo-200 dark:bg-gray-900">
@@ -33,12 +32,8 @@ export default function AppointmentScreen() {
                 method="POST"
                 id="form"
               >
-               
-              
                 <div className="mb-6">
-                  <label
-                    className="block mb-2 text-sm text-gray-600 dark:text-gray-400"
-                  >
+                  <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
                     อาการ :{" "}
                   </label>
                   <textarea
@@ -52,68 +47,72 @@ export default function AppointmentScreen() {
                   />
                 </div>
                 <div className="mb-6">
-                <label
-                    className="block mb-2 text-sm text-gray-600 dark:text-gray-400"
-                  >
-                    เลือกวันที่ : {" "}
+                  <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
+                    เลือกวันที่ :{" "}
                   </label>
                   <input
-                    type="text"
-                    name="name"
-                    id="name"
-                    placeholder="เลือกวันที่"
-                    required
-                    className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
+                    className="inline-flex  px-3 w-full  py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500 "
+                    placeholder="เลือกวันที่ทำนัด"
+                    type="date"
+                    value={date}
                   />
                 </div>
                 <div className="mb-6">
-                <label
-                    className="block mb-2 text-sm text-gray-600 dark:text-gray-400"
-                  >
-                    เลือกแพทย์ : {" "}
+                  <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
+                    เลือกแพทย์ :{" "}
                   </label>
-                  <input
-                    type="text"
-                    name="name"
-                    id="name"
-                    placeholder="เลือกแพทย์"
-                    required
-                    className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
-                  />
+                  <select
+                    // id="position"
+                    // name="Position"
+                    className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500 "
+                    // onClick={handlePosition}
+                  >
+                    <option disabled selected value>
+                      {" "}
+                      กรุณาเลือกแพทย์
+                    </option>
+                    <option className="option" value="Doctor">
+                      {" "}
+                      นางแพทย์หญิง ดาริส ปิ่นโต{" "}
+                    </option>
+                  </select>
                 </div>
                 <div className="mb-6">
-                <label
-                    className="block mb-2 text-sm text-gray-600 dark:text-gray-400"
-                  >
+                  <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
                     เลือกเวลา :{" "}
                   </label>
-                  <input
-                    type="text"
-                    name="name"
-                    id="name"
-                    placeholder="เลือกเวลา"
-                    required
-                    className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
-                  />
+                  <select
+                    id="position"
+                    name="Position"
+                    className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500 "
+                    // onClick={handlePosition}
+                  >
+                    <option disabled selected value>
+                      {" "}
+                      กรุณาเลือกเวลา
+                    </option>
+                    <option className="option" value="Doctor">
+                      {" "}
+                      11.00 - 12.00{" "}
+                    </option>
+                  </select>
                 </div>
                 <Link to="/appointmentconfirm">
-                <div className="mb-6">
-                  <button
-                    type="submit"
-                    className="w-full px-3 py-4 text-white bg-indigo-300 rounded-md focus:bg-indigo-200 focus:outline-none"
-                  >
-                    ถัดไป
-                  </button>
-                </div>
+                  <div className="mb-6">
+                    <button
+                      type="submit"
+                      className="w-full px-3 py-3 text-white bg-indigo-300 rounded-md focus:bg-indigo-200 focus:outline-none"
+                    >
+                      ถัดไป
+                    </button>
+                  </div>
                 </Link>
                 <Link to="/menuhome">
-                <div className="mb-6">
-                  <button
-                    className="w-full px-3 py-4 text-white bg-gray-300 rounded-md focus:bg-indigo-200 focus:outline-none"
-                  >
-                    ย้อนกลับ
-                  </button>
-                </div>
+                  <div className="mb-6">
+                    <button className="w-full px-3 py-3 text-white bg-gray-300 rounded-md ">
+                      ย้อนกลับ
+                    </button>
+                  </div>
                 </Link>
 
                 <p

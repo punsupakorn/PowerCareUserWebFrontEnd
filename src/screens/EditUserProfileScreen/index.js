@@ -1,4 +1,3 @@
-
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 export default function EditUserProfileScreen() {
@@ -32,11 +31,8 @@ export default function EditUserProfileScreen() {
                 method="POST"
                 id="form"
               >
-               
                 <div className="mb-6">
-                  <label
-                    className="block mb-2 text-sm text-gray-600 dark:text-gray-400"
-                  >
+                  <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
                     ชื่อ-นามสกุล :{" "}
                   </label>
                   <input
@@ -48,40 +44,37 @@ export default function EditUserProfileScreen() {
                     className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
                   />
                 </div>
+
                 <div className="mb-6">
-                  <label
-                    className="block mb-2 text-sm text-gray-600 dark:text-gray-400"
-                  >
-                    วัน / เดือน / ปีเกิด :{" "}
-                  </label>
-                  <input
-                    type="text"
-                    name="name"
-                    id="name"
-                    placeholder="21 - 12 - 2112"
-                    required
-                    className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
-                  />
-                </div>
-                <div className="mb-6">
-                  <label
-                    className="block mb-2 text-sm text-gray-600 dark:text-gray-400"
-                  >
+                  <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
                     เพศ :
                   </label>
-                  <input
+                  {/* <input
                     type="text"
                     name="name"
                     id="name"
                     placeholder="ชาย "
                     required
                     className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
-                  />
+                  /> */}
+                  <select
+                    // id="position"
+                    // name="Position"
+                    className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500 "
+                    // onClick={handlePosition}
+                  >
+                    <option disabled selected value>
+                      {" "}
+                      กรุณาเลือกเพศ
+                    </option>
+                    <option className="option" value="Doctor">
+                      {" "}
+                      ชาย{" "}
+                    </option>
+                  </select>
                 </div>
                 <div className="mb-6">
-                  <label
-                    className="block mb-2 text-sm text-gray-600 dark:text-gray-400"
-                  >
+                  <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
                     ที่อยู่ :{" "}
                   </label>
                   <textarea
@@ -95,9 +88,7 @@ export default function EditUserProfileScreen() {
                   />
                 </div>
                 <div className="mb-6">
-                  <label
-                    className="block mb-2 text-sm text-gray-600 dark:text-gray-400"
-                  >
+                  <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
                     เบอร์ติดต่อ :
                   </label>
                   <input
@@ -110,9 +101,7 @@ export default function EditUserProfileScreen() {
                   />
                 </div>
                 <div className="mb-6">
-                  <label
-                    className="block mb-2 text-sm text-gray-600 dark:text-gray-400"
-                  >
+                  <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
                     อีเมลล์ :
                   </label>
                   <input
@@ -124,21 +113,23 @@ export default function EditUserProfileScreen() {
                     className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
                   />
                 </div>
-                <Link to="/otp">
+                  <div className="mb-6">
+                    <button
+                      type="submit"
+                      className="w-full px-3 py-4 text-white bg-indigo-300 rounded-md focus:bg-indigo-200 focus:outline-none"
+                    >
+                      บันทึก
+                    </button>
+                  </div>
+                <Link to="/menuhome">
                 <div className="mb-6">
                   <button
-                    type="submit"
-                    className="w-full px-3 py-4 text-white bg-indigo-300 rounded-md focus:bg-indigo-200 focus:outline-none"
+                    className="w-full px-3 py-4 text-white bg-gray-300 rounded-md "
                   >
-                    ถัดไป
+                    ย้อนกลับ
                   </button>
-                
                 </div>
                 </Link>
-                <p
-                  className="text-base text-center text-gray-400"
-                  id="result"
-                ></p>
               </form>
             </div>
           </div>

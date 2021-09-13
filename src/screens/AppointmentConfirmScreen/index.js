@@ -27,13 +27,13 @@ export default function AppointmentConfirmScreen() {
             </div>
             <div className="m-7">
               <form
-                action="https://api.web3forms.com/submit"
-                method="POST"
-                id="form"
+                // action="https://api.web3forms.com/submit"
+                // method="POST"
+                // id="form"
               >
                 <div className="mb-6">
                   <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
-                    ยินยันการทำนัด :{" "}
+                    ยืนยันการทำนัด :{" "}
                   </label>
                   <p className="text-base text-left text-gray-400" id="result">
                     {" "}
@@ -238,7 +238,7 @@ export default function AppointmentConfirmScreen() {
                 <div className="mb-6">
                   <button
                     type="submit"
-                    className="w-full px-3 mt-6 py-4 text-white bg-indigo-300 rounded-md focus:bg-indigo-200 focus:outline-none"
+                    className="w-full px-3 mt-6 py-3 text-white bg-indigo-300 rounded-md focus:bg-indigo-200 focus:outline-none"
                   >
                      ยืนยันการทำนัด
                   </button>
@@ -247,7 +247,7 @@ export default function AppointmentConfirmScreen() {
                 <Link to="/appointment">
                 <div className="mb-6">
                   <button
-                    className="w-full px-3 py-4 text-white bg-gray-300 rounded-md focus:bg-indigo-200 focus:outline-none"
+                    className="w-full px-3 py-3 text-white bg-gray-300 rounded-md "
                   >
                     ย้อนกลับ
                   </button>

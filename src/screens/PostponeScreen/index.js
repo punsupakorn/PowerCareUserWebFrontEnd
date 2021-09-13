@@ -35,7 +35,7 @@ export default function PostponeScreen() {
               >
                 <div className="mb-6">
                   <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
-                    ยินยันการทำนัด :{" "}
+                    ยืนยันการทำนัด :{" "}
                   </label>
                   <p className="text-base text-left text-gray-400" id="result">
                     {" "}
@@ -182,7 +182,7 @@ export default function PostponeScreen() {
                 <div className="mb-6">
                   <button
                     type="submit"
-                    className="w-full px-3 py-4 text-white bg-indigo-300 rounded-md focus:bg-indigo-200 focus:outline-none"
+                    className="w-full px-3 py-3 text-white bg-indigo-300 rounded-md focus:bg-indigo-200 focus:outline-none"
                   >
                     เลื่อนทำนัด
                   </button>
@@ -192,7 +192,7 @@ export default function PostponeScreen() {
                 <div className="mb-6">
                   <button
                     type="submit"
-                    className="w-full px-3 py-4 text-white bg-red-700 rounded-md focus:bg-indigo-200 focus:outline-none"
+                    className="w-full px-3 py-3 text-white bg-red-700 rounded-md  "
                   >
                    ยกเลิกการทำนัด
                   </button>
@@ -201,7 +201,7 @@ export default function PostponeScreen() {
                 <Link to="/menuhome">
                 <div className="mb-6">
                   <button
-                    className="w-full px-3 py-4 text-white bg-gray-300 rounded-md focus:bg-indigo-200 focus:outline-none"
+                    className="w-full px-3 py-3 text-white bg-gray-300 rounded-md "
                   >
                     ย้อนกลับ
                   </button>

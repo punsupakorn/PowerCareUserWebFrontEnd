@@ -10,6 +10,7 @@ import {
   PostponeConfirmScreen,
   CancelScreen,
   EditUserProfileScreen,
+  FollowUpScreen,
 } from "./screens";
 import {
   Switch,
@@ -52,6 +53,9 @@ function App() {
         </Route>
         <Route path="/edituserprofile">
           <EditUserProfileScreen/>
+        </Route>
+        <Route path="/followup">
+          <FollowUpScreen/>
         </Route>
         
       </Switch>

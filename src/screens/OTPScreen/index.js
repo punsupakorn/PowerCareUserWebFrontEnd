@@ -63,7 +63,7 @@ export default function OTPScreen() {
                 <div className="mb-6">
                   <button
                     type="submit"
-                    className="w-full px-3 py-4 text-white bg-indigo-300 rounded-md focus:bg-indigo-200 focus:outline-none"
+                    className="w-full px-3 py-3 text-white bg-indigo-300 rounded-md focus:bg-indigo-200 focus:outline-none"
                   >
                     ยืนยัน
                   </button>

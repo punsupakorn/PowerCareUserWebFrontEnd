@@ -1,7 +1,11 @@
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { useState } from "react";
+
 
 export default function UserProfileScreen() {
+
+  const [date, setDate] = useState();
   return (
     <div classname="bg-indigo-200 h-screen w-screen">
       <div className="flex items-center min-h-screen bg-indigo-200 dark:bg-gray-900">
@@ -69,14 +73,23 @@ export default function UserProfileScreen() {
                   >
                     วัน / เดือน / ปีเกิด :{" "}
                   </label>
-                  <input
+                  {/* <input
                     type="text"
                     name="name"
                     id="name"
                     placeholder="โปรดกรอกชื่อจริง"
                     required
                     className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
-                  />
+                  /> */}
+                  <input
+                    className="inline-flex  px-3 w-full  py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500 "
+                    placeholder="เลือกวันที่ทำนัด"
+                    type="date"
+                    value={date}
+                    // onChange={(e) => {
+                    //   setDate(e.target.value);
+                    // }}
+                  ></input>
                 </div>
                 <div className="mb-6">
                   <label
@@ -84,14 +97,21 @@ export default function UserProfileScreen() {
                   >
                     เพศ :
                   </label>
-                  <input
-                    type="text"
-                    name="name"
-                    id="name"
-                    placeholder="โปรดเลือกเพศของท่าน"
-                    required
-                    className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
-                  />
+                   <select
+                // id="position"
+                // name="Position"
+                className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500 "
+                // onClick={handlePosition}
+              >
+                <option disabled selected value>
+                  {" "}
+                  กรุณาเลือกเพศ
+                </option>
+                <option className="option" value="Doctor">
+                  {" "}
+                  ชาย {" "}
+                </option>
+              </select>
                 </div>
                 <div className="mb-6">
                   <label
@@ -143,7 +163,7 @@ export default function UserProfileScreen() {
                 <div className="mb-6">
                   <button
                     type="submit"
-                    className="w-full px-3 py-4 text-white bg-indigo-300 rounded-md focus:bg-indigo-200 focus:outline-none"
+                    className="w-full px-3 py-3 text-white bg-indigo-300 rounded-md focus:bg-indigo-200 focus:outline-none"
                   >
                     ถัดไป
                   </button>

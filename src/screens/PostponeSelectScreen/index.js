@@ -1,7 +1,9 @@
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { useState } from "react";
 
 export default function PostponeSelectScreen() {
+  const [date, setDate] = useState();
   return (
     <div classname="bg-indigo-200 h-screen w-screen">
       <div className="flex items-center min-h-screen bg-indigo-200 dark:bg-gray-900">
@@ -86,49 +88,71 @@ export default function PostponeSelectScreen() {
                     วันที่ / เวลา ทำนัดใหม่ :{" "}
                   </label>
                   <input
-                    type="text"
-                    name="name"
-                    id="name"
-                    placeholder="กรุณาเลือกวันที่"
-                    required
-                    className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
-                  />
+                    className="inline-flex  px-3 w-full  py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500 "
+                    placeholder="เลือกวันที่ทำนัด"
+                    type="date"
+                    value={date}/>
                 </div>
                 <div className="mb-6">
-                  <input
-                    type="text"
-                    name="name"
-                    id="name"
-                    placeholder="กรุณาเลือกแพทย์ : โปรดเลือกวันที่ก่อน"
-                    required
-                    className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
-                  />
+                <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
+                    เลือกแพทย์ :{" "}
+                  </label>
+                <select
+                    // id="position"
+                    // name="Position"
+                    className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500 "
+                    // onClick={handlePosition}
+                  >
+                    <option disabled selected value>
+                      {" "}
+                      กรุณาเลือกแพทย์
+                    </option>
+                    <option className="option" value="Doctor">
+                      {" "}
+                      นางแพทย์หญิง ดาริส ปิ่นโต{" "}
+                    </option>
+                  </select>
                 </div>
                 <div className="mb-6">
-                  <input
-                    type="text"
-                    name="name"
-                    id="name"
-                    placeholder="กรุณาเลือกเวลา"
-                    required
-                    className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
-                  />
+                <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
+                    เลือกเวลา :{" "}
+                  </label>
+                  <select
+                    id="position"
+                    name="Position"
+                    className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500 "
+                    // onClick={handlePosition}
+                  >
+                    <option disabled selected value>
+                      {" "}
+                      กรุณาเลือกเวลา
+                    </option>
+                    <option className="option" value="Doctor">
+                      {" "}
+                      11.00 - 12.00{" "}
+                    </option>
+                    </select>
                 </div>
                 <Link to="/postponeconfirm">
                 <div className="mb-6">
                   <button
                     type="submit"
-                    className="w-full px-3 py-4 text-white bg-indigo-300 rounded-md focus:bg-indigo-200 focus:outline-none"
+                    className="w-full px-3 py-3 text-white bg-indigo-300 rounded-md focus:bg-indigo-200 focus:outline-none"
                   >
                     ถัดไป
                   </button>
                 
                 </div>
                 </Link>
-                <p
-                  className="text-base text-center text-gray-400"
-                  id="result"
-                ></p>
+                <Link to="/postpone">
+                <div className="mb-6">
+                  <button
+                    className="w-full px-3 py-3 text-white bg-gray-300 rounded-md "
+                  >
+                    ย้อนกลับ
+                  </button>
+                </div>
+                </Link>
               </form>
             </div>
           </div>
