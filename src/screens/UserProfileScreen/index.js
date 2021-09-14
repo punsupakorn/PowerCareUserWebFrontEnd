@@ -1,11 +1,71 @@
-
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { useState } from "react";
-
+import axios from "axios";
 
 export default function UserProfileScreen() {
-
   const [date, setDate] = useState();
+
+  const [FirstName, setFirstName] = useState("");
+  const [LastName, setLastName] = useState("");
+  const [DateOfBirth, setDateOfBirth] = useState("");
+  const [Sex, setSex] = useState("");
+  const [Address, setAddress] = useState("");
+  const [Phone, setPhone] = useState("");
+  const [Email, setEmail] = useState("");
+
+  const handleFirstName = (e) => {
+    const firstname = e.target.value;
+    setFirstName(firstname);
+  };
+
+  const handleLastName = (e) => {
+    const lastname = e.target.value;
+    setLastName(lastname);
+  };
+
+  const handleDateOfBirth = (e) => {
+    const dateofbirth = e.target.value;
+    setDateOfBirth(dateofbirth);
+  };
+
+  const handleSex = (e) => {
+    const sex = e.target.value;
+    setSex(sex);
+  };
+
+  const handleAddress = (e) => {
+    const address = e.target.value;
+    setAddress(address);
+  };
+
+  const handlePhone = (e) => {
+    const phone = e.target.value;
+    setPhone(phone);
+  };
+
+  const handleEmail = (e) => {
+    const email = e.target.value;
+    setEmail(email);
+  };
+
+  const handleSubmit = () => {
+    try {
+      axios
+        .post("/UserProfile", {
+          FirstName: FirstName,
+          LastName: LastName,
+          DateOfBirth: DateOfBirth,
+          Sex: Sex,
+          Address: Address,
+          Phone: Phone,
+          Email: Email,
+        })
+        .then((res) => {
+          console.log(res);
+        });
+    } catch (error) {}
+  };
+
   return (
     <div classname="bg-indigo-200 h-screen w-screen">
       <div className="flex items-center min-h-screen bg-indigo-200 dark:bg-gray-900">
@@ -32,15 +92,12 @@ export default function UserProfileScreen() {
             </div>
             <div className="m-7">
               <form
-                action="https://api.web3forms.com/submit"
-                method="POST"
-                id="form"
+              // action="https://api.web3forms.com/submit"
+              // method="POST"
+              // id="form"
               >
-               
                 <div className="mb-6">
-                  <label
-                    className="block mb-2 text-sm text-gray-600 dark:text-gray-400"
-                  >
+                  <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
                     ชื่อ :{" "}
                   </label>
                   <input
@@ -50,27 +107,25 @@ export default function UserProfileScreen() {
                     placeholder="โปรดกรอกชื่อจริง"
                     required
                     className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
+                    onChange={handleFirstName}
                   />
                 </div>
                 <div className="mb-6">
-                  <label
-                    className="block mb-2 text-sm text-gray-600 dark:text-gray-400"
-                  >
+                  <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
                     นามสกุล :{" "}
                   </label>
                   <input
                     type="text"
-                    name="name"
+                    name="lastname"
                     id="name"
                     placeholder="โปรดกรอกนามสกุล"
                     required
                     className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
+                    onChange={handleLastName}
                   />
                 </div>
                 <div className="mb-6">
-                  <label
-                    className="block mb-2 text-sm text-gray-600 dark:text-gray-400"
-                  >
+                  <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
                     วัน / เดือน / ปีเกิด :{" "}
                   </label>
                   {/* <input
@@ -86,94 +141,90 @@ export default function UserProfileScreen() {
                     placeholder="เลือกวันที่ทำนัด"
                     type="date"
                     value={date}
+                    onChange={handleDateOfBirth}
                     // onChange={(e) => {
                     //   setDate(e.target.value);
                     // }}
                   ></input>
                 </div>
                 <div className="mb-6">
-                  <label
-                    className="block mb-2 text-sm text-gray-600 dark:text-gray-400"
-                  >
+                  <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
                     เพศ :
                   </label>
-                   <select
-                // id="position"
-                // name="Position"
-                className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500 "
-                // onClick={handlePosition}
-              >
-                <option disabled selected value>
-                  {" "}
-                  กรุณาเลือกเพศ
-                </option>
-                <option className="option" value="Doctor">
-                  {" "}
-                  ชาย {" "}
-                </option>
-              </select>
+                  <select
+                    // id="position"
+                    // name="Position"
+                    className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500 "
+                    onChange={handleSex}
+                  >
+                    <option disabled selected value>
+                      {" "}
+                      กรุณาเลือกเพศ
+                    </option>
+                    <option className="option" value="ชาย">
+                      {" "}
+                      ชาย{" "}
+                    </option>
+                    <option className="option" value="หญิง">
+                      {" "}
+                      หญิง{" "}
+                    </option>
+                  </select>
                 </div>
                 <div className="mb-6">
-                  <label
-                    className="block mb-2 text-sm text-gray-600 dark:text-gray-400"
-                  >
+                  <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
                     ที่อยู่ :{" "}
                   </label>
                   <textarea
                     rows={5}
-                    name="message"
+                    name="address"
                     id="message"
                     placeholder="โปรดกรอกที่อยู่"
                     className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
                     required
                     defaultValue={""}
+                    onChange={handleAddress}
                   />
                 </div>
                 <div className="mb-6">
-                  <label
-                    className="block mb-2 text-sm text-gray-600 dark:text-gray-400"
-                  >
+                  <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
                     เบอร์ติดต่อ :
                   </label>
                   <input
                     type="text"
-                    name="name"
+                    name="phone"
                     id="name"
                     placeholder="โปรดกรอกหมายเลขโทรศัพท์"
                     required
                     className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
+                    onChange={handlePhone}
                   />
                 </div>
                 <div className="mb-6">
-                  <label
-                    className="block mb-2 text-sm text-gray-600 dark:text-gray-400"
-                  >
+                  <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
                     อีเมลล์ :
                   </label>
                   <input
                     type="text"
-                    name="name"
+                    name="email"
                     id="name"
                     placeholder="โปรดกรอกอีเมลล์"
                     required
                     className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
+                    onChange={handleEmail}
                   />
                 </div>
-                <Link to="/otp">
                 <div className="mb-6">
+                  <Link to="otp" >
                   <button
-                    type="submit"
+                    type="button"
                     className="w-full px-3 py-3 text-white bg-indigo-300 rounded-md focus:bg-indigo-200 focus:outline-none"
+                    onClick={handleSubmit}
                   >
-                    ถัดไป
+                    ลงทะเบียน
                   </button>
-                
+                  </Link>
                 </div>
-                </Link>
-                <p
-                  className="text-base text-center text-gray-400"
-                  id="result"
-                ></p>
               </form>
             </div>
           </div>
