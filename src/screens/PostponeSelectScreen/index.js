@@ -87,11 +87,22 @@ export default function PostponeSelectScreen() {
                   >
                     วันที่ / เวลา ทำนัดใหม่ :{" "}
                   </label>
-                  <input
-                    className="inline-flex  px-3 w-full  py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500 "
-                    placeholder="เลือกวันที่ทำนัด"
-                    type="date"
-                    value={date}/>
+                  <select
+                    // id="position"
+                    // name="Position"
+                    className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500 "
+                    // onChange={handleDate}
+
+                  >
+                    <option disabled selected value>
+                      {" "}
+                      กรุณาเลือกวันที่
+                    </option>
+                    <option className="option" value="Doctor">
+                      {" "}
+                      วันจันทร์ 16 สิงหาคม 2542 {" "}
+                    </option>
+                  </select>
                 </div>
                 <div className="mb-6">
                 <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">

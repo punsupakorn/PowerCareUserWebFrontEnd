@@ -23,10 +23,10 @@ function App() {
     <HashRouter>
     <div className="App">
       <Switch>
-
-        <Route path="/userprofile">
+      <Route exact path="/" component={UserProfileScreen} />
+        {/* <Route path="/userprofile">
           <UserProfileScreen />
-        </Route>
+        </Route> */}
         <Route path="/otp">
           <OTPScreen />
         </Route>

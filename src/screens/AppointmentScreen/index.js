@@ -1,7 +1,53 @@
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { useState } from "react";
+import { useState ,useEffect} from "react";
+import axios from "axios";
+
 export default function AppointmentScreen() {
-  const [date, setDate] = useState();
+  const [date] = useState();
+  const [Symptom, setSymptom] = useState("");
+  const [Date, setDate] = useState("");
+  const [DoctorName, setDoctorName] = useState("");
+  const [Time, setTime] = useState("");
+
+  
+  const handleSymptom = (e) => {
+    const symptom = e.target.value;
+    setSymptom(symptom);
+  };
+
+  const handleDate = (e) => {
+    const date = e.target.value;
+    setDate(date);
+  };
+
+  const handleDoctorName = (e) => {
+    const doctorname = e.target.value;
+    setDoctorName(doctorname);
+  };
+
+  const handleTime = (e) => {
+    const time = e.target.value;
+    setTime(time);
+  };
+  
+  const handleSubmit = () => {
+    try {
+      axios
+        .post("/Appointment", {
+          Symptom: Symptom,
+          Date: Date,
+          DoctorName: DoctorName,
+          Time: Time,
+        })
+        .then((res) => {
+          console.log(res);
+        });
+    } catch (error) {
+    }
+  };
+  
+  
+  
   return (
     <div classname="bg-indigo-200 h-screen w-screen">
       <div className="flex items-center min-h-screen bg-indigo-200 dark:bg-gray-900">
@@ -28,9 +74,6 @@ export default function AppointmentScreen() {
             </div>
             <div className="m-7">
               <form
-                action="https://api.web3forms.com/submit"
-                method="POST"
-                id="form"
               >
                 <div className="mb-6">
                   <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
@@ -44,18 +87,29 @@ export default function AppointmentScreen() {
                     className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
                     required
                     defaultValue={""}
+                    onChange={handleSymptom}
                   />
                 </div>
                 <div className="mb-6">
-                  <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
-                    เลือกวันที่ :{" "}
+                <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
+                   เลือกวันที่
                   </label>
-                  <input
-                    className="inline-flex  px-3 w-full  py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500 "
-                    placeholder="เลือกวันที่ทำนัด"
-                    type="date"
-                    value={date}
-                  />
+                  <select
+                    // id="position"
+                    // name="Position"
+                    className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500 "
+                    onChange={handleDate}
+
+                  >
+                    <option disabled selected value>
+                      {" "}
+                      กรุณาเลือกวันที่
+                    </option>
+                    <option className="option" value="Doctor">
+                      {" "}
+                      วันจันทร์ 16 สิงหาคม 2542 {" "}
+                    </option>
+                  </select>
                 </div>
                 <div className="mb-6">
                   <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
@@ -65,7 +119,8 @@ export default function AppointmentScreen() {
                     // id="position"
                     // name="Position"
                     className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500 "
-                    // onClick={handlePosition}
+                    onChange={handleDoctorName}
+
                   >
                     <option disabled selected value>
                       {" "}
@@ -82,16 +137,16 @@ export default function AppointmentScreen() {
                     เลือกเวลา :{" "}
                   </label>
                   <select
-                    id="position"
-                    name="Position"
+                    // id="position"
+                    // name="Position"
                     className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500 "
-                    // onClick={handlePosition}
+                    onChange={handleTime}
                   >
                     <option disabled selected value>
                       {" "}
                       กรุณาเลือกเวลา
                     </option>
-                    <option className="option" value="Doctor">
+                    <option className="option" value="11.00 - 12.00">
                       {" "}
                       11.00 - 12.00{" "}
                     </option>
@@ -100,8 +155,9 @@ export default function AppointmentScreen() {
                 <Link to="/appointmentconfirm">
                   <div className="mb-6">
                     <button
-                      type="submit"
+                      type="button"
                       className="w-full px-3 py-3 text-white bg-indigo-300 rounded-md focus:bg-indigo-200 focus:outline-none"
+                      onClick={handleSubmit}
                     >
                       ถัดไป
                     </button>
@@ -109,16 +165,12 @@ export default function AppointmentScreen() {
                 </Link>
                 <Link to="/menuhome">
                   <div className="mb-6">
-                    <button className="w-full px-3 py-3 text-white bg-gray-300 rounded-md ">
+                    <button className="w-full px-3 py-3 text-white bg-gray-300 rounded-md "
+>
                       ย้อนกลับ
                     </button>
                   </div>
                 </Link>
-
-                <p
-                  className="text-base text-center text-gray-400"
-                  id="result"
-                ></p>
               </form>
             </div>
           </div>
