@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { useState ,useEffect} from "react";
 import axios from "axios";
+import { server } from "../../constants";
 
 export default function AppointmentScreen() {
   const [date] = useState();
@@ -33,7 +34,7 @@ export default function AppointmentScreen() {
   const handleSubmit = () => {
     try {
       axios
-        .post("/Appointment", {
+        .post(server.APPOINTMAENT, {
           Symptom: Symptom,
           Date: Date,
           DoctorName: DoctorName,
