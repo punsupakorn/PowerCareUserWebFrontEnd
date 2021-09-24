@@ -13,54 +13,45 @@ import {
   FollowUpScreen,
 } from "./screens";
 import {
-  Switch,
-  Route,
-  HashRouter,
+  Switch,Route,BrowserRouter as Router
+  // Switch,
+  // Route,
+  // BrowserRouter,
 } from "react-router-dom";
 
 function App() {
   return (
-    <HashRouter>
+    <Router>
     <div className="App">
       <Switch>
       <Route exact path="/" component={UserProfileScreen} />
         {/* <Route path="/userprofile">
           <UserProfileScreen />
         </Route> */}
-        <Route path="/otp">
-          <OTPScreen />
+        <Route path="/otp" component={OTPScreen}>
         </Route>
-        <Route path="/menuhome">
-          <MenuHomeScreen />
+        <Route path="/menuhome" component={MenuHomeScreen}>
         </Route>
-        <Route path="/appointment">
-          <AppointmentScreen />
+        <Route path="/appointment" component={AppointmentScreen}>
         </Route>
-        <Route path="/appointmentconfirm">
-          <AppointmentConfirmScreen />
+        <Route path="/appointmentconfirm" component={AppointmentConfirmScreen}>
         </Route>
-        <Route path="/postpone">
-          <PostponeScreen />
+        <Route path="/postpone"  component={PostponeScreen }>
         </Route>
-        <Route path="/postponeselect">
-          <PostponeSelectScreen />
+        <Route path="/postponeselect" component={PostponeSelectScreen }>
         </Route>
-        <Route path="/postponeconfirm">
-          <PostponeConfirmScreen/>
+        <Route path="/postponeconfirm" component={PostponeConfirmScreen }>
         </Route>
-        <Route path="/cancel">
-          <CancelScreen/>
+        <Route path="/cancel" component={CancelScreen }>
         </Route>
-        <Route path="/edituserprofile">
-          <EditUserProfileScreen/>
+        <Route path="/edituserprofile" component={EditUserProfileScreen}>
         </Route>
-        <Route path="/followup">
-          <FollowUpScreen/>
+        <Route path="/followup" component={FollowUpScreen}>
         </Route>
         
       </Switch>
     </div>
-    </HashRouter>
+    </Router>
   );
 }
 

@@ -105,7 +105,7 @@ export default function AppointmentScreen() {
                       {" "}
                       กรุณาเลือกวันที่
                     </option>
-                    <option className="option" value="Doctor">
+                    <option className="option" value="วันจันทร์ 16 สิงหาคม 2542 ">
                       {" "}
                       วันจันทร์ 16 สิงหาคม 2542 {" "}
                     </option>
@@ -126,7 +126,7 @@ export default function AppointmentScreen() {
                       {" "}
                       กรุณาเลือกแพทย์
                     </option>
-                    <option className="option" value="Doctor">
+                    <option className="option" value="นางแพทย์หญิง ดาริส ปิ่นโต">
                       {" "}
                       นางแพทย์หญิง ดาริส ปิ่นโต{" "}
                     </option>
