@@ -2,7 +2,6 @@
   "name": "powercare-user-frontend",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://powercareuserback.firebaseapp.com/",
   "dependencies": {
     "@craco/craco": "^6.2.0",
     "@testing-library/jest-dom": "^5.14.1",
@@ -28,6 +27,7 @@
     "test": "craco test",
     "eject": "react-scripts eject"
   },
+
   "eslintConfig": {
     "extends": [
       "react-app",

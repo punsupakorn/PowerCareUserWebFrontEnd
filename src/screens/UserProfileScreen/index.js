@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+import { server } from "../../constants";
 
 export default function UserProfileScreen() {
   const [date, setDate] = useState();
@@ -51,7 +52,7 @@ export default function UserProfileScreen() {
   const handleSubmit = () => {
     try {
       axios
-        .post("/UserProfile", {
+        .post(server.USERPROFILE, {
           FirstName: FirstName,
           LastName: LastName,
           DateOfBirth: DateOfBirth,
