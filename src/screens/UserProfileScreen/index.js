@@ -64,7 +64,9 @@ export default function UserProfileScreen() {
         .then((res) => {
           console.log(res);
         });
-    } catch (error) {}
+    } catch (error) {
+      return error;
+    }
   };
 
   return (
@@ -216,14 +218,14 @@ export default function UserProfileScreen() {
                   />
                 </div>
                 <div className="mb-6">
-                  <Link to="otp" >
-                  <button
-                    type="button"
-                    className="w-full px-3 py-3 text-white bg-indigo-300 rounded-md focus:bg-indigo-200 focus:outline-none"
-                    onClick={handleSubmit}
-                  >
-                    ลงทะเบียน
-                  </button>
+                  <Link to="otp">
+                    <button
+                      type="button"
+                      className="w-full px-3 py-3 text-white bg-indigo-300 rounded-md focus:bg-indigo-200 focus:outline-none"
+                      onClick={handleSubmit}
+                    >
+                      ลงทะเบียน
+                    </button>
                   </Link>
                 </div>
               </form>

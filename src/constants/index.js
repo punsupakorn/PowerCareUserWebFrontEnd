@@ -2,6 +2,6 @@
 export const apiURL = "https://powercareuserback.firebaseapp.com/";
 
 export const server = {
-    USERPROFILE : `${apiURL}userprofile`,
-    APPOINTMAENT : `${apiURL}appointment`,
+    USERPROFILE : `${apiURL}UserProfile`,
+    APPOINTMAENT : `${apiURL}Appointment`,
 }
