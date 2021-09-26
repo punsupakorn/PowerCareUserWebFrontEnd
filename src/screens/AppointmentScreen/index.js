@@ -1,16 +1,49 @@
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { useState ,useEffect} from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { server } from "../../constants";
 
 export default function AppointmentScreen() {
-  const [date] = useState();
+  const [timeslot, settimeslot] = useState([]);
   const [Symptom, setSymptom] = useState("");
-  const [Date, setDate] = useState("");
   const [DoctorName, setDoctorName] = useState("");
+  const [Date, setDate] = useState("");
   const [Time, setTime] = useState("");
 
-  
+  useEffect(() => {
+    axios.get(server.APPOINTMENT).then((res) => {
+      settimeslot(res.data);
+      // console.log(timeslot);
+    });
+  }, []);
+
+  // const displayDate = (date) => {
+  //   // console.log(date);
+  //   const result = new Date(date).toLocaleDateString("th-TH", {
+  //     year: "numeric",
+  //     month: "long",
+  //     day: "numeric",
+  //     weekday: "long",
+  //   });
+  //   // console.log(result);
+  //   return result;
+  // };
+
+  const displayTime = (time) => {
+    const timearray = [];
+    for (let i = 0; i < time.length; i++) {
+      const element = time[i];
+
+      // for (let i = 0; i < element.length; i++) {
+      //   const timeelement = element[i];
+      //   timearray.push(timeelement);
+      // }
+      timearray.push(element);
+    }
+    // console.log(timearray);
+    return timearray;
+  };
+
   const handleSymptom = (e) => {
     const symptom = e.target.value;
     setSymptom(symptom);
@@ -30,11 +63,16 @@ export default function AppointmentScreen() {
     const time = e.target.value;
     setTime(time);
   };
-  
+
+  console.log(Symptom);
+  console.log(DoctorName);
+  console.log(Date);
+  console.log(Time);
+
   const handleSubmit = () => {
     try {
       axios
-        .post(server.APPOINTMAENT, {
+        .post(server.APPOINTMENT, {
           Symptom: Symptom,
           Date: Date,
           DoctorName: DoctorName,
@@ -43,12 +81,9 @@ export default function AppointmentScreen() {
         .then((res) => {
           console.log(res);
         });
-    } catch (error) {
-    }
+    } catch (error) {}
   };
-  
-  
-  
+
   return (
     <div classname="bg-indigo-200 h-screen w-screen">
       <div className="flex items-center min-h-screen bg-indigo-200 dark:bg-gray-900">
@@ -74,8 +109,7 @@ export default function AppointmentScreen() {
               />
             </div>
             <div className="m-7">
-              <form
-              >
+              <form>
                 <div className="mb-6">
                   <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
                     อาการ :{" "}
@@ -92,24 +126,22 @@ export default function AppointmentScreen() {
                   />
                 </div>
                 <div className="mb-6">
-                <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
-                   เลือกวันที่
+                  <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
+                    เลือกวันที่
                   </label>
                   <select
                     // id="position"
                     // name="Position"
                     className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500 "
                     onChange={handleDate}
-
                   >
                     <option disabled selected value>
                       {" "}
                       กรุณาเลือกวันที่
                     </option>
-                    <option className="option" value="วันจันทร์ 16 สิงหาคม 2542 ">
-                      {" "}
-                      วันจันทร์ 16 สิงหาคม 2542 {" "}
-                    </option>
+                    {timeslot.map((timeslot) => (
+                      <option className="option"> {timeslot.Date} </option>
+                    ))}
                   </select>
                 </div>
                 <div className="mb-6">
@@ -121,16 +153,24 @@ export default function AppointmentScreen() {
                     // name="Position"
                     className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500 "
                     onChange={handleDoctorName}
-
                   >
                     <option disabled selected value>
                       {" "}
                       กรุณาเลือกแพทย์
                     </option>
+<<<<<<< Updated upstream
                     <option className="option" value="นางแพทย์หญิง ดาริส ปิ่นโต">
                       {" "}
                       นางแพทย์หญิง ดาริส ปิ่นโต{" "}
                     </option>
+=======
+                    {timeslot.map((timeslot) => (
+                      <option className="option">
+                        {" "}
+                        {timeslot.DoctorName}{" "}
+                      </option>
+                    ))}
+>>>>>>> Stashed changes
                   </select>
                 </div>
                 <div className="mb-6">
@@ -147,12 +187,16 @@ export default function AppointmentScreen() {
                       {" "}
                       กรุณาเลือกเวลา
                     </option>
-                    <option className="option" value="11.00 - 12.00">
-                      {" "}
-                      11.00 - 12.00{" "}
-                    </option>
+                    {timeslot.map(
+                      (time) =>
+                        displayTime(time.Time).map((t) => (
+                          <option className="option"> {t} </option>
+                        ))
+                      // <option className="option"> {displayTime(time)} </option>
+                    )}
                   </select>
                 </div>
+
                 <Link to="/appointmentconfirm">
                   <div className="mb-6">
                     <button
@@ -166,8 +210,7 @@ export default function AppointmentScreen() {
                 </Link>
                 <Link to="/menuhome">
                   <div className="mb-6">
-                    <button className="w-full px-3 py-3 text-white bg-gray-300 rounded-md "
->
+                    <button className="w-full px-3 py-3 text-white bg-gray-300 rounded-md ">
                       ย้อนกลับ
                     </button>
                   </div>
