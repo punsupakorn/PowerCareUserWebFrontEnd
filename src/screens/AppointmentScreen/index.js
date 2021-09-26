@@ -158,19 +158,12 @@ export default function AppointmentScreen() {
                       {" "}
                       กรุณาเลือกแพทย์
                     </option>
-<<<<<<< Updated upstream
-                    <option className="option" value="นางแพทย์หญิง ดาริส ปิ่นโต">
-                      {" "}
-                      นางแพทย์หญิง ดาริส ปิ่นโต{" "}
-                    </option>
-=======
                     {timeslot.map((timeslot) => (
                       <option className="option">
                         {" "}
                         {timeslot.DoctorName}{" "}
                       </option>
                     ))}
->>>>>>> Stashed changes
                   </select>
                 </div>
                 <div className="mb-6">
