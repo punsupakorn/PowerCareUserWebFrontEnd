@@ -1,7 +1,8 @@
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { server } from "../../constants";
+import liff from '@line/liff';
 
 export default function UserProfileScreen() {
   const [date, setDate] = useState();
@@ -13,6 +14,26 @@ export default function UserProfileScreen() {
   const [Address, setAddress] = useState("");
   const [Phone, setPhone] = useState("");
   const [Email, setEmail] = useState("");
+  const [userId, setUserId] = useState('');
+
+  useEffect(() => {
+    liff.init({ liffId: '1656423908-vEgA2gn7' }).then(() => {
+      liff.login()
+      if (liff.isInClient()) {
+        liff.getProfile()
+          .then(profile => {
+            const userId = profile.userId
+            console.log("UserId : ",userId)
+            setUserId(userId);
+          })
+          .catch((err) => {
+            console.log('error', err);
+          });
+      } else {
+
+      }
+    });
+  })
 
   const handleFirstName = (e) => {
     const firstname = e.target.value;
@@ -145,9 +166,9 @@ export default function UserProfileScreen() {
                     type="date"
                     value={date}
                     onChange={handleDateOfBirth}
-                    // onChange={(e) => {
-                    //   setDate(e.target.value);
-                    // }}
+                  // onChange={(e) => {
+                  //   setDate(e.target.value);
+                  // }}
                   ></input>
                 </div>
                 <div className="mb-6">
@@ -216,6 +237,7 @@ export default function UserProfileScreen() {
                     className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
                     onChange={handleEmail}
                   />
+                  {userId}
                 </div>
                 <div className="mb-6">
                   <Link to="otp">
