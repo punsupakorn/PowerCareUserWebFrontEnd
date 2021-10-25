@@ -41,20 +41,14 @@ export const AuthProvider = ({ children }) => {
     await axios.get(`${server.LOGIN}/${accessToken}`).then((res) => {
       const check = res.data;
       if (check == true) {
-        history.push("/menuhome");
+        console.log("เจอออออ");
+        return <Redirect to={{ pathname: `/menuhome` }} />;
+        // history.push("/menuhome");
       } else {
-        history.push("/");
+        console.log("ไม่เจอออออ");
+        return <Redirect to={{ pathname: `/` }} />;
+        // history.push("/");
       }
-      // setcheckUser(res.data);
-      // console.log(res);
-      // const check = res.data;
-      // if (check == true) {
-      //   // <Redirect to={{ pathname: `/menuhome` }} />;
-      //   history.push(`/menuhome`);
-      // } else {
-      //   // <Redirect to={{ pathname: `/` }} />;
-      //   history.push(`/`);
-      // }
     });
     // setAccessToken(accessToken);
   };
