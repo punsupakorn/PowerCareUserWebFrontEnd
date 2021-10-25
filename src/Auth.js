@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import liff from "@line/liff";
-import { useHistory } from "react-router";
+import { Redirect, useHistory } from "react-router";
 import axios from "axios";
 import { server } from "./constants";
 
@@ -39,9 +39,11 @@ export const AuthProvider = ({ children }) => {
     await axios.get(`${server.LOGIN}/${accessToken}`).then((res) => {
       console.log(res);
       if (res.data == true) {
-        history.push("/menuhome");
+        <Redirect to="/menuhome" />
+        // history.push("/menuhome");
       } else {
-        history.push("/");
+        <Redirect to="/" />
+        // history.push("/");
       }
     });
     // setAccessToken(accessToken);
