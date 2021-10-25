@@ -1,8 +1,10 @@
+import React, { useContext } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { server } from "../../constants";
-import liff from '@line/liff';
+// import liff from "@line/liff";
+import { AuthContext } from "../../Auth";
 
 export default function UserProfileScreen() {
   const [date, setDate] = useState();
@@ -15,27 +17,7 @@ export default function UserProfileScreen() {
   const [Phone, setPhone] = useState("");
   const [Email, setEmail] = useState("");
 
-  const [accessToken, setAccessToken] = useState("");
-
-    useEffect(() => {
-    initLine();
-  }, []);
-
- const initLine = () => {
-    liff.init({ liffId: '1656423908-vEgA2gn7' }, () => {
-      if (liff.isLoggedIn({ redirectUri: "https://powercareuser.systems" })) {
-        runApp();
-      } else {
-        liff.login();
-      }
-    }, err => console.error(err));
-  }
-
-  const runApp = () => {
-    const accessToken = liff.getAccessToken();
-    setAccessToken(accessToken)
-    console.log(accessToken);
-  }
+  const { accessToken } = useContext(AuthContext);
 
   const handleFirstName = (e) => {
     const firstname = e.target.value;
@@ -184,9 +166,9 @@ export default function UserProfileScreen() {
                     type="date"
                     value={date}
                     onChange={handleDateOfBirth}
-                  // onChange={(e) => {
-                  //   setDate(e.target.value);
-                  // }}
+                    // onChange={(e) => {
+                    //   setDate(e.target.value);
+                    // }}
                   ></input>
                 </div>
                 <div className="mb-6">
