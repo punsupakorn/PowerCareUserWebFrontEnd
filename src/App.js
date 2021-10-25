@@ -18,14 +18,14 @@ import {
   BrowserRouter as Router,
   // Switch,
   // Route,
-  // BrowserRouter,
+  BrowserRouter,
 } from "react-router-dom";
 import { AuthProvider } from "./Auth";
 
 function App() {
   return (
     <AuthProvider>
-      <Router>
+      <BrowserRouter>
         <div className="App">
           <Switch>
             <Route exact path="/" component={UserProfileScreen} />
@@ -56,7 +56,7 @@ function App() {
             <Route path="/followup" component={FollowUpScreen}></Route>
           </Switch>
         </div>
-      </Router>
+      </BrowserRouter>
     </AuthProvider>
   );
 }

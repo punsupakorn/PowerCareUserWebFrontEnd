@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import liff from "@line/liff";
-import { Redirect, useHistory } from "react-router";
+import { Redirect } from "react-router";
 import axios from "axios";
 import { server } from "./constants";
+import { useHistory } from "react-router";
 
 export const AuthContext = React.createContext();
 
@@ -39,23 +40,15 @@ export const AuthProvider = ({ children }) => {
     await axios.get(`${server.LOGIN}/${accessToken}`).then((res) => {
       console.log(res);
       if (res.data == true) {
-        <Redirect to="/menuhome" />
+        <Redirect to={{ pathname: `/menuhome` }} />;
         // history.push("/menuhome");
       } else {
-        <Redirect to="/" />
+        <Redirect to={{ pathname: `/` }} />;
         // history.push("/");
       }
     });
     // setAccessToken(accessToken);
   };
-
-  // const checkUser = () => {
-  //   axios.get(`${server.LOGIN}/${accessToken}`).then((res) => {
-  //     if (res == true) {
-  //       history.push("/menuhome");
-  //     }
-  //   });
-  // };
 
   if (loading) {
     return <p>Loading...</p>;
