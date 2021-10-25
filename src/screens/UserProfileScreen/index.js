@@ -19,6 +19,8 @@ export default function UserProfileScreen() {
 
   const { accessToken } = useContext(AuthContext);
 
+  console.log("accessToken : ", accessToken);
+
   const handleFirstName = (e) => {
     const firstname = e.target.value;
     setFirstName(firstname);
