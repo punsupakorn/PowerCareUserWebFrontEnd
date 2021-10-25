@@ -10,6 +10,7 @@ export const AuthContext = React.createContext();
 export const AuthProvider = ({ children }) => {
   const history = useHistory();
   const [loading, setloading] = useState(true);
+  // const [checkUser, setcheckUser] = useState();
 
   const [accessToken, setAccessToken] = useState(null);
   useEffect(() => {
@@ -39,12 +40,13 @@ export const AuthProvider = ({ children }) => {
     const accessToken = liff.getAccessToken();
     await axios.get(`${server.LOGIN}/${accessToken}`).then((res) => {
       console.log(res);
-      if (res.data == true) {
-        <Redirect to={{ pathname: `/menuhome` }} />;
-        // history.push("/menuhome");
+      const check = res.data;
+      if (check == true) {
+        // <Redirect to={{ pathname: `/menuhome` }} />;
+        history.push(`/menuhome`);
       } else {
-        <Redirect to={{ pathname: `/` }} />;
-        // history.push("/");
+        // <Redirect to={{ pathname: `/` }} />;
+        history.push(`/`);
       }
     });
     // setAccessToken(accessToken);
