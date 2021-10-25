@@ -39,6 +39,8 @@ export const AuthProvider = ({ children }) => {
     await axios.get(`${server.LOGIN}/${accessToken}`).then((res) => {
       if (res == true) {
         history.push("/menuhome");
+      } else {
+        history.push("/");
       }
     });
     setAccessToken(accessToken);
