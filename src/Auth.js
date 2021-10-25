@@ -56,9 +56,9 @@ export const AuthProvider = ({ children }) => {
 
   const checkUserId = () => {
     if (checkUser == true) {
-      history.push({ pathname: `/menuhome` });
+      history.push("/menuhome");
     } else {
-      history.push({ pathname: `/` });
+      history.push("/");
     }
   };
 
