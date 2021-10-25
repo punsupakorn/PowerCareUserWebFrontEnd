@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import liff from "@line/liff";
 import { useHistory } from "react-router";
+import axios from "axios";
+import { server } from "./constants";
 
 export const AuthContext = React.createContext();
 
@@ -12,6 +14,7 @@ export const AuthProvider = ({ children }) => {
   const [accessToken, setAccessToken] = useState(null);
   useEffect(() => {
     initLine();
+    checkUser();
   }, []);
 
   const initLine = () => {
@@ -32,23 +35,20 @@ export const AuthProvider = ({ children }) => {
   const runApp = () => {
     const accessToken = liff.getAccessToken();
     setAccessToken(accessToken);
-    console.log(accessToken);
+    // console.log(accessToken);
   };
 
-  // useEffect(() => {
-  //   liff.getContext((user) => {
-  //   //   console.log(user);
-  //     // setcurrentUser(user);
-  //     // setloading(false);
-  //   // });
-  //   // firebaseConfig.auth().onAuthStateChanged((user) => {
-  //   //   setCurrentUser(user);
-  //   //   setLoading(false);
-  //   // });
-  // }, []);
-  if (accessToken) {
-    history.push("/menuhome");
-  }
+  const checkUser = () => {
+    axios.get(`${server.LOGIN}/${accessToken}`).then((res) => {
+      if (res == true) {
+        history.push("/menuhome");
+      }
+    });
+  };
+
+  // if (accessToken) {
+  //   history.push("/menuhome");
+  // }
 
   if (loading) {
     return <p>Loading...</p>;
