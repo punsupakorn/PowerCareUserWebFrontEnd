@@ -25,7 +25,7 @@ export default function UserProfileScreen() {
 
  const initLine = () => {
     liff.init({ liffId: '1656423908-vEgA2gn7' }, () => {
-      if (liff.isLoggedIn()) {
+      if (liff.isLoggedIn({ redirectUri: "https://powercareuser.systems" })) {
         runApp();
       } else {
         liff.login();
