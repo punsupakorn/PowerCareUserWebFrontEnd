@@ -29,21 +29,28 @@ export const AuthProvider = ({ children }) => {
       },
       (err) => console.error(err)
     );
-  };
-
-  const runApp = () => {
     const accessToken = liff.getAccessToken();
-    setAccessToken(accessToken);
-    // console.log(accessToken);
-  };
-
-  const checkUser = () => {
     axios.get(`${server.LOGIN}/${accessToken}`).then((res) => {
       if (res == true) {
         history.push("/menuhome");
       }
     });
+    setAccessToken(accessToken);
   };
+
+  const runApp = () => {
+    const accessToken = liff.getAccessToken();
+    setAccessToken(accessToken);
+    console.log(accessToken);
+  };
+
+  // const checkUser = () => {
+  //   axios.get(`${server.LOGIN}/${accessToken}`).then((res) => {
+  //     if (res == true) {
+  //       history.push("/menuhome");
+  //     }
+  //   });
+  // };
 
   if (loading) {
     return <p>Loading...</p>;
