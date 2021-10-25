@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
   const [accessToken, setAccessToken] = useState(null);
   useEffect(async () => {
     await initLine();
-    checkUserId();
+    // checkUserId();
   }, []);
 
   const runApp = () => {
@@ -39,8 +39,13 @@ export const AuthProvider = ({ children }) => {
     );
     const accessToken = liff.getAccessToken();
     await axios.get(`${server.LOGIN}/${accessToken}`).then((res) => {
-      setcheckUser(res.data);
-      console.log(checkUser);
+      const check = res.data;
+      if (check == true) {
+        history.push("/menuhome");
+      } else {
+        history.push("/");
+      }
+      // setcheckUser(res.data);
       // console.log(res);
       // const check = res.data;
       // if (check == true) {
@@ -54,13 +59,13 @@ export const AuthProvider = ({ children }) => {
     // setAccessToken(accessToken);
   };
 
-  const checkUserId = () => {
-    if (checkUser == true) {
-      history.push("/menuhome");
-    } else {
-      history.push("/");
-    }
-  };
+  // const checkUserId = () => {
+  //   if (checkUser == true) {
+  //     history.push("/menuhome");
+  //   } else {
+  //     history.push("/");
+  //   }
+  // };
 
   if (loading) {
     return <p>Loading...</p>;
