@@ -38,11 +38,11 @@ export const AuthProvider = ({ children }) => {
     const accessToken = liff.getAccessToken();
     await axios.get(`${server.LOGIN}/${accessToken}`).then((res) => {
       console.log(res);
-      // if (res == true) {
-      //   history.push("/menuhome");
-      // } else {
-      //   history.push("/");
-      // }
+      if (res.data == true) {
+        history.push("/menuhome");
+      } else {
+        history.push("/");
+      }
     });
     // setAccessToken(accessToken);
   };
