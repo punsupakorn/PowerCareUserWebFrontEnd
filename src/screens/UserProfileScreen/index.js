@@ -14,26 +14,34 @@ export default function UserProfileScreen() {
   const [Address, setAddress] = useState("");
   const [Phone, setPhone] = useState("");
   const [Email, setEmail] = useState("");
-  const [userId, setUserId] = useState('');
 
-  useEffect(() => {
-    liff.init({ liffId: '1656423908-vEgA2gn7' }).then(() => {
-      liff.login()
-      if (liff.isInClient()) {
-        liff.getProfile()
-          .then(profile => {
-            const userId = profile.userId
-            console.log("UserId : ",userId)
-            setUserId(userId);
-          })
-          .catch((err) => {
-            console.log('error', err);
-          });
+  const [idToken, setIdToken] = useState("");
+  const [displayName, setDisplayName] = useState("");
+  const [userId, setUserId] = useState("");
+
+    useEffect(() => {
+    initLine();
+  }, []);
+
+ const initLine = () => {
+    liff.init({ liffId: '1655665373-YAopzeO6' }, () => {
+      if (liff.isLoggedIn()) {
+        runApp();
       } else {
-
+        liff.login();
       }
-    });
-  })
+    }, err => console.error(err));
+  }
+
+  const runApp = () => {
+    const idToken = liff.getIDToken();
+    setIdToken(idToken);
+    liff.getProfile().then(profile => {
+      console.log(profile);
+      setDisplayName(profile.displayName);
+      setUserId(profile.userId);
+    }).catch(err => console.error(err));
+  }
 
   const handleFirstName = (e) => {
     const firstname = e.target.value;
