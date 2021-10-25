@@ -16,8 +16,6 @@ export default function UserProfileScreen() {
   const [Email, setEmail] = useState("");
 
   const [idToken, setIdToken] = useState("");
-  const [displayName, setDisplayName] = useState("");
-  const [userId, setUserId] = useState("");
 
     useEffect(() => {
     initLine();
@@ -36,11 +34,7 @@ export default function UserProfileScreen() {
   const runApp = () => {
     const idToken = liff.getIDToken();
     setIdToken(idToken);
-    liff.getProfile().then(profile => {
-      console.log(profile);
-      setDisplayName(profile.displayName);
-      setUserId(profile.userId);
-    }).catch(err => console.error(err));
+    console.log(idToken);
   }
 
   const handleFirstName = (e) => {
@@ -87,6 +81,7 @@ export default function UserProfileScreen() {
       Address,
       Phone,
       Email,
+      idToken,
     };
     let data = Object.values(user).every((value) => value);
     try {
@@ -102,6 +97,7 @@ export default function UserProfileScreen() {
             Address: Address,
             Phone: Phone,
             Email: Email,
+            idToken: idToken,
           })
           .then((res) => {
             console.log(res);
