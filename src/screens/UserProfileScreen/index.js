@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { server } from "../../constants";
-// import liff from "@line/liff";
 import { AuthContext } from "../../Auth";
+// import liff from "@line/liff";
 
 export default function UserProfileScreen() {
   const [date, setDate] = useState();
@@ -20,6 +20,28 @@ export default function UserProfileScreen() {
   const { accessToken } = useContext(AuthContext);
 
   console.log("accessToken : ", accessToken);
+
+  //   const [accessToken, setAccessToken] = useState("");
+
+  //     useEffect(() => {
+  //     initLine();
+  //   }, []);
+
+  //  const initLine = () => {
+  //     liff.init({ liffId: '1656423908-vEgA2gn7' }, () => {
+  //       if (liff.isLoggedIn({ redirectUri: "https://powercareuser.systems" })) {
+  //         runApp();
+  //       } else {
+  //         liff.login();
+  //       }
+  //     }, err => console.error(err));
+  //   }
+
+  // const runApp = () => {
+  //   const accessToken = liff.getAccessToken();
+  //   setAccessToken(accessToken);
+  //   console.log(accessToken);
+  // };
 
   const handleFirstName = (e) => {
     const firstname = e.target.value;
@@ -65,7 +87,7 @@ export default function UserProfileScreen() {
       Address,
       Phone,
       Email,
-      accessToken,
+      // accessToken,
     };
     let data = Object.values(user).every((value) => value);
     try {
@@ -81,7 +103,7 @@ export default function UserProfileScreen() {
             Address: Address,
             Phone: Phone,
             Email: Email,
-            accessToken: accessToken,
+            // accessToken: accessToken,
           })
           .then((res) => {
             console.log(res);

@@ -8,25 +8,30 @@ export const AuthProvider = ({ children }) => {
   // const [currentUser, setcurrentUser] = useState(null);
 
   const [accessToken, setAccessToken] = useState(null);
-    useEffect(() => {
+  useEffect(() => {
     initLine();
   }, []);
 
- const initLine = () => {
-    liff.init({ liffId: '1656423908-vEgA2gn7' }, () => {
-      if (liff.isLoggedIn({ redirectUri: "https://powercareuser.systems" })) {
-        runApp();
-      } else {
-        liff.login();
-      }
-    }, err => console.error(err));
-  }
+  const initLine = () => {
+    liff.init(
+      { liffId: "1656423908-vEgA2gn7" },
+      () => {
+        if (liff.isLoggedIn({ redirectUri: "https://powercareuser.systems" })) {
+          runApp();
+          setloading(false);
+        } else {
+          liff.login();
+        }
+      },
+      (err) => console.error(err)
+    );
+  };
 
   const runApp = () => {
     const accessToken = liff.getAccessToken();
-    setAccessToken(accessToken)
+    setAccessToken(accessToken);
     console.log(accessToken);
-  }
+  };
 
   // useEffect(() => {
   //   liff.getContext((user) => {
