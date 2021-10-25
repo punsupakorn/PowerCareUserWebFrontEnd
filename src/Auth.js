@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import liff from "@line/liff";
+import { useHistory } from "react-router";
 
 export const AuthContext = React.createContext();
 
 export const AuthProvider = ({ children }) => {
+  const history = useHistory();
   const [loading, setloading] = useState(true);
   // const [currentUser, setcurrentUser] = useState(null);
 
@@ -44,6 +46,9 @@ export const AuthProvider = ({ children }) => {
   //   //   setLoading(false);
   //   // });
   // }, []);
+  if (accessToken) {
+    history.push("/menuhome");
+  }
 
   if (loading) {
     return <p>Loading...</p>;

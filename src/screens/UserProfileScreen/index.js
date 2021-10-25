@@ -19,7 +19,7 @@ export default function UserProfileScreen() {
 
   const { accessToken } = useContext(AuthContext);
 
-  console.log("accessToken : ", accessToken);
+  // console.log("accessToken : ", accessToken);
 
   //   const [accessToken, setAccessToken] = useState("");
 
@@ -87,7 +87,7 @@ export default function UserProfileScreen() {
       Address,
       Phone,
       Email,
-      // accessToken,
+      accessToken,
     };
     let data = Object.values(user).every((value) => value);
     try {
@@ -103,7 +103,7 @@ export default function UserProfileScreen() {
             Address: Address,
             Phone: Phone,
             Email: Email,
-            // accessToken: accessToken,
+            accessToken: accessToken,
           })
           .then((res) => {
             console.log(res);
