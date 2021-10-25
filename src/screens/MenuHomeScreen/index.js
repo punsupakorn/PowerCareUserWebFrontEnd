@@ -1,6 +1,10 @@
+import React, { useContext } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { AuthContext } from "../../Auth";
 
 export default function MenuHomeScreen() {
+  const { currentUser } = useContext(AuthContext);
+  console.log("current : ", currentUser);
   return (
     <div classname="bg-indigo-200 h-screen w-screen">
       <div className="flex items-center min-h-screen bg-indigo-200 dark:bg-gray-900">
