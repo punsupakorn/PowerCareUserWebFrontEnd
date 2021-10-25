@@ -56,9 +56,9 @@ export const AuthProvider = ({ children }) => {
 
   const checkUserId = () => {
     if (checkUser == true) {
-      return <Redirect to={{ pathname: `/menuhome` }} />;
+      history.push({ pathname: `/menuhome` });
     } else {
-      return <Redirect to={{ pathname: `/` }} />;
+      history.push({ pathname: `/` });
     }
   };
 
