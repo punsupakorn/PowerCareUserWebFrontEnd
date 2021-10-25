@@ -16,7 +16,13 @@ export const AuthProvider = ({ children }) => {
     // checkUser();
   }, []);
 
-  const initLine = () => {
+  const runApp = () => {
+    const accessToken = liff.getAccessToken();
+    setAccessToken(accessToken);
+    console.log(accessToken);
+  };
+
+  const initLine = async () => {
     liff.init(
       { liffId: "1656423908-vEgA2gn7" },
       () => {
@@ -30,18 +36,12 @@ export const AuthProvider = ({ children }) => {
       (err) => console.error(err)
     );
     const accessToken = liff.getAccessToken();
-    axios.get(`${server.LOGIN}/${accessToken}`).then((res) => {
+    await axios.get(`${server.LOGIN}/${accessToken}`).then((res) => {
       if (res == true) {
         history.push("/menuhome");
       }
     });
     setAccessToken(accessToken);
-  };
-
-  const runApp = () => {
-    const accessToken = liff.getAccessToken();
-    setAccessToken(accessToken);
-    console.log(accessToken);
   };
 
   // const checkUser = () => {
