@@ -14,16 +14,25 @@ export const AuthProvider = ({ children }) => {
   const [accessToken, setAccessToken] = useState(null);
   useEffect(() => {
     initLine();
-    checkUser();
+    // checkUser();
   }, []);
 
-  const initLine = () => {
+  const initLine = async () => {
     liff.init(
       { liffId: "1656423908-vEgA2gn7" },
       () => {
         if (liff.isLoggedIn({ redirectUri: "https://powercareuser.systems" })) {
-          runApp();
+          // runApp();
+          const accessToken = liff.getAccessToken();
+          setAccessToken(accessToken);
+          console.log(accessToken);
           setloading(false);
+
+          axios.get(`${server.LOGIN}/${accessToken}`).then((res) => {
+            if (res == true) {
+              history.push("/menuhome");
+            }
+          });
         } else {
           liff.login();
         }
@@ -32,19 +41,19 @@ export const AuthProvider = ({ children }) => {
     );
   };
 
-  const runApp = () => {
-    const accessToken = liff.getAccessToken();
-    setAccessToken(accessToken);
-    // console.log(accessToken);
-  };
+  // const runApp = () => {
+  //   const accessToken = liff.getAccessToken();
+  //   setAccessToken(accessToken);
+  //   console.log(accessToken);
+  // };
 
-  const checkUser = () => {
-    axios.get(`${server.LOGIN}/${accessToken}`).then((res) => {
-      if (res == true) {
-        history.push("/menuhome");
-      }
-    });
-  };
+  // const checkUser = () => {
+  //   axios.get(`${server.LOGIN}/${accessToken}`).then((res) => {
+  //     if (res == true) {
+  //       history.push("/menuhome");
+  //     }
+  //   });
+  // };
 
   // if (accessToken) {
   //   history.push("/menuhome");
