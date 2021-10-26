@@ -14,22 +14,26 @@ export const AuthProvider = ({ children }) => {
 
   const [accessToken, setAccessToken] = useState(null);
   useEffect(async () => {
-    initLine();
+    await initLine();
+    checkUserWithAccessToken();
   }, []);
 
-  const runApp = () => {
-    const accessToken = liff.getAccessToken();
-    setAccessToken(accessToken);
-    console.log(accessToken);
-  };
+  // const runApp = () => {
+  //   const accessToken = liff.getAccessToken();
+  //   setAccessToken(accessToken);
+  //   console.log(accessToken);
+  // };
 
   const initLine = async () => {
     liff.init(
       { liffId: "1656423908-vEgA2gn7" },
       () => {
         if (liff.isLoggedIn({ redirectUri: "https://powercareuser.systems" })) {
-          runApp();
-          setloading(false);
+          // runApp();
+          // setloading(false);
+          const accessToken = liff.getAccessToken();
+          setAccessToken(accessToken);
+          console.log(accessToken);
         } else {
           liff.login();
         }
@@ -38,30 +42,28 @@ export const AuthProvider = ({ children }) => {
     );
     const token = liff.getAccessToken();
     setAccessToken(token);
+  };
 
-    await axios.get(`${server.LOGIN}/${token}`).then((res) => {
-      const check = res.data;
-      if (check == true) {
-        setcheckUser(true);
-        return;
-      } else {
-        setcheckUser(false);
-      }
-    });
+  const checkUserWithAccessToken = () => {
+    try {
+      axios.get(`${server.LOGIN}/${accessToken}`).then((res) => {
+        const check = res.data;
+        if (check == true) {
+          console.log("true");
+          history.push({ pathname: "/menuhome", state: accessToken });
+          // setcheckUser(true);
+          return;
+        } else {
+          history.push({ pathname: "", state: accessToken });
+          console.log("false");
+          // setcheckUser(false);
+        }
+      });
+    } catch (error) {}
   };
 
   if (loading) {
     return <p>Loading...</p>;
-  }
-
-  if (checkUser == true) {
-    console.log("true : ", checkUser);
-    // history.push({ pathname: "/menuhome", state: accessToken });
-    return <Redirect to="/menuhome" />;
-  } else {
-    console.log("false : ", checkUser);
-    // history.push({ pathname: "/", state: accessToken });
-    return <Redirect to="/" />;
   }
 
   return (
