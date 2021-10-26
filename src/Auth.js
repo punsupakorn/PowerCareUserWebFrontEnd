@@ -43,11 +43,9 @@ export const AuthProvider = ({ children }) => {
       if (check == true) {
         console.log("เจอออออ");
         return <Redirect to="/menuhome" />;
-        ory.push({ pathname: `/menuhome` });
       } else {
         console.log("ไม่เจอออออ");
-        return <Redirect to="/menuhome" />;
-        // history.push({ pathname: `/` });
+        return <Redirect to="/" />;
       }
     });
     // setAccessToken(accessToken);
