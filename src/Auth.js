@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import liff from "@line/liff";
-import { Redirect } from "react-router";
+import { Redirect } from "react-router-dom";
 import axios from "axios";
 import { server } from "./constants";
 import { useHistory } from "react-router";
@@ -42,10 +42,12 @@ export const AuthProvider = ({ children }) => {
       const check = res.data;
       if (check == true) {
         console.log("เจอออออ");
-        history.push({ pathname: `/menuhome` });
+        return <Redirect to="/menuhome" />;
+        ory.push({ pathname: `/menuhome` });
       } else {
         console.log("ไม่เจอออออ");
-        history.push({ pathname: `/` });
+        return <Redirect to="/menuhome" />;
+        // history.push({ pathname: `/` });
       }
     });
     // setAccessToken(accessToken);
