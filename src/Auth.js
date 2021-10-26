@@ -42,10 +42,10 @@ export const AuthProvider = ({ children }) => {
       const check = res.data;
       if (check == true) {
         console.log("เจอออออ");
-        return <Redirect to="/menuhome" />;
+        return history.push({ pathname: "/menuhome", state: accessToken });
       } else {
         console.log("ไม่เจอออออ");
-        return <Redirect to="/" />;
+        return history.push({ pathname: "/", state: accessToken });
       }
     });
     // setAccessToken(accessToken);
