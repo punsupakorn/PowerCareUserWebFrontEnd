@@ -4,30 +4,48 @@ import axios from "axios";
 import { server } from "../../constants";
 
 export default function AppointmentScreen() {
-  const [timeslot, settimeslot] = useState([]);
+  const [DateSlot, setDateSlot] = useState([]);
+  // const [timeslot, settimeslot] = useState([]);
   const [Symptom, setSymptom] = useState("");
   const [DoctorName, setDoctorName] = useState("");
-  const [Date, setDate] = useState("");
+  const [date, setdate] = useState("");
   const [Time, setTime] = useState("");
 
+  const getDate = () => {
+    try {
+      axios.get(server.APPOINTMENT).then((res) => {
+        setDateSlot(res.data);
+      });
+    } catch (error) {}
+  };
+
   useEffect(() => {
-    axios.get(server.APPOINTMENT).then((res) => {
-      settimeslot(res.data);
-      // console.log(timeslot);
-    });
+    getDate();
   }, []);
 
-  // const displayDate = (date) => {
-  //   // console.log(date);
-  //   const result = new Date(date).toLocaleDateString("th-TH", {
-  //     year: "numeric",
-  //     month: "long",
-  //     day: "numeric",
-  //     weekday: "long",
+  // const getTimeTable = () => {
+  //   axios.get(server.APPOINTMENT).then((res) => {
+  //     // settimeslot(res.data);
   //   });
-  //   // console.log(result);
-  //   return result;
   // };
+
+  // const showDate = () => {
+  //   for (let i = 0; i < timeslot.length; i++) {
+  //     const element = timeslot[i];
+  //     const thaiDate = element.Date;
+  //     console.log(thaiDate);
+  //   }
+  // };
+
+  const displayThaiDate = (date) => {
+    const result = new Date(date).toLocaleDateString("th-TH", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      weekday: "long",
+    });
+    return result;
+  };
 
   const displayTime = (time) => {
     const timearray = [];
@@ -49,9 +67,10 @@ export default function AppointmentScreen() {
     setSymptom(symptom);
   };
 
-  const handleDate = (e) => {
-    const date = e.target.value;
-    setDate(date);
+  const handleDate = (date) => {
+    console.log("Date :: ", date);
+    // const date = e.target.value;
+    // setdate(date);
   };
 
   const handleDoctorName = (e) => {
@@ -64,10 +83,10 @@ export default function AppointmentScreen() {
     setTime(time);
   };
 
-  console.log(Symptom);
-  console.log(DoctorName);
-  console.log(Date);
-  console.log(Time);
+  // console.log(Symptom);
+  // console.log(DoctorName);
+  // console.log(date);
+  // console.log(Time);
 
   const handleSubmit = () => {
     try {
@@ -130,17 +149,21 @@ export default function AppointmentScreen() {
                     เลือกวันที่
                   </label>
                   <select
+                    value={date}
+                    // onChange={handleDate}
                     // id="position"
                     // name="Position"
                     className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500 "
-                    onChange={handleDate}
                   >
                     <option disabled selected value>
                       {" "}
                       กรุณาเลือกวันที่
                     </option>
-                    {timeslot.map((timeslot) => (
-                      <option className="option"> {timeslot.Date} </option>
+                    {DateSlot.map((date) => (
+                      <option className="option">
+                        {" "}
+                        {displayThaiDate(date)}{" "}
+                      </option>
                     ))}
                   </select>
                 </div>
@@ -158,12 +181,9 @@ export default function AppointmentScreen() {
                       {" "}
                       กรุณาเลือกแพทย์
                     </option>
-                    {timeslot.map((timeslot) => (
-                      <option className="option">
-                        {" "}
-                        {timeslot.DoctorName}{" "}
-                      </option>
-                    ))}
+                    {/* {timeslot.map((timeslot) => ( */}
+                    {/* <option className="option"> {timeslot.DoctorName} </option> */}
+                    {/* ))} */}
                   </select>
                 </div>
                 <div className="mb-6">
@@ -180,13 +200,13 @@ export default function AppointmentScreen() {
                       {" "}
                       กรุณาเลือกเวลา
                     </option>
-                    {timeslot.map(
+                    {/* {timeslot.map(
                       (time) =>
                         displayTime(time.Time).map((t) => (
                           <option className="option"> {t} </option>
                         ))
                       // <option className="option"> {displayTime(time)} </option>
-                    )}
+                    )} */}
                   </select>
                 </div>
 

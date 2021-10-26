@@ -1,5 +1,11 @@
 import React, { useContext } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import {
+  useHistory,
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+} from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { server } from "../../constants";
@@ -16,8 +22,20 @@ export default function UserProfileScreen() {
   const [Address, setAddress] = useState("");
   const [Phone, setPhone] = useState("");
   const [Email, setEmail] = useState("");
+  const history = useHistory();
 
-  const { accessToken } = useContext(AuthContext);
+  useEffect(() => {
+    const isAuthenticated = () => {
+      return localStorage.getItem("Auth") === "YES";
+    };
+    if (isAuthenticated === true) {
+      
+    } else {
+      return history.push("/menuhome");
+    }
+  });
+
+  //const { accessToken } = useContext(AuthContext);
 
   // console.log("accessToken : ", accessToken);
 
@@ -87,7 +105,7 @@ export default function UserProfileScreen() {
       Address,
       Phone,
       Email,
-      accessToken,
+      //   accessToken,
     };
     let data = Object.values(user).every((value) => value);
     try {
@@ -103,7 +121,7 @@ export default function UserProfileScreen() {
             Address: Address,
             Phone: Phone,
             Email: Email,
-            accessToken: accessToken,
+            //      accessToken: accessToken,
           })
           .then((res) => {
             console.log(res);

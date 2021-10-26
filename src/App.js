@@ -12,15 +12,9 @@ import {
   EditUserProfileScreen,
   FollowUpScreen,
 } from "./screens";
-import {
-  Switch,
-  Route,
-  BrowserRouter as Router,
-  // Switch,
-  // Route,
-  BrowserRouter,
-} from "react-router-dom";
+import { Switch, Route, BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "./Auth";
+import PrivateRoute  from "./privateroute";
 
 function App() {
   return (
@@ -32,8 +26,8 @@ function App() {
             {/* <Route path="/userprofile">
           <UserProfileScreen />
         </Route> */}
-            <Route path="/otp" component={OTPScreen}></Route>
-            <Route path="/menuhome" component={MenuHomeScreen}></Route>
+            {/* <Route path="/otp" component={OTPScreen}></Route> */}
+            <PrivateRoute path="/menuhome" component={MenuHomeScreen}></PrivateRoute>
             <Route path="/appointment" component={AppointmentScreen}></Route>
             <Route
               path="/appointmentconfirm"
