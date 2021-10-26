@@ -15,7 +15,6 @@ export const AuthProvider = ({ children }) => {
   const [accessToken, setAccessToken] = useState(null);
   useEffect(async () => {
     initLine();
-    // checkUId();
   }, []);
 
   const runApp = () => {
@@ -39,31 +38,30 @@ export const AuthProvider = ({ children }) => {
     );
     const token = liff.getAccessToken();
     setAccessToken(token);
-  };
 
-  // const checkUId = async () => {
-  //   await axios.get(`${server.LOGIN}/${accessToken}`).then((res) => {
-  //     const check = res.data;
-  //     if (check == true) {
-  //       setcheckUser(true);
-  //       // console.log("เจอออออ");
-  //       return;
-  //     } else {
-  //       setcheckUser(false);
-  //       // console.log("ไม่เจอออออ");
-  //       // return
-  //     }
-  //   });
-  // };
+    await axios.get(`${server.LOGIN}/${token}`).then((res) => {
+      const check = res.data;
+      if (check == true) {
+        setcheckUser(true);
+        return;
+      } else {
+        setcheckUser(false);
+      }
+    });
+  };
 
   if (loading) {
     return <p>Loading...</p>;
-  } else if (checkUser == true) {
+  }
+
+  if (checkUser == true) {
     console.log("true : ", checkUser);
-    history.push({ pathname: "/menuhome", state: accessToken });
-  } else if (checkUser == false) {
+    // history.push({ pathname: "/menuhome", state: accessToken });
+    return <Redirect to="/menuhome" />;
+  } else {
     console.log("false : ", checkUser);
-    history.push({ pathname: "/", state: accessToken });
+    // history.push({ pathname: "/", state: accessToken });
+    return <Redirect to="/" />;
   }
 
   return (
