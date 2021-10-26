@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import liff from "@line/liff";
-import { Redirect } from "react-router-dom";
+import { Redirect } from "react-router";
 import axios from "axios";
 import { server } from "./constants";
 import { useHistory } from "react-router";
@@ -15,52 +15,51 @@ export const AuthProvider = ({ children }) => {
   const [accessToken, setAccessToken] = useState(null);
   useEffect(async () => {
     await initLine();
-    checkUserWithAccessToken();
+    // checkUserId();
   }, []);
 
-  // const runApp = () => {
-  //   const accessToken = liff.getAccessToken();
-  //   setAccessToken(accessToken);
-  //   console.log(accessToken);
-  // };
+  const runApp = () => {
+    const accessToken = liff.getAccessToken();
+    setAccessToken(accessToken);
+    console.log(accessToken);
+  };
 
   const initLine = async () => {
     liff.init(
       { liffId: "1656423908-vEgA2gn7" },
       () => {
         if (liff.isLoggedIn({ redirectUri: "https://powercareuser.systems" })) {
-          // runApp();
-          // setloading(false);
-          const accessToken = liff.getAccessToken();
-          setAccessToken(accessToken);
-          console.log(accessToken);
+          runApp();
+          setloading(false);
         } else {
           liff.login();
         }
       },
       (err) => console.error(err)
     );
-    const token = liff.getAccessToken();
-    setAccessToken(token);
+    const accessToken = liff.getAccessToken();
+    await axios.get(`${server.LOGIN}/${accessToken}`).then((res) => {
+      const check = res.data;
+      if (check == true) {
+        console.log("true : ", check);
+        // return <Redirect to={{ pathname: `/menuhome` }} />;
+        history.push({ pathname: `/menuhome`, state: accessToken });
+      } else {
+        console.log("fasle : ", check);
+        // return <Redirect to={{ pathname: `/` }} />;
+        history.push({ pathname: `/`, state: accessToken });
+      }
+    });
+    // setAccessToken(accessToken);
   };
 
-  const checkUserWithAccessToken = () => {
-    try {
-      axios.get(`${server.LOGIN}/${accessToken}`).then((res) => {
-        const check = res.data;
-        if (check == true) {
-          console.log("true");
-          history.push({ pathname: "/menuhome", state: accessToken });
-          // setcheckUser(true);
-          return;
-        } else {
-          history.push({ pathname: "", state: accessToken });
-          console.log("false");
-          // setcheckUser(false);
-        }
-      });
-    } catch (error) {}
-  };
+  // const checkUserId = () => {
+  //   if (checkUser == true) {
+  //     history.push("/menuhome");
+  //   } else {
+  //     history.push("/");
+  //   }
+  // };
 
   if (loading) {
     return <p>Loading...</p>;
