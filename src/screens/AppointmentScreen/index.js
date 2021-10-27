@@ -2,8 +2,10 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { server } from "../../constants";
+import { useHistory } from "react-router";
 
 export default function AppointmentScreen() {
+  const history = useHistory();
   const [DateSlot, setDateSlot] = useState([]);
   const [DoctorName, setDoctorName] = useState([]);
   const [Time, setTime] = useState([]);
@@ -109,6 +111,26 @@ export default function AppointmentScreen() {
   //       });
   //   } catch (error) {}
   // };
+
+  const handleNext = () => {
+    const form = { symtom: symptom, date: date, time: time };
+    let data = Object.values(form).every((value) => value);
+    if (data == false) {
+      window.alert("โปรดกรอกข้อมูลให้ครบถ้วน");
+    } else {
+      history.push({
+        pathname: `/appointmentconfirm`,
+        state: {
+          symptom: symptom,
+          date: date,
+          doctorname: doctorname,
+          doctorid: doctorid,
+          timetableid: timetableid,
+          time: time,
+        },
+      });
+    }
+  };
 
   return (
     <div classname="bg-indigo-200 h-screen w-screen">
@@ -237,7 +259,7 @@ export default function AppointmentScreen() {
                   </select>
                 </div>
 
-                <Link
+                {/* <Link
                   to={{
                     pathname: `/appointmentconfirm`,
                     state: {
@@ -249,17 +271,17 @@ export default function AppointmentScreen() {
                       time: time,
                     },
                   }}
-                >
-                  <div className="mb-6">
-                    <button
-                      type="button"
-                      className="w-full px-3 py-3 text-white bg-indigo-300 rounded-md focus:bg-indigo-200 focus:outline-none"
-                      // onClick={handleSubmit}
-                    >
-                      ถัดไป
-                    </button>
-                  </div>
-                </Link>
+                > */}
+                <div className="mb-6">
+                  <button
+                    type="button"
+                    className="w-full px-3 py-3 text-white bg-indigo-300 rounded-md focus:bg-indigo-200 focus:outline-none"
+                    onClick={handleNext}
+                  >
+                    ถัดไป
+                  </button>
+                </div>
+                {/* </Link> */}
                 <Link to="/menuhome">
                   <div className="mb-6">
                     <button className="w-full px-3 py-3 text-white bg-gray-300 rounded-md ">
