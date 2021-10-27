@@ -237,7 +237,19 @@ export default function AppointmentScreen() {
                   </select>
                 </div>
 
-                <Link to="/appointmentconfirm">
+                <Link
+                  to={{
+                    pathname: `/appointmentconfirm`,
+                    state: {
+                      symptom: symptom,
+                      date: date,
+                      doctorname: doctorname,
+                      doctorid: doctorid,
+                      timetableid: timetableid,
+                      time: time,
+                    },
+                  }}
+                >
                   <div className="mb-6">
                     <button
                       type="button"

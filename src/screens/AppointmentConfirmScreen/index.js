@@ -1,6 +1,22 @@
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { useLocation } from "react-router";
 
 export default function AppointmentConfirmScreen() {
+  const location = useLocation();
+  const { symptom, date, doctorname, doctorid, timetableid, time } =
+    location.state;
+
+  console.log(symptom, date, doctorname, doctorid, timetableid, time);
+
+  const displayThaiDate = (date) => {
+    const result = new Date(date).toLocaleDateString("th-TH", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      weekday: "long",
+    });
+    return result;
+  };
   return (
     <div classname="bg-indigo-200 h-screen w-screen">
       <div className="flex items-center min-h-screen bg-indigo-200 dark:bg-gray-900">
@@ -121,7 +137,7 @@ export default function AppointmentConfirmScreen() {
                   />
                   <p className="text-base text-left text-gray-400" id="result">
                     {" "}
-                    อาการ : เป็นสิวแดงนูนรักษาไม่หายสักที{" "}
+                    อาการ : {symptom}{" "}
                   </p>
                   <div
                     className="
@@ -135,7 +151,7 @@ export default function AppointmentConfirmScreen() {
                   />
                   <p className="text-base text-left text-gray-400" id="result">
                     {" "}
-                    วันทำนัด : 3/07/2021{" "}
+                    วันทำนัด : {displayThaiDate(date)}{" "}
                   </p>
                   <div
                     className="
@@ -149,7 +165,7 @@ export default function AppointmentConfirmScreen() {
                   />
                   <p className="text-base text-left text-gray-400" id="result">
                     {" "}
-                    เวลา : 13.30
+                    เวลา : {time}
                   </p>
                   <div
                     className="
@@ -163,7 +179,7 @@ export default function AppointmentConfirmScreen() {
                   />
                   <p className="text-base text-left text-gray-400" id="result">
                     {" "}
-                    แพทย์ : แพทย์ดารีส ปินโต{" "}
+                    แพทย์ : {doctorname}{" "}
                   </p>
                   <div
                     className="
