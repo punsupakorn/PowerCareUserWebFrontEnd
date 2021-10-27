@@ -5,11 +5,22 @@ import { server } from "../../constants";
 
 export default function AppointmentScreen() {
   const [DateSlot, setDateSlot] = useState([]);
-  // const [timeslot, settimeslot] = useState([]);
-  const [Symptom, setSymptom] = useState("");
-  const [DoctorName, setDoctorName] = useState("");
+  const [DoctorName, setDoctorName] = useState([]);
+  const [Time, setTime] = useState([]);
+
+  const [symptom, setsymptom] = useState("");
   const [date, setdate] = useState("");
-  const [Time, setTime] = useState("");
+  const [doctorid, setdoctorid] = useState("");
+  const [doctorname, setdoctorname] = useState("");
+  const [timetableid, settimetableid] = useState("");
+  const [time, settime] = useState("");
+
+  // console.log(symptom);
+  // console.log(date);
+  // console.log(doctorname);
+  // console.log(doctorid);
+  // console.log(timetableid);
+  // console.log(time);
 
   const getDate = () => {
     try {
@@ -19,23 +30,33 @@ export default function AppointmentScreen() {
     } catch (error) {}
   };
 
-  useEffect(() => {
+  const getDoctorName = (date) => {
+    try {
+      axios
+        .post(`${server.APPOINTMENT}/name`, {
+          Date: date,
+        })
+        .then((res) => {
+          setDoctorName(res.data);
+        });
+    } catch (error) {}
+  };
+
+  const getTimeSlot = (TimeTableID) => {
+    try {
+      axios
+        .post(`${server.APPOINTMENT}/time`, {
+          TimeTableID: TimeTableID,
+        })
+        .then((res) => {
+          // console.log(res);
+          setTime(res.data);
+        });
+    } catch (error) {}
+  };
+  useEffect(async () => {
     getDate();
   }, []);
-
-  // const getTimeTable = () => {
-  //   axios.get(server.APPOINTMENT).then((res) => {
-  //     // settimeslot(res.data);
-  //   });
-  // };
-
-  // const showDate = () => {
-  //   for (let i = 0; i < timeslot.length; i++) {
-  //     const element = timeslot[i];
-  //     const thaiDate = element.Date;
-  //     console.log(thaiDate);
-  //   }
-  // };
 
   const displayThaiDate = (date) => {
     const result = new Date(date).toLocaleDateString("th-TH", {
@@ -47,52 +68,38 @@ export default function AppointmentScreen() {
     return result;
   };
 
-  const displayTime = (time) => {
-    const timearray = [];
-    for (let i = 0; i < time.length; i++) {
-      const element = time[i];
-
-      // for (let i = 0; i < element.length; i++) {
-      //   const timeelement = element[i];
-      //   timearray.push(timeelement);
-      // }
-      timearray.push(element);
-    }
-    // console.log(timearray);
-    return timearray;
-  };
-
   const handleSymptom = (e) => {
     const symptom = e.target.value;
-    setSymptom(symptom);
+    setsymptom(symptom);
   };
 
-  const handleDate = (date) => {
-    console.log("Date :: ", date);
-    // const date = e.target.value;
-    // setdate(date);
+  const handleDate = async (e) => {
+    const date = e.target.value;
+    const data = JSON.parse(date);
+    setdate(data.slot);
+    getDoctorName(data.slot);
   };
 
   const handleDoctorName = (e) => {
     const doctorname = e.target.value;
-    setDoctorName(doctorname);
+    const data = JSON.parse(doctorname);
+    settimetableid(data.timetableid);
+    setdoctorid(data.doctorid);
+    setdoctorname(data.name);
+    getTimeSlot(data.timetableid);
   };
 
   const handleTime = (e) => {
     const time = e.target.value;
-    setTime(time);
+    const data = JSON.parse(time);
+    settime(data.time);
   };
-
-  // console.log(Symptom);
-  // console.log(DoctorName);
-  // console.log(date);
-  // console.log(Time);
 
   const handleSubmit = () => {
     try {
       axios
         .post(server.APPOINTMENT, {
-          Symptom: Symptom,
+          Symptom: symptom,
           Date: Date,
           DoctorName: DoctorName,
           Time: Time,
@@ -149,8 +156,8 @@ export default function AppointmentScreen() {
                     เลือกวันที่
                   </label>
                   <select
-                    value={date}
-                    // onChange={handleDate}
+                    onChange={handleDate}
+                    // value={DateSlot}
                     // id="position"
                     // name="Position"
                     className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500 "
@@ -159,10 +166,16 @@ export default function AppointmentScreen() {
                       {" "}
                       กรุณาเลือกวันที่
                     </option>
-                    {DateSlot.map((date) => (
-                      <option className="option">
+                    {DateSlot.map((slot) => (
+                      <option
+                        className="option"
+                        value={JSON.stringify({
+                          slot: `${slot}`,
+                        })}
+                        // onChange={getDoctorName}
+                      >
                         {" "}
-                        {displayThaiDate(date)}{" "}
+                        {displayThaiDate(slot)}{" "}
                       </option>
                     ))}
                   </select>
@@ -181,9 +194,19 @@ export default function AppointmentScreen() {
                       {" "}
                       กรุณาเลือกแพทย์
                     </option>
-                    {/* {timeslot.map((timeslot) => ( */}
-                    {/* <option className="option"> {timeslot.DoctorName} </option> */}
-                    {/* ))} */}
+                    {DoctorName.map((doctor) => (
+                      <option
+                        className="option"
+                        value={JSON.stringify({
+                          timetableid: `${doctor.TimeTableID}`,
+                          doctorid: `${doctor.DocumentID}`,
+                          name: `${doctor.Name}`,
+                        })}
+                      >
+                        {" "}
+                        {doctor.Name}{" "}
+                      </option>
+                    ))}
                   </select>
                 </div>
                 <div className="mb-6">
@@ -200,13 +223,17 @@ export default function AppointmentScreen() {
                       {" "}
                       กรุณาเลือกเวลา
                     </option>
-                    {/* {timeslot.map(
-                      (time) =>
-                        displayTime(time.Time).map((t) => (
-                          <option className="option"> {t} </option>
-                        ))
-                      // <option className="option"> {displayTime(time)} </option>
-                    )} */}
+                    {Time.map((slot) => (
+                      <option
+                        className="option"
+                        value={JSON.stringify({
+                          time: `${slot}`,
+                        })}
+                      >
+                        {" "}
+                        {slot}{" "}
+                      </option>
+                    ))}
                   </select>
                 </div>
 
