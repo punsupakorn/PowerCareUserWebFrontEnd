@@ -95,20 +95,20 @@ export default function AppointmentScreen() {
     settime(data.time);
   };
 
-  const handleSubmit = () => {
-    try {
-      axios
-        .post(server.APPOINTMENT, {
-          Symptom: symptom,
-          Date: Date,
-          DoctorName: DoctorName,
-          Time: Time,
-        })
-        .then((res) => {
-          console.log(res);
-        });
-    } catch (error) {}
-  };
+  // const handleSubmit = () => {
+  //   try {
+  //     axios
+  //       .post(server.APPOINTMENT, {
+  //         Symptom: symptom,
+  //         Date: Date,
+  //         DoctorName: DoctorName,
+  //         Time: Time,
+  //       })
+  //       .then((res) => {
+  //         console.log(res);
+  //       });
+  //   } catch (error) {}
+  // };
 
   return (
     <div classname="bg-indigo-200 h-screen w-screen">
@@ -254,7 +254,7 @@ export default function AppointmentScreen() {
                     <button
                       type="button"
                       className="w-full px-3 py-3 text-white bg-indigo-300 rounded-md focus:bg-indigo-200 focus:outline-none"
-                      onClick={handleSubmit}
+                      // onClick={handleSubmit}
                     >
                       ถัดไป
                     </button>
