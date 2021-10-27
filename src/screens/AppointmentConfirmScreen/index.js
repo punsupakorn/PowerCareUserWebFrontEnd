@@ -17,6 +17,7 @@ export default function AppointmentConfirmScreen() {
   const [address, setaddress] = useState("");
   const [phone, setphone] = useState("");
   const [email, setemail] = useState("");
+  const [userid, setuserid] = useState("");
 
   const { accessToken } = useContext(AuthContext);
 
@@ -28,7 +29,7 @@ export default function AppointmentConfirmScreen() {
         })
         .then((res) => {
           const data = res.data;
-          // console.log(data);
+
           setfirstname(data.FirstName);
           setlastname(data.LastName);
           setdateofbirth(data.DateOfBirth);
@@ -36,6 +37,7 @@ export default function AppointmentConfirmScreen() {
           setaddress(data.Address);
           setphone(data.Phone);
           setemail(data.Email);
+          setuserid(data.UserID);
         });
     } catch (error) {}
   };
@@ -53,6 +55,25 @@ export default function AppointmentConfirmScreen() {
     });
     return result;
   };
+
+  const createAppointment = () => {
+    try {
+      axios.post(server.APPOINTMENT_CONFIRM, {
+        DoctorID: doctorid,
+        DoctorName: doctorname,
+        Date: date,
+        Time: time,
+        TimeTableID: timetableid,
+        UserID: userid,
+        UserName: { firstname, lastname },
+        Initial_Symtoms: symptom,
+        AccessToken: accessToken,
+      });
+    } catch (error) {
+      return error;
+    }
+  };
+
   return (
     <div classname="bg-indigo-200 h-screen w-screen">
       <div className="flex items-center min-h-screen bg-indigo-200 dark:bg-gray-900">
@@ -83,7 +104,7 @@ export default function AppointmentConfirmScreen() {
                   <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400 font-bold">
                     ยืนยันการทำนัด :{" "}
                   </label>
-                  <p className="text-base text-left text-gray-400" >
+                  <p className="text-base text-left text-gray-400">
                     {" "}
                     ชื่อ - นามสกุล : {firstname} {lastname}
                   </p>
@@ -97,7 +118,7 @@ export default function AppointmentConfirmScreen() {
         border-b-2 border-gray-100
       "
                   />
-                  <p className="mt-2 text-base text-left text-gray-400" >
+                  <p className="mt-2 text-base text-left text-gray-400">
                     {" "}
                     วัน/เดือน/ปีเกิด : {displayThaiDate(dateofbirth)}{" "}
                   </p>
@@ -111,7 +132,7 @@ export default function AppointmentConfirmScreen() {
         border-b-2 border-gray-100
       "
                   />
-                  <p className="mt-2 text-base text-left text-gray-400" >
+                  <p className="mt-2 text-base text-left text-gray-400">
                     {" "}
                     เพศ : {sex}{" "}
                   </p>
@@ -125,7 +146,7 @@ export default function AppointmentConfirmScreen() {
         border-b-2 border-gray-100
       "
                   />
-                  <p className="mt-2 text-base text-left text-gray-400" >
+                  <p className="mt-2 text-base text-left text-gray-400">
                     {" "}
                     ที่อยู่ : {address}
                   </p>
@@ -139,7 +160,7 @@ export default function AppointmentConfirmScreen() {
         border-b-2 border-gray-100
       "
                   />
-                  <p className="mt-2 text-base text-left text-gray-400" >
+                  <p className="mt-2 text-base text-left text-gray-400">
                     {" "}
                     เบอร์ติดต่อ : {phone}
                   </p>
@@ -181,7 +202,7 @@ export default function AppointmentConfirmScreen() {
         border-b-2 border-gray-100
       "
                   />
-                  <p className="mt-2 text-base text-left text-gray-400" >
+                  <p className="mt-2 text-base text-left text-gray-400">
                     {" "}
                     วันทำนัด : {displayThaiDate(date)}{" "}
                   </p>
@@ -195,9 +216,9 @@ export default function AppointmentConfirmScreen() {
         border-b-2 border-gray-100
       "
                   />
-                  <p className="mt-2 text-base text-left text-gray-400" >
+                  <p className="mt-2 text-base text-left text-gray-400">
                     {" "}
-                    เวลา :{time} 
+                    เวลา :{time}
                   </p>
                   <div
                     className="
@@ -209,7 +230,7 @@ export default function AppointmentConfirmScreen() {
         border-b-2 border-gray-100
       "
                   />
-                  <p className="mt-2 text-base text-left text-gray-400" >
+                  <p className="mt-2 text-base text-left text-gray-400">
                     {" "}
                     แพทย์ : {doctorname}{" "}
                   </p>
@@ -226,7 +247,8 @@ export default function AppointmentConfirmScreen() {
                 </div>
                 <div className="mb-6">
                   <button
-                    type="submit"
+                    onClick={createAppointment}
+                    type="button"
                     className="w-full px-3 mt-6 py-3 text-white bg-indigo-300 rounded-md focus:bg-indigo-200 focus:outline-none"
                   >
                     ยืนยันการทำนัด

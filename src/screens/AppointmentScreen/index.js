@@ -17,13 +17,6 @@ export default function AppointmentScreen() {
   const [timetableid, settimetableid] = useState("");
   const [time, settime] = useState("");
 
-  // console.log(symptom);
-  // console.log(date);
-  // console.log(doctorname);
-  // console.log(doctorid);
-  // console.log(timetableid);
-  // console.log(time);
-
   const getDate = () => {
     try {
       axios.get(server.APPOINTMENT).then((res) => {
@@ -56,6 +49,7 @@ export default function AppointmentScreen() {
         });
     } catch (error) {}
   };
+
   useEffect(async () => {
     getDate();
   }, []);
