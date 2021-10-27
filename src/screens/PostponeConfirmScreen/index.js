@@ -4,6 +4,7 @@ import { HiCheckCircle } from "react-icons/hi";
 import React, { useState } from "react";
 import { Modal } from "react-responsive-modal";
 
+
 export default function PostponeConfirmScreen() {
   const [openFirst, setOpenFirst] = React.useState(false);
 
@@ -32,15 +33,14 @@ export default function PostponeConfirmScreen() {
               />
             </div>
             <div className="m-7">
-              <form
-              >
+              <form>
                 <div className="mb-6">
-                  <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
+                  <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400 font-bold text-20 ">
                     ยืนยันการทำนัด :{" "}
                   </label>
-                  <p className="text-base text-left text-gray-400" id="result">
+                  <p className="text-base text-left text-gray-400" >
                     {" "}
-                    ชื่อ - นามสกุล : ลีโอนาโด เลิฟลี่
+                    <b>ชื่อ - นามสกุล :</b> ลีโอนาโด เลิฟลี่
                   </p>
                   <div
                     className="
@@ -52,9 +52,9 @@ export default function PostponeConfirmScreen() {
       border-b-2 border-gray-100
     "
                   />
-                  <p className="text-base text-left text-gray-400" id="result">
+                  <p className="mt-2 text-base text-left text-gray-400" >
                     {" "}
-                    วัน/เดือน/ปีเกิด : 20/7/2000{" "}
+                    <b>วัน/เดือน/ปีเกิด :</b> 20/7/2000{" "}
                   </p>
                   <div
                     className="
@@ -66,9 +66,9 @@ export default function PostponeConfirmScreen() {
       border-b-2 border-gray-100
     "
                   />
-                  <p className="text-base text-left text-gray-400" id="result">
+                  <p className="mt-2 text-base text-left text-gray-400">
                     {" "}
-                    เพศ : ชาย{" "}
+                   <b> เพศ :</b> ชาย{" "}
                   </p>
                   <div
                     className="
@@ -80,9 +80,9 @@ export default function PostponeConfirmScreen() {
       border-b-2 border-gray-100
     "
                   />
-                  <p className="text-base text-left text-gray-400" id="result">
+                  <p className=" mt-2 text-base text-left text-gray-400">
                     {" "}
-                    ที่อยู่ : 123 หมู่ 5 ถนนชิคาโก้ จังหวัด อิลลินอยส์ 52590
+                    <b>ที่อยู่ :</b> 123 หมู่ 5 ถนนชิคาโก้ จังหวัด อิลลินอยส์ 52590
                   </p>
                   <div
                     className="
@@ -94,9 +94,9 @@ export default function PostponeConfirmScreen() {
       border-b-2 border-gray-100
     "
                   />
-                  <p className="text-base text-left text-gray-400" id="result">
+                  <p className="mt-2 text-base text-left text-gray-400" >
                     {" "}
-                    เบอร์ติดต่อ : 0245678910
+                    <b>เบอร์ติดต่อ :</b> 0245678910
                   </p>
                   <div
                     className="
@@ -108,9 +108,9 @@ export default function PostponeConfirmScreen() {
       border-b-2 border-gray-100
     "
                   />
-                  <p className="text-base text-left text-gray-400" id="result">
+                  <p className="mt-2 text-base text-left text-gray-400" >
                     {" "}
-                    e-mail : LeoLovelove@gmail.com{" "}
+                    <b>e-mail</b> : LeoLovelove@gmail.com{" "}
                   </p>
                   <div
                     className="
@@ -122,9 +122,9 @@ export default function PostponeConfirmScreen() {
       border-b-2 border-gray-100
     "
                   />
-                  <p className="text-base text-left text-gray-400" id="result">
+                  <p className="mt-2 text-base text-left text-gray-400" >
                     {" "}
-                    อาการ : เป็นสิวแดงนูนรักษาไม่หายสักที{" "}
+                   <b> อาการ :</b> เป็นสิวแดงนูนรักษาไม่หายสักที{" "}
                   </p>
                   <div
                     className="
@@ -136,9 +136,9 @@ export default function PostponeConfirmScreen() {
       border-b-2 border-gray-100
     "
                   />
-                  <p className="text-base text-left text-gray-400" id="result">
+                  <p className="mt-2 text-base text-left text-gray-400" >
                     {" "}
-                    วันทำนัด : 3/07/2021{" "}
+                   <b> วันทำนัด :</b> 3/07/2021{" "}
                   </p>
                   <div
                     className="
@@ -150,9 +150,9 @@ export default function PostponeConfirmScreen() {
       border-b-2 border-gray-100
     "
                   />
-                  <p className="text-base text-left text-gray-400" id="result">
+                  <p className="mt-2 text-base text-left text-gray-400">
                     {" "}
-                    เวลา : 13.30
+                    <b>เวลา :</b> 13.30
                   </p>
                   <div
                     className="
@@ -164,9 +164,9 @@ export default function PostponeConfirmScreen() {
       border-b-2 border-gray-100
     "
                   />
-                  <p className="text-base text-left text-gray-400" id="result">
+                  <p className="mt-2 text-base text-left text-gray-400" >
                     {" "}
-                    แพทย์ : แพทย์ดารีส ปินโต{" "}
+                    <b>แพทย์ :</b> แพทย์ดารีส ปินโต{" "}
                   </p>
                   <div
                     className="
@@ -180,64 +180,9 @@ export default function PostponeConfirmScreen() {
                   />
                 </div>
 
-                <div class="flex justify-center items-center  ">
-                  <div
-                    class="
-
-        shadow-md
-        h-96
-        mx-3
-        rounded-3xl
-        flex flex-col
-        justify-around
-        items-center
-        overflow-hidden
-        sm:flex-row sm:h-52 sm:w-3/5
-        md:w-96
-      "
-                  >
-                    <img
-                      class="h-1/2 w-full sm:h-full sm:w-1/2 object-cover"
-                      src="https://images.unsplash.com/photo-1484101403633-562f891dc89a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1053&q=80"
-                      alt="image"
-                    />
-
-                    <div
-                      class="
-          flex-1
-          w-full
-          flex flex-col
-          items-baseline
-          justify-around
-          h-1/2
-          pl-6
-          sm:h-full sm:items-baseline sm:w-1/2
-        "
-                    >
-                      <div class="flex flex-col justify-start items-baseline">
-                        <h1 class="text-lg font-normal mb-0 text-gray-600 font-bold">
-                          บัตรนัดผู้ป่วย
-                        </h1>
-                        <span class="text-xs text-indigo-300 mt-0">
-                          PowerCare Clinic
-                        </span>
-                      </div>
-                      <p class="text-xs text-gray-500 w-4/5">
-                        ชื่อ : ลีโอนาโด เลิฟลี่
-                      </p>
-                      <p class="text-xs text-gray-500 w-5/5">
-                        วันทำนัด : 3/07/2021
-                      </p>
-                      <p class="text-xs text-gray-500 w-4/5">เวลา : 13.30</p>
-                      <p class="text-xs text-gray-500 w-5/5">
-                        แพทย์ : แพทย์ดารีส ปินโต
-                      </p>
-                    </div>
-                  </div>
-                </div>
                 <div className="mb-6">
                   <button
-                    className="w-full px-3 py-3 mt-6 text-white bg-indigo-300 rounded-md focus:bg-indigo-200 focus:outline-none"
+                    className="w-full px-3 py-3  text-white bg-indigo-300 rounded-md focus:bg-indigo-200 focus:outline-none"
                     onClick={() => setOpenFirst(true)}
                   >
                     ยืนยันการเลื่อนนัด
@@ -254,14 +199,12 @@ export default function PostponeConfirmScreen() {
                       <p className="font-bold">เลื่อนทำนัดสำเร็จ </p>
                     </center>
                     <center>
-                    <Link to="/menuhome">
-                    <div className="mb-6">
-                      <button
-                        className="w-80 px-1 py-3 text-white bg-gray-300 rounded-md mt-3"
-                      >
-                        กลับสู่หน้าหลัก
-                      </button>
-                      </div>
+                      <Link to="/menuhome">
+                        <div className="mb-6">
+                          <button className="w-80 px-1 py-3 text-white bg-gray-300 rounded-md mt-3">
+                            กลับสู่หน้าหลัก
+                          </button>
+                        </div>
                       </Link>
                     </center>
                   </Modal>

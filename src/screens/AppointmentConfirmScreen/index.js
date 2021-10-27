@@ -27,9 +27,9 @@ export default function AppointmentConfirmScreen() {
             </div>
             <div className="m-7">
               <form
-                // action="https://api.web3forms.com/submit"
-                // method="POST"
-                // id="form"
+              // action="https://api.web3forms.com/submit"
+              // method="POST"
+              // id="form"
               >
                 <div className="mb-6">
                   <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
@@ -176,82 +176,21 @@ export default function AppointmentConfirmScreen() {
       "
                   />
                 </div>
-                
-                
-                <div class="flex justify-center items-center  ">
-      
-      <div
-        class="
-  
-          shadow-md
-          h-96
-          mx-3
-          rounded-3xl
-          flex flex-col
-          justify-around
-          items-center
-          overflow-hidden
-          sm:flex-row sm:h-52 sm:w-3/5
-          md:w-96
-        "
-      >
-        <img
-          class="h-1/2 w-full sm:h-full sm:w-1/2 object-cover"
-          src="https://images.unsplash.com/photo-1484101403633-562f891dc89a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1053&q=80"
-          alt="image"
-        />
-
-        <div
-          class="
-            flex-1
-            w-full
-            flex flex-col
-            items-baseline
-            justify-around
-            h-1/2
-            pl-6
-            sm:h-full sm:items-baseline sm:w-1/2
-          "
-        >
-          <div class="flex flex-col justify-start items-baseline">
-            <h1 class="text-lg font-normal mb-0 text-gray-600 font-bold">
-              บัตรนัดผู้ป่วย
-            </h1>
-            <span class="text-xs text-indigo-300 mt-0">PowerCare Clinic</span>
-          </div>
-          <p class="text-xs text-gray-500 w-4/5">
-          ชื่อ : ลีโอนาโด เลิฟลี่
-          </p>
-          <p class="text-xs text-gray-500 w-5/5">
-          วันทำนัด : 3/07/2021
-          </p>
-          <p class="text-xs text-gray-500 w-4/5">
-          เวลา : 13.30
-          </p>
-          <p class="text-xs text-gray-500 w-5/5">
-          แพทย์ : แพทย์ดารีส ปินโต
-          </p>
-
-        </div>
-      </div>
-    </div>
                 <div className="mb-6">
                   <button
                     type="submit"
                     className="w-full px-3 mt-6 py-3 text-white bg-indigo-300 rounded-md focus:bg-indigo-200 focus:outline-none"
                   >
-                     ยืนยันการทำนัด
+                    ยืนยันการทำนัด
                   </button>
                 </div>
-            
+
                 <Link to="/appointment">
-                <div className="mb-6">
-                  <button
-                    className="w-full px-3 py-3 text-white bg-gray-300 rounded-md "
-                  >
-                    ย้อนกลับ
-                  </button>
-                </div>
+                  <div className="mb-6">
+                    <button className="w-full px-3 py-3 text-white bg-gray-300 rounded-md ">
+                      ย้อนกลับ
+                    </button>
+                  </div>
                 </Link>
               </form>
             </div>

@@ -28,18 +28,14 @@ export default function PostponeScreen() {
               />
             </div>
             <div className="m-7">
-              <form
-                action="https://api.web3forms.com/submit"
-                method="POST"
-                id="form"
-              >
-                <div className="mb-6">
-                  <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
-                    ยืนยันการทำนัด :{" "}
+              <form>
+                <div className="mb-7">
+                <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400 font-bold text-20 ">
+                    การทำนัด :{" "}
                   </label>
                   <p className="text-base text-left text-gray-400" id="result">
                     {" "}
-                    ชื่อ - นามสกุล : ลีโอนาโด เลิฟลี่
+                    <b>ชื่อ - นามสกุล :</b> ลีโอนาโด เลิฟลี่
                   </p>
                   <div
                     className="
@@ -51,9 +47,9 @@ export default function PostponeScreen() {
         border-b-2 border-gray-100
       "
                   />
-                  <p className="text-base text-left text-gray-400" id="result">
+                  <p className="mt-2 text-base text-left text-gray-400" id="result">
                     {" "}
-                    วัน/เดือน/ปีเกิด : 20/7/2000{" "}
+                    <b>วัน/เดือน/ปีเกิด :</b> 20/7/2000{" "}
                   </p>
                   <div
                     className="
@@ -65,9 +61,9 @@ export default function PostponeScreen() {
         border-b-2 border-gray-100
       "
                   />
-                  <p className="text-base text-left text-gray-400" id="result">
+                  <p className="mt-2 text-base text-left text-gray-400" id="result">
                     {" "}
-                    เพศ : ชาย{" "}
+                    <b>เพศ :</b>ชาย{" "}
                   </p>
                   <div
                     className="
@@ -79,9 +75,9 @@ export default function PostponeScreen() {
         border-b-2 border-gray-100
       "
                   />
-                  <p className="text-base text-left text-gray-400" id="result">
+                  <p className="mt-2 text-base text-left text-gray-400" id="result">
                     {" "}
-                    ที่อยู่ : 123 หมู่ 5 ถนนชิคาโก้ จังหวัด อิลลินอยส์ 52590
+                    <b>ที่อยู่ :</b> 123 หมู่ 5 ถนนชิคาโก้ จังหวัด อิลลินอยส์ 52590
                   </p>
                   <div
                     className="
@@ -93,9 +89,9 @@ export default function PostponeScreen() {
         border-b-2 border-gray-100
       "
                   />
-                  <p className="text-base text-left text-gray-400" id="result">
+                  <p className="mt-2 text-base text-left text-gray-400" id="result">
                     {" "}
-                    เบอร์ติดต่อ : 0245678910
+                    <b>เบอร์ติดต่อ :</b> 0245678910
                   </p>
                   <div
                     className="
@@ -107,9 +103,9 @@ export default function PostponeScreen() {
         border-b-2 border-gray-100
       "
                   />
-                  <p className="text-base text-left text-gray-400" id="result">
+                  <p className="mt-2 text-base text-left text-gray-400" id="result">
                     {" "}
-                    e-mail : LeoLovelove@gmail.com{" "}
+                    <b>e-mail :</b> LeoLovelove@gmail.com{" "}
                   </p>
                   <div
                     className="
@@ -121,9 +117,9 @@ export default function PostponeScreen() {
         border-b-2 border-gray-100
       "
                   />
-                  <p className="text-base text-left text-gray-400" id="result">
+                  <p className="mt-2 text-base text-left text-gray-400" id="result">
                     {" "}
-                    อาการ : เป็นสิวแดงนูนรักษาไม่หายสักที{" "}
+                    <b>อาการ :</b> เป็นสิวแดงนูนรักษาไม่หายสักที{" "}
                   </p>
                   <div
                     className="
@@ -135,9 +131,9 @@ export default function PostponeScreen() {
         border-b-2 border-gray-100
       "
                   />
-                  <p className="text-base text-left text-gray-400" id="result">
+                  <p className="mt-2 text-base text-left text-gray-400" id="result">
                     {" "}
-                    วันทำนัด : 3/07/2021{" "}
+                    <b>วันทำนัด : </b>3/07/2021{" "}
                   </p>
                   <div
                     className="
@@ -149,9 +145,9 @@ export default function PostponeScreen() {
         border-b-2 border-gray-100
       "
                   />
-                  <p className="text-base text-left text-gray-400" id="result">
+                  <p className="mt-2 text-base text-left text-gray-400" id="result">
                     {" "}
-                    เวลา : 13.30
+                    <b>เวลา :</b> 13.30
                   </p>
                   <div
                     className="
@@ -163,9 +159,9 @@ export default function PostponeScreen() {
         border-b-2 border-gray-100
       "
                   />
-                  <p className="text-base text-left text-gray-400" id="result">
+                  <p className="mt-2 text-base text-left text-gray-400" id="result">
                     {" "}
-                    แพทย์ : แพทย์ดารีส ปินโต{" "}
+                   <b> แพทย์ : </b>แพทย์ดารีส ปินโต{" "}
                   </p>
                   <div
                     className="

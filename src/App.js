@@ -18,7 +18,7 @@ import PrivateRoute  from "./privateroute";
 
 function App() {
   return (
-    <AuthProvider>
+    // <AuthProvider>
       <BrowserRouter>
         <div className="App">
           <Switch>
@@ -51,7 +51,7 @@ function App() {
           </Switch>
         </div>
       </BrowserRouter>
-    </AuthProvider>
+    // </AuthProvider>
   );
 }
 
