@@ -1,22 +1,58 @@
+import React, { useContext, useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { useLocation } from "react-router"; 
+import { useLocation } from "react-router";
+import { AuthContext } from "../../Auth";
+import axios from "axios";
+import { server } from "../../constants";
 
 export default function AppointmentConfirmScreen() {
-  const location = useLocation(); 
-  const { symptom, date, doctorname, doctorid, timetableid, time } = 
-    location.state; 
- 
-  console.log(symptom, date, doctorname, doctorid, timetableid, time); 
- 
-  const displayThaiDate = (date) => { 
-    const result = new Date(date).toLocaleDateString("th-TH", { 
-      year: "numeric", 
-      month: "long", 
-      day: "numeric", 
-      weekday: "long", 
-    }); 
-    return result; 
-  }; 
+  const location = useLocation();
+  const { symptom, date, doctorname, doctorid, timetableid, time } =
+    location.state;
+
+  const [firstname, setfirstname] = useState("");
+  const [lastname, setlastname] = useState("");
+  const [dateofbirth, setdateofbirth] = useState("");
+  const [sex, setsex] = useState("");
+  const [address, setaddress] = useState("");
+  const [phone, setphone] = useState("");
+  const [email, setemail] = useState("");
+
+  const { accessToken } = useContext(AuthContext);
+
+  const getProfileFromLineUserId = () => {
+    try {
+      axios
+        .post(`${server.APPOINTMENT_CONFIRM}/token`, {
+          accessToken: accessToken,
+        })
+        .then((res) => {
+          const data = res.data;
+          // console.log(data);
+          setfirstname(data.FirstName);
+          setlastname(data.LastName);
+          setdateofbirth(data.DateOfBirth);
+          setsex(data.Sex);
+          setaddress(data.Address);
+          setphone(data.Phone);
+          setemail(data.Email);
+        });
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    getProfileFromLineUserId();
+  }, []);
+
+  const displayThaiDate = (date) => {
+    const result = new Date(date).toLocaleDateString("th-TH", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      weekday: "long",
+    });
+    return result;
+  };
   return (
     <div classname="bg-indigo-200 h-screen w-screen">
       <div className="flex items-center min-h-screen bg-indigo-200 dark:bg-gray-900">
@@ -49,7 +85,7 @@ export default function AppointmentConfirmScreen() {
                   </label>
                   <p className="text-base text-left text-gray-400" >
                     {" "}
-                    ชื่อ - นามสกุล : ลีโอนาโด เลิฟลี่
+                    ชื่อ - นามสกุล : {firstname} {lastname}
                   </p>
                   <div
                     className="
@@ -63,7 +99,7 @@ export default function AppointmentConfirmScreen() {
                   />
                   <p className="mt-2 text-base text-left text-gray-400" >
                     {" "}
-                    วัน/เดือน/ปีเกิด : 20/7/2000{" "}
+                    วัน/เดือน/ปีเกิด : {displayThaiDate(dateofbirth)}{" "}
                   </p>
                   <div
                     className="
@@ -77,7 +113,7 @@ export default function AppointmentConfirmScreen() {
                   />
                   <p className="mt-2 text-base text-left text-gray-400" >
                     {" "}
-                    เพศ : ชาย{" "}
+                    เพศ : {sex}{" "}
                   </p>
                   <div
                     className="
@@ -91,7 +127,7 @@ export default function AppointmentConfirmScreen() {
                   />
                   <p className="mt-2 text-base text-left text-gray-400" >
                     {" "}
-                    ที่อยู่ : 123 หมู่ 5 ถนนชิคาโก้ จังหวัด อิลลินอยส์ 52590
+                    ที่อยู่ : {address}
                   </p>
                   <div
                     className="
@@ -105,7 +141,7 @@ export default function AppointmentConfirmScreen() {
                   />
                   <p className="mt-2 text-base text-left text-gray-400" >
                     {" "}
-                    เบอร์ติดต่อ : 0245678910
+                    เบอร์ติดต่อ : {phone}
                   </p>
                   <div
                     className="
@@ -119,7 +155,7 @@ export default function AppointmentConfirmScreen() {
                   />
                   <p className="mt-2 text-base text-left text-gray-400">
                     {" "}
-                    e-mail : LeoLovelove@gmail.com{" "}
+                    e-mail : {email}{" "}
                   </p>
                   <div
                     className="

@@ -14,11 +14,11 @@ import {
 } from "./screens";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "./Auth";
-import PrivateRoute  from "./privateroute";
+import PrivateRoute from "./privateroute";
 
 function App() {
   return (
-    // <AuthProvider>
+    <AuthProvider>
       <BrowserRouter>
         <div className="App">
           <Switch>
@@ -27,7 +27,10 @@ function App() {
           <UserProfileScreen />
         </Route> */}
             {/* <Route path="/otp" component={OTPScreen}></Route> */}
-            <PrivateRoute path="/menuhome" component={MenuHomeScreen}></PrivateRoute>
+            <PrivateRoute
+              path="/menuhome"
+              component={MenuHomeScreen}
+            ></PrivateRoute>
             <Route path="/appointment" component={AppointmentScreen}></Route>
             <Route
               path="/appointmentconfirm"
@@ -51,7 +54,7 @@ function App() {
           </Switch>
         </div>
       </BrowserRouter>
-    // </AuthProvider>
+    </AuthProvider>
   );
 }
 
