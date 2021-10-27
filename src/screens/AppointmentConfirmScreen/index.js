@@ -1,22 +1,22 @@
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { useLocation } from "react-router";
+import { useLocation } from "react-router"; 
 
 export default function AppointmentConfirmScreen() {
-  const location = useLocation();
-  const { symptom, date, doctorname, doctorid, timetableid, time } =
-    location.state;
-
-  console.log(symptom, date, doctorname, doctorid, timetableid, time);
-
-  const displayThaiDate = (date) => {
-    const result = new Date(date).toLocaleDateString("th-TH", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-      weekday: "long",
-    });
-    return result;
-  };
+  const location = useLocation(); 
+  const { symptom, date, doctorname, doctorid, timetableid, time } = 
+    location.state; 
+ 
+  console.log(symptom, date, doctorname, doctorid, timetableid, time); 
+ 
+  const displayThaiDate = (date) => { 
+    const result = new Date(date).toLocaleDateString("th-TH", { 
+      year: "numeric", 
+      month: "long", 
+      day: "numeric", 
+      weekday: "long", 
+    }); 
+    return result; 
+  }; 
   return (
     <div classname="bg-indigo-200 h-screen w-screen">
       <div className="flex items-center min-h-screen bg-indigo-200 dark:bg-gray-900">
@@ -42,16 +42,12 @@ export default function AppointmentConfirmScreen() {
               />
             </div>
             <div className="m-7">
-              <form
-              // action="https://api.web3forms.com/submit"
-              // method="POST"
-              // id="form"
-              >
+              <form>
                 <div className="mb-6">
-                  <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
+                  <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400 font-bold">
                     ยืนยันการทำนัด :{" "}
                   </label>
-                  <p className="text-base text-left text-gray-400" id="result">
+                  <p className="text-base text-left text-gray-400" >
                     {" "}
                     ชื่อ - นามสกุล : ลีโอนาโด เลิฟลี่
                   </p>
@@ -65,7 +61,7 @@ export default function AppointmentConfirmScreen() {
         border-b-2 border-gray-100
       "
                   />
-                  <p className="text-base text-left text-gray-400" id="result">
+                  <p className="mt-2 text-base text-left text-gray-400" >
                     {" "}
                     วัน/เดือน/ปีเกิด : 20/7/2000{" "}
                   </p>
@@ -79,7 +75,7 @@ export default function AppointmentConfirmScreen() {
         border-b-2 border-gray-100
       "
                   />
-                  <p className="text-base text-left text-gray-400" id="result">
+                  <p className="mt-2 text-base text-left text-gray-400" >
                     {" "}
                     เพศ : ชาย{" "}
                   </p>
@@ -93,7 +89,7 @@ export default function AppointmentConfirmScreen() {
         border-b-2 border-gray-100
       "
                   />
-                  <p className="text-base text-left text-gray-400" id="result">
+                  <p className="mt-2 text-base text-left text-gray-400" >
                     {" "}
                     ที่อยู่ : 123 หมู่ 5 ถนนชิคาโก้ จังหวัด อิลลินอยส์ 52590
                   </p>
@@ -107,7 +103,7 @@ export default function AppointmentConfirmScreen() {
         border-b-2 border-gray-100
       "
                   />
-                  <p className="text-base text-left text-gray-400" id="result">
+                  <p className="mt-2 text-base text-left text-gray-400" >
                     {" "}
                     เบอร์ติดต่อ : 0245678910
                   </p>
@@ -121,7 +117,7 @@ export default function AppointmentConfirmScreen() {
         border-b-2 border-gray-100
       "
                   />
-                  <p className="text-base text-left text-gray-400" id="result">
+                  <p className="mt-2 text-base text-left text-gray-400">
                     {" "}
                     e-mail : LeoLovelove@gmail.com{" "}
                   </p>
@@ -135,7 +131,7 @@ export default function AppointmentConfirmScreen() {
         border-b-2 border-gray-100
       "
                   />
-                  <p className="text-base text-left text-gray-400" id="result">
+                  <p className="mt-2 text-base text-left text-gray-400">
                     {" "}
                     อาการ : {symptom}{" "}
                   </p>
@@ -149,7 +145,7 @@ export default function AppointmentConfirmScreen() {
         border-b-2 border-gray-100
       "
                   />
-                  <p className="text-base text-left text-gray-400" id="result">
+                  <p className="mt-2 text-base text-left text-gray-400" >
                     {" "}
                     วันทำนัด : {displayThaiDate(date)}{" "}
                   </p>
@@ -163,9 +159,9 @@ export default function AppointmentConfirmScreen() {
         border-b-2 border-gray-100
       "
                   />
-                  <p className="text-base text-left text-gray-400" id="result">
+                  <p className="mt-2 text-base text-left text-gray-400" >
                     {" "}
-                    เวลา : {time}
+                    เวลา :{time} 
                   </p>
                   <div
                     className="
@@ -177,7 +173,7 @@ export default function AppointmentConfirmScreen() {
         border-b-2 border-gray-100
       "
                   />
-                  <p className="text-base text-left text-gray-400" id="result">
+                  <p className="mt-2 text-base text-left text-gray-400" >
                     {" "}
                     แพทย์ : {doctorname}{" "}
                   </p>
