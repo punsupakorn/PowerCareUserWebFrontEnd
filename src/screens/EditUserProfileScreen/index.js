@@ -1,6 +1,101 @@
+import React, { useContext, useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-
+import axios from "axios";
+import { server } from "../../constants";
+import { AuthContext } from "../../Auth";
 export default function EditUserProfileScreen() {
+  const [firstname, setfirstname] = useState("");
+  const [lastname, setlastname] = useState("");
+  const [sex, setsex] = useState("");
+  const [address, setaddress] = useState("");
+  const [phone, setphone] = useState("");
+  const [email, setemail] = useState("");
+  const [UserId, setUserId] = useState("");
+  const { accessToken } = useContext(AuthContext);
+
+  const getUserProfile = () => {
+    try {
+      axios
+        .post(server.EDIT_USER_PROFILE, {
+          accessToken: accessToken,
+        })
+        .then((res) => {
+          setfirstname(res.data.FirstName);
+          setlastname(res.data.LastName);
+          setsex(res.data.Sex);
+          setaddress(res.data.Address);
+          setphone(res.data.Phone);
+          setemail(res.data.Email);
+          setUserId(res.data.UserID);
+        });
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    getUserProfile();
+  }, []);
+
+  const handleFirstName = (e) => {
+    const firstname = e.target.value;
+    setfirstname(firstname);
+  };
+
+  const handleLastName = (e) => {
+    const lastname = e.target.value;
+    setlastname(lastname);
+  };
+
+  const handleSex = (e) => {
+    const sex = e.target.value;
+    setsex(sex);
+  };
+
+  const handleAddress = (e) => {
+    const address = e.target.value;
+    setaddress(address);
+  };
+
+  const handlePhone = (e) => {
+    const phone = e.target.value;
+    setphone(phone);
+  };
+
+  const handleEmail = (e) => {
+    const email = e.target.value;
+    setemail(email);
+  };
+
+  const handleEdit = () => {
+    let user = {
+      firstname: firstname,
+      lastname: lastname,
+      sex: sex,
+      address: address,
+      phone: phone,
+      email: email,
+    };
+
+    let data = Object.values(user).every((value) => value);
+
+    if (data == false) {
+      window.alert("กรุณากรอกข้อมูลส่วนตัวให้ครบถ้วน");
+    } else {
+      try {
+        axios.put(server.EDIT_USER_PROFILE, {
+          UserId: UserId,
+          FirstName: firstname,
+          LastName: lastname,
+          Sex: sex,
+          Address: address,
+          Phone: phone,
+          Email: email,
+        });
+      } catch (error) {
+        return error;
+      }
+    }
+  };
+
   return (
     <div classname="bg-indigo-200 h-screen w-screen">
       <div className="flex items-center min-h-screen bg-indigo-200 dark:bg-gray-900">
@@ -26,30 +121,46 @@ export default function EditUserProfileScreen() {
               />
             </div>
             <div className="m-7">
-              <form
+              {/* <form
                 action="https://api.web3forms.com/submit"
                 method="POST"
                 id="form"
-              >
-                <div className="mb-6">
-                  <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
-                    ชื่อ-นามสกุล :{" "}
-                  </label>
-                  <input
-                    type="text"
-                    name="name"
-                    id="name"
-                    placeholder=" นายลีโอนาโด เลิฟลี่"
-                    required
-                    className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
-                  />
-                </div>
-
-                <div className="mb-6">
-                  <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
-                    เพศ :
-                  </label>
-                  {/* <input
+              > */}
+              <div className="mb-6">
+                <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
+                  ชื่อจริง :{" "}
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  placeholder={firstname}
+                  required
+                  value={firstname}
+                  onChange={handleFirstName}
+                  className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
+                />
+              </div>
+              <div className="mb-6">
+                <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
+                  นามสกุล :{" "}
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  placeholder={lastname}
+                  required
+                  value={lastname}
+                  onChange={handleLastName}
+                  className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
+                />
+              </div>
+              <div className="mb-6">
+                <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
+                  เพศ :
+                </label>
+                {/* <input
                     type="text"
                     name="name"
                     id="name"
@@ -57,80 +168,91 @@ export default function EditUserProfileScreen() {
                     required
                     className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
                   /> */}
-                  <select
-                    // id="position"
-                    // name="Position"
-                    className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500 "
-                    // onClick={handlePosition}
-                  >
-                    <option disabled selected value>
-                      {" "}
-                      กรุณาเลือกเพศ
-                    </option>
-                    <option className="option" value="Doctor">
-                      {" "}
-                      ชาย{" "}
-                    </option>
-                  </select>
-                </div>
+                <select
+                  value={sex}
+                  // id="position"
+                  // name="Position"
+                  className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500 "
+                  onChange={handleSex}
+                  // onClick={handlePosition}
+                >
+                  <option disabled selected value>
+                    {" "}
+                    กรุณาเลือกเพศ
+                  </option>
+                  <option className="option" value="ชาย">
+                    {" "}
+                    ชาย{" "}
+                  </option>
+                  <option className="option" value="หญิง">
+                    {" "}
+                    หญิง{" "}
+                  </option>
+                </select>
+              </div>
+              <div className="mb-6">
+                <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
+                  ที่อยู่ :{" "}
+                </label>
+                <textarea
+                  rows={5}
+                  name="message"
+                  id="message"
+                  placeholder={address}
+                  value={address}
+                  className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
+                  required
+                  onChange={handleAddress}
+                  defaultValue={""}
+                />
+              </div>
+              <div className="mb-6">
+                <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
+                  เบอร์ติดต่อ :
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  placeholder={phone}
+                  value={phone}
+                  onChange={handlePhone}
+                  required
+                  className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
+                />
+              </div>
+              <div className="mb-6">
+                <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
+                  อีเมลล์ :
+                </label>
+                <input
+                  value={email}
+                  type="text"
+                  name="name"
+                  id="name"
+                  placeholder={email}
+                  onChange={handleEmail}
+                  required
+                  className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
+                />
+              </div>
+              <div className="mb-6">
+                <button
+                  type="button"
+                  className="w-full px-3 py-4 text-white bg-indigo-300 rounded-md focus:bg-indigo-200 focus:outline-none"
+                  onClick={handleEdit}
+                >
+                  บันทึก
+                </button>
+              </div>
+              <Link to="/menuhome">
                 <div className="mb-6">
-                  <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
-                    ที่อยู่ :{" "}
-                  </label>
-                  <textarea
-                    rows={5}
-                    name="message"
-                    id="message"
-                    placeholder="123 หมู่ 5 ถนนชิคาโก้ จังหวัด อิลลินอยส์ 52590"
-                    className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
-                    required
-                    defaultValue={""}
-                  />
-                </div>
-                <div className="mb-6">
-                  <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
-                    เบอร์ติดต่อ :
-                  </label>
-                  <input
-                    type="text"
-                    name="name"
-                    id="name"
-                    placeholder="0987654321"
-                    required
-                    className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
-                  />
-                </div>
-                <div className="mb-6">
-                  <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
-                    อีเมลล์ :
-                  </label>
-                  <input
-                    type="text"
-                    name="name"
-                    id="name"
-                    placeholder="LeoLovelove@gmail.com"
-                    required
-                    className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
-                  />
-                </div>
-                  <div className="mb-6">
-                    <button
-                      type="submit"
-                      className="w-full px-3 py-4 text-white bg-indigo-300 rounded-md focus:bg-indigo-200 focus:outline-none"
-                    >
-                      บันทึก
-                    </button>
-                  </div>
-                <Link to="/menuhome">
-                <div className="mb-6">
-                  <button
-                    className="w-full px-3 py-4 text-white bg-gray-300 rounded-md "
-                  >
+                  <button className="w-full px-3 py-4 text-white bg-gray-300 rounded-md ">
                     ย้อนกลับ
                   </button>
                 </div>
-                </Link>
-              </form>
+              </Link>
+              {/* </form> */}
             </div>
           </div>
         </div>

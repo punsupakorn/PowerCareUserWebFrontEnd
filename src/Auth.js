@@ -14,12 +14,12 @@ export const AuthProvider = ({ children }) => {
   const [accessToken, setAccessToken] = useState(null);
 
   useEffect(() => {
-    initLine();
-    // localStorage.setItem("Auth", "YES");
-    // setAccessToken(
-    //   "eyJhbGciOiJIUzI1NiJ9.1Ll2zEcI4Pp9kwVaI_EJJIcnW25oRvsvanrdIZu5Q7QFEbDrkPBhZug1FZizZQY-GZaaneyKc1o27GSTp2mR-vxl3TVJ3RdSCqiUFFCzqgJeUuxBOv1K_Yplci3Mu8oZ-f41ObDbpkhrv3qwINngAJroR9Qp7rj2f4z5f1H37Lk.xBNqriY2v3n0lAmG1MKX7IFtzLqs3ofh7vYHD4nvD_o"
-    // );
-    // setloading(false);
+    // initLine();
+    localStorage.setItem("Auth", "YES");
+    setAccessToken(
+      "eyJhbGciOiJIUzI1NiJ9.wdWxryJcH_IWZUtTo1Sqn4StD4WNRbWzBsr5XTA1oZ2pxL1hxDSc5CfJizdeLQElr-dD6cnm8R63kW_iATUUMuLbks_Hx0mpNNZ73UBDw91HxqiN0wdHYPhqp_YruOTNjgVVrCigpxyjPekOGcDhstNZe7upVOA0ZrY7WPbrcIg.b94rNykXIzi6Zf73W1oCeJbqW81IDwr-ZtG6kN_KhfE"
+    );
+    setloading(false);
   }, []);
 
   const runApp = () => {
