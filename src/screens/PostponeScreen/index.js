@@ -28,7 +28,6 @@ export default function PostponeScreen() {
               />
             </div>
             <div className="m-7">
-              <form>
                 <div className="mb-7">
                 <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400 font-bold text-20 ">
                     การทำนัด :{" "}
@@ -63,7 +62,7 @@ export default function PostponeScreen() {
                   />
                   <p className="mt-2 text-base text-left text-gray-400" id="result">
                     {" "}
-                    <b>เพศ :</b>ชาย{" "}
+                    <b>เพศ :</b>zชาย{" "}
                   </p>
                   <div
                     className="
@@ -184,16 +183,6 @@ export default function PostponeScreen() {
                   </button>
                 </div>
                 </Link>
-               <Link to="/cancel">
-                <div className="mb-6">
-                  <button
-                    type="submit"
-                    className="w-full px-3 py-3 text-white bg-red-700 rounded-md  "
-                  >
-                   ยกเลิกการทำนัด
-                  </button>
-                </div>
-                </Link>
                 <Link to="/menuhome">
                 <div className="mb-6">
                   <button
@@ -203,12 +192,6 @@ export default function PostponeScreen() {
                   </button>
                 </div>
                 </Link>
-                
-                <p
-                  className="text-base text-center text-gray-400"
-                  id="result"
-                ></p>
-              </form>
             </div>
           </div>
         </div>

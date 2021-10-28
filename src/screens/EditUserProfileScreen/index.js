@@ -2,6 +2,9 @@ import React, { useContext, useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import axios from "axios";
 import { server } from "../../constants";
+import { Modal } from "react-responsive-modal";
+import { HiCheckCircle } from "react-icons/hi";
+
 import { AuthContext } from "../../Auth";
 export default function EditUserProfileScreen() {
   const [firstname, setfirstname] = useState("");
@@ -11,13 +14,14 @@ export default function EditUserProfileScreen() {
   const [phone, setphone] = useState("");
   const [email, setemail] = useState("");
   const [UserId, setUserId] = useState("");
-  const { accessToken } = useContext(AuthContext);
+  
+  // const { accessToken } = useContext(AuthContext);
 
   const getUserProfile = () => {
     try {
       axios
         .post(server.EDIT_USER_PROFILE, {
-          accessToken: accessToken,
+          // accessToken: accessToken,
         })
         .then((res) => {
           setfirstname(res.data.FirstName);
@@ -96,6 +100,8 @@ export default function EditUserProfileScreen() {
     }
   };
 
+  const [openFirst, setOpenFirst] = React.useState(false);
+
   return (
     <div classname="bg-indigo-200 h-screen w-screen">
       <div className="flex items-center min-h-screen bg-indigo-200 dark:bg-gray-900">
@@ -105,7 +111,6 @@ export default function EditUserProfileScreen() {
               <h1 className="my-3 text-3xl font-semibold fontsize-18 text-gray-700 dark:text-gray-200">
                 แก้ไขข้อมูลส่วนตัว
               </h1>
-
               <p className="text-gray-400 dark:text-gray-400">
                 โปรดกรอกข้อมูลของท่านให้ถูกต้อง
               </p>
@@ -121,11 +126,6 @@ export default function EditUserProfileScreen() {
               />
             </div>
             <div className="m-7">
-              {/* <form
-                action="https://api.web3forms.com/submit"
-                method="POST"
-                id="form"
-              > */}
               <div className="mb-6">
                 <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
                   ชื่อจริง :{" "}
@@ -160,18 +160,8 @@ export default function EditUserProfileScreen() {
                 <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
                   เพศ :
                 </label>
-                {/* <input
-                    type="text"
-                    name="name"
-                    id="name"
-                    placeholder="ชาย "
-                    required
-                    className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
-                  /> */}
                 <select
                   value={sex}
-                  // id="position"
-                  // name="Position"
                   className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500 "
                   onChange={handleSex}
                   // onClick={handlePosition}
@@ -244,6 +234,27 @@ export default function EditUserProfileScreen() {
                 >
                   บันทึก
                 </button>
+                <Modal
+                    open={openFirst}
+                    onClose={() => setOpenFirst(false)}
+                    center
+                  >
+                    <center>
+                      <div className="w-80">
+                        <HiCheckCircle size="150px" color="#66bb6a" />
+                      </div>
+                      <p className="font-bold">แก้ไขข้อมูลส่วนตัวสำเร็จ</p>
+                    </center>
+                    <center>
+                      <Link to="/menuhome">
+                        <div className="mb-6">
+                          <button className="w-80 px-1 py-3 text-white bg-gray-300 rounded-md mt-3">
+                            กลับสู่หน้าหลัก
+                          </button>
+                        </div>
+                      </Link>
+                    </center>
+                  </Modal>
               </div>
               <Link to="/menuhome">
                 <div className="mb-6">
@@ -252,7 +263,6 @@ export default function EditUserProfileScreen() {
                   </button>
                 </div>
               </Link>
-              {/* </form> */}
             </div>
           </div>
         </div>

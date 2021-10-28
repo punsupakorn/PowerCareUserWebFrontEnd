@@ -1,5 +1,4 @@
-
-import { BrowserRouter as  Link } from "react-router-dom";
+import { BrowserRouter as Link } from "react-router-dom";
 import { useState } from "react";
 
 export default function PostponeSelectScreen() {
@@ -29,118 +28,120 @@ export default function PostponeSelectScreen() {
               />
             </div>
             <div className="m-7">
-              <form>
-               
-                <div className="mb-6">
-                  <label
-                    className="block mb-2 text-sm text-gray-600 dark:text-gray-400"
-                  >
-                   ชื่อ - นามสกุล :{" "}
-                  </label>
-                  <input
-                    type="text"
-                    name="name"
-                    id="name"
-                    placeholder="นายลีโอนาโด เลิฟลี่"
-                    required
-                    className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
-                  />
-                </div>
-                <div className="mb-6">
-                  <label
-                    className="block mb-2 text-sm text-gray-600 dark:text-gray-400"
-                  >
-                   วันที่ทำนัดเดิม :{" "}
-                  </label>
-                  <input
-                    type="text"
-                    name="name"
-                    id="name"
-                    placeholder="3/07/2021"
-                    required
-                    className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
-                  />
-                </div>
-                <div className="mb-6">
-                  <label
-                    className="block mb-2 text-sm text-gray-600 dark:text-gray-400"
-                  >
-                   เวลาทำนัดเดิม : {" "}
-                  </label>
-                  <input
-                    type="text"
-                    name="name"
-                    id="name"
-                    placeholder="13.00 น."
-                    required
-                    className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
-                  />
-                </div>
-                
-                <div className="mb-6">
-                  <label
-                    className="block font-bold mb-2 text-sm text-gray-600 dark:text-gray-400"
-                  >
-                    วันที่ / เวลา ทำนัดใหม่ :{" "}
-                  </label>
-                  <select
-                    // id="position"
-                    // name="Position"
-                    className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500 "
-                    // onChange={handleDate}
+              <div className="mb-6">
+                <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
+                  ชื่อ - นามสกุล :{" "}
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  placeholder="นายลีโอนาโด เลิฟลี่"
+                  disabled
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
+                />
+              </div>
+              <div className="mb-6">
+                <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
+                  แพทย์ที่พบ :{" "}
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  placeholder="นายอัลเบิด ไอน์สไตล์"
+                  disabled
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
+                />
+              </div>
+              <div className="mb-6">
+                <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
+                  วันที่ทำนัดเดิม :{" "}
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  placeholder="3/07/2021"
+                  disabled
+                  className="w-full px-3 py-2  border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
+                />
+              </div>
+              <div className="mb-6">
+                <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
+                  เวลาทำนัดเดิม :{" "}
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  placeholder="13.00 น."
+                  disabled
+                  className="w-full px-3 py-2  border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
+                />
+              </div>
 
-                  >
-                    <option disabled selected value>
-                      {" "}
-                      กรุณาเลือกวันที่
-                    </option>
-                    <option className="option" value="Doctor">
-                      {" "}
-                      วันจันทร์ 16 สิงหาคม 2542 {" "}
-                    </option>
-                  </select>
-                </div>
-                <div className="mb-6">
-                <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
-                    เลือกแพทย์ :{" "}
-                  </label>
+              <div className="mb-6">
+                <label className="block font-bold mb-2 text-sm text-gray-600 dark:text-gray-400">
+                  วันที่ / เวลา ทำนัดใหม่ :{" "}
+                </label>
                 <select
-                    // id="position"
-                    // name="Position"
-                    className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500 "
-                    // onClick={handlePosition}
-                  >
-                    <option disabled selected value>
-                      {" "}
-                      กรุณาเลือกแพทย์
-                    </option>
-                    <option className="option" value="Doctor">
-                      {" "}
-                      นางแพทย์หญิง ดาริส ปิ่นโต{" "}
-                    </option>
-                  </select>
-                </div>
-                <div className="mb-6">
+                  // id="position"
+                  // name="Position"
+                  className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500 "
+                  // onChange={handleDate}
+                >
+                  <option disabled selected value>
+                    {" "}
+                    กรุณาเลือกวันที่
+                  </option>
+                  <option className="option" value="Doctor">
+                    {" "}
+                    วันจันทร์ 16 สิงหาคม 2542{" "}
+                  </option>
+                </select>
+              </div>
+              {/* <div className="mb-6">
                 <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
-                    เลือกเวลา :{" "}
-                  </label>
-                  <select
-                    id="position"
-                    name="Position"
-                    className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500 "
-                    // onClick={handlePosition}
-                  >
-                    <option disabled selected value>
-                      {" "}
-                      กรุณาเลือกเวลา
-                    </option>
-                    <option className="option" value="Doctor">
-                      {" "}
-                      11.00 - 12.00{" "}
-                    </option>
-                    </select>
-                </div>
-                <Link to="/postponeconfirm">
+                  เลือกแพทย์ :{" "}
+                </label>
+                <select
+                  // id="position"
+                  // name="Position"
+                  className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500 "
+                  // onClick={handlePosition}
+                >
+                  <option disabled selected value>
+                    {" "}
+                    กรุณาเลือกแพทย์
+                  </option>
+                  <option className="option" value="Doctor">
+                    {" "}
+                    นางแพทย์หญิง ดาริส ปิ่นโต{" "}
+                  </option>
+                </select>
+              </div> */}
+              <div className="mb-6">
+                <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
+                  เลือกเวลา :{" "}
+                </label>
+                <select
+                  id="position"
+                  name="Position"
+                  className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500 "
+                  // onClick={handlePosition}
+                >
+                  <option disabled selected value>
+                    {" "}
+                    กรุณาเลือกเวลา
+                  </option>
+                  <option className="option" value="Doctor">
+                    {" "}
+                    11.00 - 12.00{" "}
+                  </option>
+                </select>
+              </div>
+              <Link to="/postponeconfirm">
                 <div className="mb-6">
                   <button
                     type="submit"
@@ -148,19 +149,15 @@ export default function PostponeSelectScreen() {
                   >
                     ถัดไป
                   </button>
-                
                 </div>
-                </Link>
-                <Link to="/postpone">
+              </Link>
+              <Link to="/postpone">
                 <div className="mb-6">
-                  <button
-                    className="w-full px-3 py-3 text-white bg-gray-300 rounded-md "
-                  >
+                  <button className="w-full px-3 py-3 text-white bg-gray-300 rounded-md ">
                     ย้อนกลับ
                   </button>
                 </div>
-                </Link>
-              </form>
+              </Link>
             </div>
           </div>
         </div>

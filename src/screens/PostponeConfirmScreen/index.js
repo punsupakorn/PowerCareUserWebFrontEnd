@@ -33,7 +33,6 @@ export default function PostponeConfirmScreen() {
               />
             </div>
             <div className="m-7">
-              <form>
                 <div className="mb-6">
                   <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400 font-bold text-20 ">
                     ยืนยันการทำนัด :{" "}
@@ -216,7 +215,6 @@ export default function PostponeConfirmScreen() {
                     </button>
                   </div>
                 </Link>
-              </form>
             </div>
           </div>
         </div>

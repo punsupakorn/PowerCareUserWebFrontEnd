@@ -41,7 +41,7 @@ export default function CancelScreen() {
               />
             </div>
             <div className="m-7">
-              <form>
+              {/* <form> */}
                 <div className="mb-6">
                   <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400 font-bold">
                     รายละเอียดการทำนัด :{" "}
@@ -300,7 +300,7 @@ export default function CancelScreen() {
                     </button>
                   </div>
                 </Link>
-              </form>
+              {/* </form> */}
             </div>
           </div>
         </div>

@@ -11,10 +11,6 @@ import {
   CancelScreen,
   EditUserProfileScreen,
   FollowUpScreen,
-  AddAppointmentSuccessScreen,
-  EditUserSuccessScreen,
-  PostponeAppointmentSuccessScreen,
-  CancelAppointmentSuccessScreen,
 } from "./screens";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "./Auth";
@@ -55,22 +51,6 @@ function App() {
             component={EditUserProfileScreen}
           ></Route>
           <Route path="/followup" component={FollowUpScreen}></Route>
-          <Route
-            path="/addappointmentsuccess"
-            component={AddAppointmentSuccessScreen}
-          ></Route>
-          <Route
-            path="/postponeappointmentsuccess"
-            component={PostponeAppointmentSuccessScreen}
-          ></Route>
-          <Route
-            path="/cancelappointmentsuccess"
-            component={CancelAppointmentSuccessScreen}
-          ></Route>
-          <Route
-            path="/editusersuccess"
-            component={EditUserSuccessScreen}
-          ></Route>
         </Switch>
       </div>
     </BrowserRouter>
