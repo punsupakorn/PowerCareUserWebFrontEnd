@@ -43,7 +43,17 @@ export default function MenuHomeScreen() {
                       type="submit"
                       className="w-80 font-bold px-3 py-4 text-white bg-indigo-300 rounded-md focus:bg-indigo-200 focus:outline-none"
                     >
-                      เลื่อน / ยกเลิกการทำนัด
+                      เลื่อนการทำนัด
+                    </button>
+                  </div>
+                </Link>
+                <Link to="/cancel">
+                  <div className="mb-6">
+                    <button
+                      type="submit"
+                      className="w-80 font-bold px-3 py-4 text-white bg-indigo-300 rounded-md focus:bg-indigo-200 focus:outline-none"
+                    >
+                     ยกเลิกการทำนัด
                     </button>
                   </div>
                 </Link>

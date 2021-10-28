@@ -29,11 +29,7 @@ export default function PostponeSelectScreen() {
               />
             </div>
             <div className="m-7">
-              <form
-                action="https://api.web3forms.com/submit"
-                method="POST"
-                id="form"
-              >
+              <form>
                
                 <div className="mb-6">
                   <label
