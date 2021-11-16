@@ -15,13 +15,13 @@ export default function EditUserProfileScreen() {
   const [email, setemail] = useState("");
   const [UserId, setUserId] = useState("");
   
-  // const { accessToken } = useContext(AuthContext);
+  const { accessToken } = useContext(AuthContext);
 
   const getUserProfile = () => {
     try {
       axios
         .post(server.EDIT_USER_PROFILE, {
-          // accessToken: accessToken,
+          accessToken: accessToken,
         })
         .then((res) => {
           setfirstname(res.data.FirstName);
