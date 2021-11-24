@@ -29,8 +29,9 @@ export default function UserProfileScreen() {
     //   return localStorage.getItem("Auth") === "YES";
     // };
     if (localStorage.getItem("Auth") === YES) {
-      // window.location.replace(`https://${window.location.host}/menuhome`);
-      history.push("/menuhome");
+      //window.location.replace(`https://${window.location.host}/menuhome`);
+      window.location.href = `https://${window.location.host}/menuhome`;
+      // history.push("/menuhome");
       
     }
   });
@@ -125,7 +126,6 @@ export default function UserProfileScreen() {
           })
           .then((res) => {
             console.log(res);
-            history.push("/menuhome")
           });
       }
     } catch (error) {
