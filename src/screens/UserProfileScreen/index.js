@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { server, YES } from "../../constants";
+import { server } from "../../constants";
 import { AuthContext } from "../../Auth";
 // import liff from "@line/liff";
 
@@ -24,18 +24,19 @@ export default function UserProfileScreen() {
   const [Email, setEmail] = useState("");
   const history = useHistory();
 
-  useEffect( () => {
-    // const isAuthenticated = () => {
-    //   return localStorage.getItem("Auth") === "YES";
-    // };
-    console.log(localStorage.getItem("isUser") === YES)
-    if (localStorage.getItem("isUser") === YES) {
-      //window.location.replace(`https://${window.location.host}/menuhome`);
-      // window.location.href = `https://${window.location.host}/menuhome`;
-      history.push("/menuhome");
+  useEffect(() => {
+    const isAuthenticated = () => {
+      return localStorage.getItem("Auth") === "YES";
+    };
+    if (isAuthenticated === true) {
       
+    } else {
+       //window.location.replace(`https://${window.location.host}/menuhome`);
+      // window.location.href = `https://${window.location.host}/menuhome`;
+      // history.push("/menuhome");
+      return history.push("/menuhome");
     }
-  },[]);
+  });
 
   //const { accessToken } = useContext(AuthContext);
 

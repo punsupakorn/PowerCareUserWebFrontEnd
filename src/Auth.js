@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import liff from "@line/liff";
 import { Redirect } from "react-router";
 import axios from "axios";
-import { NO, server, YES } from "./constants";
+import { server } from "./constants";
 import { useHistory } from "react-router";
 
 export const AuthContext = React.createContext();
@@ -32,7 +32,7 @@ export const AuthProvider = ({ children }) => {
     liff.init(
       { liffId: "1656423908-z2DErD50" },
       () => {
-        if (liff.isLoggedIn({ redirectUri: "https://main.d3w2lvda55pxgd.amplifyapp.com/" })) {
+        if (liff.isLoggedIn({ redirectUri: "https://powercareuser.systems" })) {
           runApp();
           setloading(false);
         } else {
@@ -45,12 +45,11 @@ export const AuthProvider = ({ children }) => {
     await axios.get(`${server.LOGIN}/${accessToken}`).then((res) => {
       const check = res.data;
       if (check == true) {
-        localStorage.setItem("isUser", YES);
-      //   console.log("true : ", check);
-      //   localStorage.setItem("Auth", YES);
-      // } else {
-      //   console.log("false : ", check);
-      //   localStorage.setItem("Auth", NO);
+        console.log("true : ", check);
+        localStorage.setItem("Auth", "YES");
+      } else {
+        console.log("false : ", check);
+        localStorage.setItem("Auth", "NO");
       }
     });
   };
