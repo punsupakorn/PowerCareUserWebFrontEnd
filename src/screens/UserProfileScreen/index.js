@@ -34,7 +34,7 @@ export default function UserProfileScreen() {
       // history.push("/menuhome");
       liff.openWindow({
         url: `https://${window.location.host}/menuhome`,
-        external: false,
+        external: true,
     });
       
     }
@@ -137,7 +137,7 @@ export default function UserProfileScreen() {
     // }
     liff.openWindow({
       url: `https://${window.location.host}/menuhome`,
-      external: false,
+      external: true,
   });
   };
 
