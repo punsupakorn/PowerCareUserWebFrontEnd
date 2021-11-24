@@ -32,7 +32,7 @@ export const AuthProvider = ({ children }) => {
     liff.init(
       { liffId: "1656423908-vEgA2gn7" },
       () => {
-        if (liff.isLoggedIn({ redirectUri: "https://powercareuser.systems" })) {
+        if (liff.isLoggedIn({ redirectUri: "https://main.d3w2lvda55pxgd.amplifyapp.com/" })) {
           runApp();
           setloading(false);
         } else {
@@ -45,11 +45,12 @@ export const AuthProvider = ({ children }) => {
     await axios.get(`${server.LOGIN}/${accessToken}`).then((res) => {
       const check = res.data;
       if (check == true) {
-        console.log("true : ", check);
-        localStorage.setItem("Auth", YES);
-      } else {
-        console.log("false : ", check);
-        localStorage.setItem("Auth", NO);
+        localStorage.setItem("isUser", YES);
+      //   console.log("true : ", check);
+      //   localStorage.setItem("Auth", YES);
+      // } else {
+      //   console.log("false : ", check);
+      //   localStorage.setItem("Auth", NO);
       }
     });
   };

@@ -24,17 +24,17 @@ export default function UserProfileScreen() {
   const [Email, setEmail] = useState("");
   const history = useHistory();
 
-  useEffect(async () => {
+  useEffect( () => {
     // const isAuthenticated = () => {
     //   return localStorage.getItem("Auth") === "YES";
     // };
-    if (await localStorage.getItem("Auth") === YES) {
+    if (await localStorage.getItem("isUser") != null) {
       //window.location.replace(`https://${window.location.host}/menuhome`);
       // window.location.href = `https://${window.location.host}/menuhome`;
       history.push("/menuhome");
       
     }
-  });
+  },[]);
 
   //const { accessToken } = useContext(AuthContext);
 
