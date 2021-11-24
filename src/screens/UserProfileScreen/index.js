@@ -102,39 +102,43 @@ export default function UserProfileScreen() {
   };
 
   const handleSubmit = () => {
-    let user = {
-      FirstName,
-      LastName,
-      DateOfBirth,
-      Sex,
-      Address,
-      Phone,
-      Email,
-      //   accessToken,
-    };
-    let data = Object.values(user).every((value) => value);
-    try {
-      if (data == false) {
-        window.alert("โปรดกรอกข้อมูลให้ครบถ้วน");
-      } else {
-        axios
-          .post(server.USERPROFILE, {
-            FirstName: FirstName,
-            LastName: LastName,
-            DateOfBirth: DateOfBirth,
-            Sex: Sex,
-            Address: Address,
-            Phone: Phone,
-            Email: Email,
-            //      accessToken: accessToken,
-          })
-          .then((res) => {
-            console.log(res);
-          });
-      }
-    } catch (error) {
-      return error;
-    }
+    // let user = {
+    //   FirstName,
+    //   LastName,
+    //   DateOfBirth,
+    //   Sex,
+    //   Address,
+    //   Phone,
+    //   Email,
+    //   //   accessToken,
+    // };
+    // let data = Object.values(user).every((value) => value);
+    // try {
+    //   if (data == false) {
+    //     window.alert("โปรดกรอกข้อมูลให้ครบถ้วน");
+    //   } else {
+    //     axios
+    //       .post(server.USERPROFILE, {
+    //         FirstName: FirstName,
+    //         LastName: LastName,
+    //         DateOfBirth: DateOfBirth,
+    //         Sex: Sex,
+    //         Address: Address,
+    //         Phone: Phone,
+    //         Email: Email,
+    //         //      accessToken: accessToken,
+    //       })
+    //       .then((res) => {
+    //         console.log(res);
+    //       });
+    //   }
+    // } catch (error) {
+    //   return error;
+    // }
+    liff.openWindow({
+      url: `https://${window.location.host}/menuhome`,
+      external: false,
+  });
   };
 
   return (
