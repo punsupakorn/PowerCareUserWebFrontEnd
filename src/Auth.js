@@ -13,8 +13,8 @@ export const AuthProvider = ({ children }) => {
   const [checkUser, setcheckUser] = useState(Boolean);
   const [accessToken, setAccessToken] = useState(null);
 
-  useEffect(() => {
-     initLine();
+  useEffect(async() => {
+     await initLine();
     // localStorage.setItem("Auth", "YES");
     // setAccessToken(
     //   "eyJhbGciOiJIUzI1NiJ9.fHapFYYJtaWcdhiFRRDzVsqHFCJ8M3lDQdiFoumcAXkLYv_CmLQpIDfeCr4JfNaT9KAtQodPYm0p13msduJWEBez6fjYr9PPOTmDOwqlCN3EA47DjJxue5y0b-Vt2cItvEjJt4AKTrw0Z460d2js8UecnxTxyt0DpuPEj9dGCiQ.5TCq9dE5zSY_nRXRgE0y49IkbIaU66TfLZjopp-gD38"

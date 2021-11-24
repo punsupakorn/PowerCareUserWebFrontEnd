@@ -25,17 +25,17 @@ export default function UserProfileScreen() {
   const history = useHistory();
 
   useEffect(() => {
-    const isAuthenticated = () => {
-      return localStorage.getItem("Auth") === YES;
-    };
-    if (isAuthenticated === true) {
+    // const isAuthenticated = () => {
+    //   return localStorage.getItem("Auth") === YES;
+    // };
+    if (localStorage.getItem("Auth") === YES) {
       
        //window.location.replace(`https://${window.location.host}/menuhome`);
       // window.location.href = `https://${window.location.host}/menuhome`;
       // history.push("/menuhome");
       history.push("/menuhome");
     }
-  });
+  },[]);
 
   //const { accessToken } = useContext(AuthContext);
 
