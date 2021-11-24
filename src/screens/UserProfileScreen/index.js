@@ -28,11 +28,11 @@ export default function UserProfileScreen() {
     const isAuthenticated = () => {
       return localStorage.getItem("Auth") === "YES";
     };
-    if (isAuthenticated === true) {
-      console.log("false")
+    if (isAuthenticated === false) {
+      window.location.replace(`https://${window.location.host}/menuhome`);
     } else {
       // history.push("/menuhome");
-      window.location.replace(`https://${window.location.host}/menuhome`);
+      
     }
   });
 
