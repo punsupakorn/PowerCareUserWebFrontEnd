@@ -25,10 +25,10 @@ export default function UserProfileScreen() {
   const history = useHistory();
 
   useEffect(() => {
-    const isAuthenticated = () => {
-      return localStorage.getItem("Auth") === "YES";
-    };
-    if (isAuthenticated === false) {
+    // const isAuthenticated = () => {
+    //   return localStorage.getItem("Auth") === "YES";
+    // };
+    if (localStorage.getItem("Auth") === true) {
       window.location.replace(`https://${window.location.host}/menuhome`);
     } else {
       // history.push("/menuhome");

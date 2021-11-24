@@ -46,10 +46,10 @@ export const AuthProvider = ({ children }) => {
       const check = res.data;
       if (check == true) {
         console.log("true : ", check);
-        localStorage.setItem("Auth", "YES");
+        localStorage.setItem("Auth", true);
       } else {
         console.log("false : ", check);
-        localStorage.setItem("Auth", "NO");
+        localStorage.setItem("Auth", false);
       }
     });
   };
