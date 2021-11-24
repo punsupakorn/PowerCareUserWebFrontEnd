@@ -28,7 +28,8 @@ export default function UserProfileScreen() {
     // const isAuthenticated = () => {
     //   return localStorage.getItem("Auth") === "YES";
     // };
-    if (localStorage.getItem("isUser") != null) {
+    console.log(localStorage.getItem("isUser") === YES)
+    if (localStorage.getItem("isUser") === YES) {
       //window.location.replace(`https://${window.location.host}/menuhome`);
       // window.location.href = `https://${window.location.host}/menuhome`;
       history.push("/menuhome");

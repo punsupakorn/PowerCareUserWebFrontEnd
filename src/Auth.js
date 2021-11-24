@@ -29,19 +29,20 @@ export const AuthProvider = ({ children }) => {
   };
 
   const initLine = async () => {
-    liff.init(
-      { liffId: "1656423908-z2DErD50" },
-      () => {
-        if (liff.isLoggedIn({ redirectUri: "https://main.d3w2lvda55pxgd.amplifyapp.com/" })) {
-          runApp();
-          setloading(false);
-        } else {
-          liff.login();
-        }
-      },
-      (err) => console.error(err)
-    );
-    const accessToken = liff.getAccessToken();
+    // liff.init(
+    //   { liffId: "1656423908-z2DErD50" },
+    //   () => {
+    //     if (liff.isLoggedIn({ redirectUri: "https://main.d3w2lvda55pxgd.amplifyapp.com/" })) {
+    //       runApp();
+    //       setloading(false);
+    //     } else {
+    //       liff.login();
+    //     }
+    //   },
+    //   (err) => console.error(err)
+    // );
+    // const accessToken = liff.getAccessToken();
+    const accessToken = "eyJhbGciOiJIUzI1NiJ9.CHdP0l9D1wfgVcCk7kb0HsNxRD5UakJ1_1BDeHddpl-09FviJf-xWXw751HcFJxXF1t7VzvBAyn_kUc43kyYruicSgPgz56ehZoypJd9FYtpIOuGLWbfXB2QRTdq9wPPWvzXDFaJmuRAgwWjwS1fOFXfY_lZ9kgoZm0oZegwPy8.Z6uju6my1SxseH-4Dwup_iopWtYTTUWXWqURLSlwWbM"
     await axios.get(`${server.LOGIN}/${accessToken}`).then((res) => {
       const check = res.data;
       if (check == true) {
