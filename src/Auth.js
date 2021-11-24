@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }) => {
 
   const initLine = async () => {
     liff.init(
-      { liffId: "1656423908-vEgA2gn7" },
+      { liffId: "1656423908-z2DErD50" },
       () => {
         if (liff.isLoggedIn({ redirectUri: "https://main.d3w2lvda55pxgd.amplifyapp.com/" })) {
           runApp();
