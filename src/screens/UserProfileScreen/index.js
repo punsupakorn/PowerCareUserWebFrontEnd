@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { server } from "../../constants";
+import { server, YES } from "../../constants";
 import { AuthContext } from "../../Auth";
 // import liff from "@line/liff";
 
@@ -28,7 +28,7 @@ export default function UserProfileScreen() {
     // const isAuthenticated = () => {
     //   return localStorage.getItem("Auth") === "YES";
     // };
-    if (localStorage.getItem("Auth") === true) {
+    if (localStorage.getItem("Auth") === YES) {
       window.location.replace(`https://${window.location.host}/menuhome`);
     } else {
       // history.push("/menuhome");

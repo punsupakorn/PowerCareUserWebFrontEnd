@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import liff from "@line/liff";
 import { Redirect } from "react-router";
 import axios from "axios";
-import { server } from "./constants";
+import { NO, server, YES } from "./constants";
 import { useHistory } from "react-router";
 
 export const AuthContext = React.createContext();
@@ -46,10 +46,10 @@ export const AuthProvider = ({ children }) => {
       const check = res.data;
       if (check == true) {
         console.log("true : ", check);
-        localStorage.setItem("Auth", true);
+        localStorage.setItem("Auth", YES);
       } else {
         console.log("false : ", check);
-        localStorage.setItem("Auth", false);
+        localStorage.setItem("Auth", NO);
       }
     });
   };
