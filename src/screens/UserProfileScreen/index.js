@@ -29,9 +29,9 @@ export default function UserProfileScreen() {
       return localStorage.getItem("Auth") === "YES";
     };
     if (isAuthenticated === true) {
-      
+      console.log("false")
     } else {
-      return history.push("/menuhome");
+      history.push("/menuhome");
     }
   });
 
