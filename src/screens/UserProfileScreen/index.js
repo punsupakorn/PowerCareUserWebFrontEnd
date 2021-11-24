@@ -31,7 +31,8 @@ export default function UserProfileScreen() {
     if (isAuthenticated === true) {
       console.log("false")
     } else {
-      history.push("/menuhome");
+      // history.push("/menuhome");
+      window.location.replace(`https://${window.location.host}/menuhome`);
     }
   });
 
