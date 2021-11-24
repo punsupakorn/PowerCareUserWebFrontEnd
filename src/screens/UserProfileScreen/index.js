@@ -30,7 +30,6 @@ export default function UserProfileScreen() {
     // };
     if (localStorage.getItem("Auth") === YES) {
       window.location.replace(`https://${window.location.host}/menuhome`);
-    } else {
       // history.push("/menuhome");
       
     }
