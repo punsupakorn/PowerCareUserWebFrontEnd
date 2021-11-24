@@ -30,11 +30,10 @@ export default function UserProfileScreen() {
     };
     if (isAuthenticated === true) {
       
-    } else {
        //window.location.replace(`https://${window.location.host}/menuhome`);
       // window.location.href = `https://${window.location.host}/menuhome`;
       // history.push("/menuhome");
-      return history.push("/menuhome");
+      history.push("/menuhome");
     }
   });
 
