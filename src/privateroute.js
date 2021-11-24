@@ -5,9 +5,10 @@ import {
   Route,
   Redirect
 } from 'react-router-dom'
+import { YES } from './constants';
 
 const isAuthenticated = () => {
-    return localStorage.getItem("Auth") === "YES";}
+    return localStorage.getItem("Auth") === YES;}
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route

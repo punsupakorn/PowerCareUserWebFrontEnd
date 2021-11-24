@@ -18,11 +18,12 @@ import PrivateRoute from "./privateroute";
 
 function App() {
   return (
-    <AuthProvider>
       <BrowserRouter>
         <div className="App">
           <Switch>
+          <AuthProvider>
             <Route exact path="/" component={UserProfileScreen} />
+            </AuthProvider>
             {/* <Route path="/userprofile">
           <UserProfileScreen />
         </Route> */}
@@ -54,7 +55,6 @@ function App() {
           </Switch>
         </div>
       </BrowserRouter>
-    </AuthProvider>
   );
 }
 
