@@ -10,7 +10,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { server, YES } from "../../constants";
 import { AuthContext } from "../../Auth";
-// import liff from "@line/liff";
+import liff from "@line/liff";
 
 export default function UserProfileScreen() {
   const [date, setDate] = useState();
@@ -30,8 +30,12 @@ export default function UserProfileScreen() {
     // };
     if (localStorage.getItem("Auth") === YES) {
       //window.location.replace(`https://${window.location.host}/menuhome`);
-      window.location.href = `https://${window.location.host}/menuhome`;
+      // window.location.href = `https://${window.location.host}/menuhome`;
       // history.push("/menuhome");
+      liff.openWindow({
+        url: `https://${window.location.host}/menuhome`,
+        external: false,
+    });
       
     }
   });
