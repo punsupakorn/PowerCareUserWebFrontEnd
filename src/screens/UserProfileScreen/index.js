@@ -10,7 +10,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { server, YES } from "../../constants";
 import { AuthContext } from "../../Auth";
-import liff from "@line/liff";
+// import liff from "@line/liff";
 
 export default function UserProfileScreen() {
   const [date, setDate] = useState();
@@ -24,18 +24,14 @@ export default function UserProfileScreen() {
   const [Email, setEmail] = useState("");
   const history = useHistory();
 
-  useEffect(() => {
+  useEffect(async () => {
     // const isAuthenticated = () => {
     //   return localStorage.getItem("Auth") === "YES";
     // };
-    if (localStorage.getItem("Auth") === YES) {
+    if (await localStorage.getItem("Auth") === YES) {
       //window.location.replace(`https://${window.location.host}/menuhome`);
       // window.location.href = `https://${window.location.host}/menuhome`;
-      // history.push("/menuhome");
-      liff.openWindow({
-        url: `https://${window.location.host}/menuhome`,
-        external: true,
-    });
+      history.push("/menuhome");
       
     }
   });
@@ -102,43 +98,39 @@ export default function UserProfileScreen() {
   };
 
   const handleSubmit = () => {
-    // let user = {
-    //   FirstName,
-    //   LastName,
-    //   DateOfBirth,
-    //   Sex,
-    //   Address,
-    //   Phone,
-    //   Email,
-    //   //   accessToken,
-    // };
-    // let data = Object.values(user).every((value) => value);
-    // try {
-    //   if (data == false) {
-    //     window.alert("โปรดกรอกข้อมูลให้ครบถ้วน");
-    //   } else {
-    //     axios
-    //       .post(server.USERPROFILE, {
-    //         FirstName: FirstName,
-    //         LastName: LastName,
-    //         DateOfBirth: DateOfBirth,
-    //         Sex: Sex,
-    //         Address: Address,
-    //         Phone: Phone,
-    //         Email: Email,
-    //         //      accessToken: accessToken,
-    //       })
-    //       .then((res) => {
-    //         console.log(res);
-    //       });
-    //   }
-    // } catch (error) {
-    //   return error;
-    // }
-    liff.openWindow({
-      url: `https://${window.location.host}/menuhome`,
-      external: true,
-  });
+    let user = {
+      FirstName,
+      LastName,
+      DateOfBirth,
+      Sex,
+      Address,
+      Phone,
+      Email,
+      //   accessToken,
+    };
+    let data = Object.values(user).every((value) => value);
+    try {
+      if (data == false) {
+        window.alert("โปรดกรอกข้อมูลให้ครบถ้วน");
+      } else {
+        axios
+          .post(server.USERPROFILE, {
+            FirstName: FirstName,
+            LastName: LastName,
+            DateOfBirth: DateOfBirth,
+            Sex: Sex,
+            Address: Address,
+            Phone: Phone,
+            Email: Email,
+            //      accessToken: accessToken,
+          })
+          .then((res) => {
+            console.log(res);
+          });
+      }
+    } catch (error) {
+      return error;
+    }
   };
 
   return (
