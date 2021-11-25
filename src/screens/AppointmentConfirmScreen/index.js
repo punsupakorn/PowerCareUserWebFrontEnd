@@ -30,16 +30,16 @@ export default function AppointmentConfirmScreen() {
           accessToken: accessToken,
         })
         .then((res) => {
-          const data = res.data;
-          window.alert(data);
-          // setfirstname(data.FirstName);
-          // setlastname(data.LastName);
-          // setdateofbirth(data.DateOfBirth);
-          // setsex(data.Sex);
-          // setaddress(data.Address);
-          // setphone(data.Phone);
-          // setemail(data.Email);
-          // setuserid(data.UserID);
+          const result = res.data;
+          const data = JSON.parse(result);
+          setfirstname(data.FirstName);
+          setlastname(data.LastName);
+          setdateofbirth(data.DateOfBirth);
+          setsex(data.Sex);
+          setaddress(data.Address);
+          setphone(data.Phone);
+          setemail(data.Email);
+          setuserid(data.UserID);
         });
     } catch (error) {
       window.alert(error)
