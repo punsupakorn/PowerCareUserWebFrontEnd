@@ -14,12 +14,12 @@ export const AuthProvider = ({ children }) => {
   const [accessToken, setAccessToken] = useState(null);
 
   useEffect(async () => {
-    //  await initLine();
-    localStorage.setItem("Auth", "YES");
-    setAccessToken(
-      "eyJhbGciOiJIUzI1NiJ9.rcvNf7FMG3bowHlL8Ei0_GZzinyUKDwfauuGxOeij5ccyY7kUAFIo9qv_nUcJiS6L4upZmZ0NylaidLNiS-vpjd3mioRNTq6Spm_Ed9zFA8CJtMtJnwSz57lkJKvADpjqp8xCmjffRs7loR0ZfPEQJyFTos6QX0nQ-hxTHHeH2E.JK1oB7ykzebBuHc3m8qadFoKhJ1wSGW6bfjWvb2Vf0A"
-    );
-    setloading(false);
+     await initLine();
+    // localStorage.setItem("Auth", "YES");
+    // setAccessToken(
+    //   "eyJhbGciOiJIUzI1NiJ9.rcvNf7FMG3bowHlL8Ei0_GZzinyUKDwfauuGxOeij5ccyY7kUAFIo9qv_nUcJiS6L4upZmZ0NylaidLNiS-vpjd3mioRNTq6Spm_Ed9zFA8CJtMtJnwSz57lkJKvADpjqp8xCmjffRs7loR0ZfPEQJyFTos6QX0nQ-hxTHHeH2E.JK1oB7ykzebBuHc3m8qadFoKhJ1wSGW6bfjWvb2Vf0A"
+    // );
+    // setloading(false);
   }, []);
 
   const runApp = () => {
