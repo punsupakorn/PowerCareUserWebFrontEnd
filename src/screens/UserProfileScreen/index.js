@@ -48,12 +48,12 @@ export default function UserProfileScreen() {
 
       useEffect(() => {
       initLine();
-    }, []);
+    });
 
-   const initLine = () => {
+   const initLine = async () => {
       liff.init({ liffId: '1656423908-z2DErD50' }, () => {
         if (liff.isLoggedIn({ redirectUri: "https://main.d3w2lvda55pxgd.amplifyapp.com" })) {
-          runApp();
+         runApp();
         } else {
           liff.login();
         }
@@ -67,11 +67,11 @@ export default function UserProfileScreen() {
     await axios.get(`${server.LOGIN}/${accessToken}`).then((res) => {
       const check = res.data;
       if (check == true) {
-        history.push("/menuhome");
-        // window.location.href = `https://${window.location.host}/menuhome`;
+        // history.push("/menuhome");
+         window.location.href = `https://${window.location.host}/menuhome`;
         // window.location.replace(`https://${window.location.host}/menuhome`);
       } 
-      return;
+      
     });
   };
 
