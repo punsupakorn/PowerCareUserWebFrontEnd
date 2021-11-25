@@ -2,8 +2,8 @@
 // export const apiURL = "https://powercareuserback.firebaseapp.com/";
 export const apiURL = "https://powercare-user.herokuapp.com/";
 
-export const YES = "YES"
-export const NO = "NO"
+export const YES = "YES";
+export const NO = "NO";
 
 export const server = {
   USERPROFILE: `${apiURL}UserProfile`,
@@ -11,4 +11,5 @@ export const server = {
   LOGIN: `${apiURL}Login`,
   APPOINTMENT_CONFIRM: `${apiURL}AppointmentConfirm`,
   EDIT_USER_PROFILE: `${apiURL}EditUserProfile`,
+  POSTPONE: `${apiURL}Postpone`,
 };
