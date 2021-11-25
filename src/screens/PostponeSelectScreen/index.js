@@ -8,7 +8,9 @@ export default function PostponeSelectScreen() {
   const location = useLocation();
   const { username, doctorname, olddate, oldtime, doctorid } = location.state;
   const [dateArr, setdateArr] = useState([]);
-
+  const [timeArr, settimeArr] = useState([]);
+  const [newdate, setnewdate] = useState("");
+  const [newtimetableid, setnewtimetableid] = useState("");
   useEffect(() => {
     getNewDate();
   }, []);
@@ -32,6 +34,23 @@ export default function PostponeSelectScreen() {
       weekday: "long",
     });
     return result;
+  };
+
+  const getTimeSlot = (TimeTableID) => {
+    try {
+      axios.get(`${server.POSTPONE_SELECT}/time/${TimeTableID}`).then((res) => {
+        const data = res.data;
+        settimeArr(data);
+      });
+    } catch (error) {}
+  };
+
+  const handleDate = (e) => {
+    const date = e.target.value;
+    const data = JSON.parse(date);
+    setnewdate(data.date);
+    setnewtimetableid(data.timetableid);
+    getTimeSlot(data.timetableid);
   };
   return (
     <div classname="bg-indigo-200 h-screen w-screen">
@@ -126,7 +145,13 @@ export default function PostponeSelectScreen() {
                     กรุณาเลือกวันที่
                   </option>
                   {dateArr.map((data) => (
-                    <option className="option" value="Doctor">
+                    <option
+                      className="option"
+                      value={JSON.stringify({
+                        timetableid: `${data.TimeTableID}`,
+                        date: `${data.Date}`,
+                      })}
+                    >
                       {" "}
                       {displayThaiDate(data.Date)}{" "}
                     </option>
@@ -161,17 +186,23 @@ export default function PostponeSelectScreen() {
                   id="position"
                   name="Position"
                   className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500 "
-                  // onClick={handlePosition}
+                  onChange={handleDate}
                 >
                   <option disabled selected value>
                     {" "}
                     กรุณาเลือกเวลา
                   </option>
-
-                  <option className="option" value="Doctor">
-                    {" "}
-                    11.00 - 12.00{" "}
-                  </option>
+                  {timeArr.map((time) => (
+                    <option
+                      className="option"
+                      value={JSON.stringify({
+                        time: `${time}`,
+                      })}
+                    >
+                      {" "}
+                      {time.Time}{" "}
+                    </option>
+                  ))}
                 </select>
               </div>
               <Link to="/postponeconfirm">
