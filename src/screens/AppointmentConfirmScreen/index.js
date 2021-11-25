@@ -30,8 +30,8 @@ export default function AppointmentConfirmScreen() {
           accessToken: accessToken,
         })
         .then((res) => {
-          const result = res.data;
-          const data = JSON.parse(result);
+          const data = res.data;
+          window.alert(data)
           setfirstname(data.FirstName);
           setlastname(data.LastName);
           setdateofbirth(data.DateOfBirth);
