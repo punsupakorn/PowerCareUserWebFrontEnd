@@ -8,7 +8,7 @@ import {
 import { YES } from './constants';
 
 const isAuthenticated = () => {
-    return localStorage.getItem("LIFF_STORE:1656423908-z2DErD50:accessToken") != null;}
+    return localStorage.getItem("Auth") === YES;}
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route

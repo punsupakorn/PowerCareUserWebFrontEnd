@@ -24,47 +24,53 @@ export default function UserProfileScreen() {
   const [Email, setEmail] = useState("");
   const history = useHistory();
 
-  useEffect(() => {
-    // const isAuthenticated = () => {
-    //   return localStorage.getItem("Auth") === YES;
-    // };
-    if (localStorage.getItem("LIFF_STORE:1656423908-z2DErD50:accessToken") != null) {
+  // useEffect(() => {
+  //   // const isAuthenticated = () => {
+  //   //   return localStorage.getItem("Auth") === YES;
+  //   // };
+  //   if (localStorage.getItem("Auth") === YES) {
       
-      //  window.location.replace(`https://${window.location.host}/menuhome`);
-      // window.location.href = `https://${window.location.host}/menuhome`;
-      history.push("/menuhome");
-      // liff.openWindow({
-      //   url: `${window.location.href}menuhome`,
-      //   external: false
-      // });
-    }
-  },[]);
-
-  //const { accessToken } = useContext(AuthContext);
-
-  // console.log("accessToken : ", accessToken);
-
-  //   const [accessToken, setAccessToken] = useState("");
-
-  //     useEffect(() => {
-  //     initLine();
-  //   }, []);
-
-  //  const initLine = () => {
-  //     liff.init({ liffId: '1656423908-vEgA2gn7' }, () => {
-  //       if (liff.isLoggedIn({ redirectUri: "https://powercareuser.systems" })) {
-  //         runApp();
-  //       } else {
-  //         liff.login();
-  //       }
-  //     }, err => console.error(err));
+  //     //  window.location.replace(`https://${window.location.host}/menuhome`);
+  //     // window.location.href = `https://${window.location.host}/menuhome`;
+  //     history.push("/menuhome");
+  //     // liff.openWindow({
+  //     //   url: `${window.location.href}menuhome`,
+  //     //   external: false
+  //     // });
   //   }
+  // },[]);
 
-  // const runApp = () => {
-  //   const accessToken = liff.getAccessToken();
-  //   setAccessToken(accessToken);
-  //   console.log(accessToken);
-  // };
+  const { accessToken } = useContext(AuthContext);
+
+  console.log("accessToken : ", accessToken);
+
+    const [accessToken, setAccessToken] = useState("");
+
+      useEffect(() => {
+      initLine();
+    }, []);
+
+   const initLine = () => {
+      liff.init({ liffId: '1656423908-z2DErD50' }, () => {
+        if (liff.isLoggedIn({ redirectUri: "https://main.d3w2lvda55pxgd.amplifyapp.com" })) {
+          runApp();
+        } else {
+          liff.login();
+        }
+      }, err => console.error(err));
+    }
+
+  const runApp = () => {
+    const accessToken = liff.getAccessToken();
+    setAccessToken(accessToken);
+    console.log(accessToken);
+    await axios.get(`${server.LOGIN}/${accessToken}`).then((res) => {
+      const check = res.data;
+      if (check == true) {
+        history.push("/menuhome")
+      } 
+    });
+  };
 
   const handleFirstName = (e) => {
     const firstname = e.target.value;

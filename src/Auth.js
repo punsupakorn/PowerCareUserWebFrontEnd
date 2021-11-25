@@ -32,7 +32,7 @@ export const AuthProvider = ({ children }) => {
     liff.init(
       { liffId: "1656423908-z2DErD50" },
       () => {
-        if (liff.isLoggedIn()) {
+        if (liff.isLoggedIn({ redirectUri: "https://main.d3w2lvda55pxgd.amplifyapp.com/" })) {
           runApp();
           setloading(false);
         } else {
@@ -41,17 +41,17 @@ export const AuthProvider = ({ children }) => {
       },
       (err) => console.error(err)
     );
-    // const accessToken = liff.getAccessToken();
-    // await axios.get(`${server.LOGIN}/${accessToken}`).then((res) => {
-    //   const check = res.data;
-    //   if (check == true) {
-    //     console.log("true : ", check);
-    //     localStorage.setItem("Auth", YES);
-    //   } else {
-    //     console.log("false : ", check);
-    //     localStorage.setItem("Auth", NO);
-    //   }
-    // });
+    const accessToken = liff.getAccessToken();
+    await axios.get(`${server.LOGIN}/${accessToken}`).then((res) => {
+      const check = res.data;
+      if (check == true) {
+        console.log("true : ", check);
+        localStorage.setItem("Auth", YES);
+      } else {
+        console.log("false : ", check);
+        localStorage.setItem("Auth", NO);
+      }
+    });
   };
 
   if (loading) {
