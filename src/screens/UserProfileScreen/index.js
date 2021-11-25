@@ -14,7 +14,7 @@ import liff from "@line/liff";
 
 export default function UserProfileScreen() {
   const [date, setDate] = useState();
-  const [loading, setloading] = useState(true);
+
   const [FirstName, setFirstName] = useState("");
   const [LastName, setLastName] = useState("");
   const [DateOfBirth, setDateOfBirth] = useState("");
@@ -29,7 +29,7 @@ export default function UserProfileScreen() {
   //   //   return localStorage.getItem("Auth") === YES;
   //   // };
   //   if (localStorage.getItem("Auth") === YES) {
-
+      
   //     //  window.location.replace(`https://${window.location.host}/menuhome`);
   //     // window.location.href = `https://${window.location.host}/menuhome`;
   //     history.push("/menuhome");
@@ -42,41 +42,31 @@ export default function UserProfileScreen() {
 
   // const { accessToken } = useContext(AuthContext);
 
-  const [accessToken, setAccessToken] = useState("");
+  
 
-  useEffect(() => {
-    if (loading) {
-      return <p>Loading...</p>;
-    }
-    initLine();
-  });
+    const [accessToken, setAccessToken] = useState("");
 
-  const initLine = async () => {
-    liff.init(
-      { liffId: "1656423908-z2DErD50" },
-      () => {
-        if (
-          liff.isLoggedIn({
-            redirectUri: "https://main.d3w2lvda55pxgd.amplifyapp.com",
-          })
-        ) {
-          runApp();
+      useEffect(() => {
+      initLine();
+    });
+
+   const initLine = async () => {
+      liff.init({ liffId: '1656423908-z2DErD50' }, () => {
+        if (liff.isLoggedIn({ redirectUri: "https://main.d3w2lvda55pxgd.amplifyapp.com" })) {
+         runApp();
         } else {
           liff.login();
         }
-      },
-      (err) => console.error(err)
-    );
-  };
+      }, err => console.error(err));
+    }
 
   const runApp = async () => {
     const accessToken = liff.getAccessToken();
     setAccessToken(accessToken);
-    // console.log("accessToken : ", accessToken);
+    console.log("accessToken : ", accessToken);
     await axios.get(`${server.LOGIN}/${accessToken}`).then((res) => {
       const check = res.data;
       if (check === true) {
-        setloading(false);
         history.replace("/menuhome");
         //  window.location.href = `https://${window.location.host}/menuhome`;
         // window.location.replace(`https://${window.location.host}/menuhome`);
@@ -84,7 +74,8 @@ export default function UserProfileScreen() {
         //         url: `${window.location.href}menuhome`,
         //         external: false
         //       });
-      }
+      } 
+      
     });
   };
 
