@@ -25,7 +25,7 @@ export default function AppointmentConfirmScreen() {
   }, []);
 
   const getProfileFromLineUserId = () => {
-    let accessToken = localStorage.getItem("AccessToken"); 
+    let accessToken = localStorage.getItem("AccessToken");
     try {
       axios
         .post(`${server.APPOINTMENT_CONFIRM}/token`, {
@@ -33,7 +33,7 @@ export default function AppointmentConfirmScreen() {
         })
         .then((res) => {
           const data = res.data;
-          console.log(res)
+          console.log(res);
           setfirstname(data.FirstName);
           setlastname(data.LastName);
           setdateofbirth(data.DateOfBirth);
@@ -44,7 +44,7 @@ export default function AppointmentConfirmScreen() {
           setuserid(data.UserID);
         });
     } catch (error) {
-      window.alert(error)
+      window.alert(error);
     }
   };
 
@@ -61,19 +61,28 @@ export default function AppointmentConfirmScreen() {
   const createAppointment = () => {
     let accessToken = localStorage.getItem("AccessToken");
     try {
-      axios.post(server.APPOINTMENT_CONFIRM, {
-        DoctorID: doctorid,
-        DoctorName: doctorname,
-        Date: date,
-        Time: time,
-        TimeTableID: timetableid,
-        UserID: userid,
-        UserName: { firstname, lastname },
-        Initial_Symtoms: symptom,
-        AccessToken: accessToken,
-      }).then((res) => {
-        history.replace("/menuhome")
-      });
+      axios
+        .post(server.APPOINTMENT_CONFIRM, {
+          DoctorID: doctorid,
+          DoctorName: doctorname,
+          Date: date,
+          Time: time,
+          TimeTableID: timetableid,
+          UserID: userid,
+          UserName: { firstname, lastname },
+          Initial_Symtoms: symptom,
+          AccessToken: accessToken,
+        })
+        .then((res) => {
+          const data = res.data;
+          if (data == "exist") {
+            window.alert("ขออภัย คุณมีการทำนัดเอาไว้อยู่แล้ว");
+            history.replace("/menuhome");
+          } else {
+            window.alert("ทำนัดสำเร็จ กลับสู่หน้าหลัก");
+            history.replace("/menuhome");
+          }
+        });
     } catch (error) {
       return error;
     }
