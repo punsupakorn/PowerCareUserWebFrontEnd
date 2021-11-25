@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { useLocation } from "react-router";
+import { useLocation, useHistory } from "react-router";
 import { AuthContext } from "../../Auth";
 import axios from "axios";
 import { server } from "../../constants";
@@ -18,7 +18,7 @@ export default function AppointmentConfirmScreen() {
   const [phone, setphone] = useState("");
   const [email, setemail] = useState("");
   const [userid, setuserid] = useState("");
-
+  const history = useHistory();
   const { accessToken } = useContext(AuthContext);
 
   const getProfileFromLineUserId = () => {
@@ -68,6 +68,8 @@ export default function AppointmentConfirmScreen() {
         UserName: { firstname, lastname },
         Initial_Symtoms: symptom,
         AccessToken: accessToken,
+      }).then((res) => {
+        history.replace("/menuhome")
       });
     } catch (error) {
       return error;

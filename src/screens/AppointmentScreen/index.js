@@ -112,7 +112,7 @@ export default function AppointmentScreen() {
     if (data == false) {
       window.alert("โปรดกรอกข้อมูลให้ครบถ้วน");
     } else {
-      history.push({
+      history.replace({
         pathname: `/appointmentconfirm`,
         state: {
           symptom: symptom,
