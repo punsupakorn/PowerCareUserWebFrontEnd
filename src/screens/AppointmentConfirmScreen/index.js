@@ -18,12 +18,14 @@ export default function AppointmentConfirmScreen() {
   const [phone, setphone] = useState("");
   const [email, setemail] = useState("");
   const [userid, setuserid] = useState("");
-  const [accessToken, setAccessToken] = useState("")
   const history = useHistory();
 
+  useEffect(() => {
+    getProfileFromLineUserId();
+  }, []);
 
   const getProfileFromLineUserId = () => {
-    
+    let accessToken = localStorage.getItem("AccessToken");
     try {
       axios
         .post(`${server.APPOINTMENT_CONFIRM}/token`, {
@@ -31,6 +33,7 @@ export default function AppointmentConfirmScreen() {
         })
         .then((res) => {
           const data = res.data;
+          console.log(res)
           setfirstname(data.FirstName);
           setlastname(data.LastName);
           setdateofbirth(data.DateOfBirth);
@@ -45,12 +48,6 @@ export default function AppointmentConfirmScreen() {
     }
   };
 
-  useEffect(() => {
-    let accessToken = localStorage.getItem("AccessToken");
-    setAccessToken(accessToken);
-    getProfileFromLineUserId();
-  }, []);
-
   const displayThaiDate = (date) => {
     const result = new Date(date).toLocaleDateString("th-TH", {
       year: "numeric",
@@ -62,6 +59,7 @@ export default function AppointmentConfirmScreen() {
   };
 
   const createAppointment = () => {
+    let accessToken = localStorage.getItem("AccessToken");
     try {
       axios.post(server.APPOINTMENT_CONFIRM, {
         DoctorID: doctorid,
@@ -88,7 +86,7 @@ export default function AppointmentConfirmScreen() {
           <div className="max-w-md mx-auto my-10 bg-white p-5 rounded-md shadow-sm">
             <div className="text-center">
               <h1 className="my-3 text-3xl font-semibold fontsize-18 text-gray-700 dark:text-gray-200">
-                ยืนยันการทำนัด{accessToken}
+                ยืนยันการทำนัด
               </h1>
 
               <p className="text-gray-400 dark:text-gray-400">

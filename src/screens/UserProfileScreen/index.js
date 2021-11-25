@@ -67,7 +67,7 @@ export default function UserProfileScreen() {
     await axios.get(`${server.LOGIN}/${accessToken}`).then((res) => {
       const check = res.data;
       if (check === true) {
-        localStorage.setItem("AccessToken",accessToken)
+        localStorage.setItem("AccessToken",accessToken);
         history.replace("/menuhome");
         //  window.location.href = `https://${window.location.host}/menuhome`;
         // window.location.replace(`https://${window.location.host}/menuhome`);
