@@ -66,10 +66,14 @@ export default function UserProfileScreen() {
     console.log("accessToken : ", accessToken);
     await axios.get(`${server.LOGIN}/${accessToken}`).then((res) => {
       const check = res.data;
-      if (check == true) {
+      if (check === true) {
         // history.push("/menuhome");
-         window.location.href = `https://${window.location.host}/menuhome`;
+        //  window.location.href = `https://${window.location.host}/menuhome`;
         // window.location.replace(`https://${window.location.host}/menuhome`);
+        liff.openWindow({
+                url: `${window.location.href}menuhome`,
+                external: false
+              });
       } 
       
     });
