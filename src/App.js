@@ -21,9 +21,9 @@ function App() {
       <BrowserRouter>
         <div className="App">
           <Switch>
-          {/* <AuthProvider> */}
+          <AuthProvider>
             <Route exact path="/" component={UserProfileScreen} />
-            {/* </AuthProvider> */}
+            </AuthProvider>
             {/* <Route path="/userprofile">
           <UserProfileScreen />
         </Route> */}

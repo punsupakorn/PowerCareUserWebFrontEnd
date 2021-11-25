@@ -41,17 +41,17 @@ export const AuthProvider = ({ children }) => {
       },
       (err) => console.error(err)
     );
-    const accessToken = liff.getAccessToken();
-    await axios.get(`${server.LOGIN}/${accessToken}`).then((res) => {
-      const check = res.data;
-      if (check == true) {
-        console.log("true : ", check);
-        localStorage.setItem("Auth", YES);
-      } else {
-        console.log("false : ", check);
-        localStorage.setItem("Auth", NO);
-      }
-    });
+    // const accessToken = liff.getAccessToken();
+    // await axios.get(`${server.LOGIN}/${accessToken}`).then((res) => {
+    //   const check = res.data;
+    //   if (check == true) {
+    //     console.log("true : ", check);
+    //     localStorage.setItem("Auth", YES);
+    //   } else {
+    //     console.log("false : ", check);
+    //     localStorage.setItem("Auth", NO);
+    //   }
+    // });
   };
 
   if (loading) {
