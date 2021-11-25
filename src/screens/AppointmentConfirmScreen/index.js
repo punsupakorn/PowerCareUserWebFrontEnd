@@ -18,10 +18,12 @@ export default function AppointmentConfirmScreen() {
   const [phone, setphone] = useState("");
   const [email, setemail] = useState("");
   const [userid, setuserid] = useState("");
+  const [accessToken, setAccessToken] = useState("")
   const history = useHistory();
-  const { accessToken } = useContext(AuthContext);
+
 
   const getProfileFromLineUserId = () => {
+    
     try {
       axios
         .post(`${server.APPOINTMENT_CONFIRM}/token`, {
@@ -43,6 +45,8 @@ export default function AppointmentConfirmScreen() {
   };
 
   useEffect(() => {
+    let accessToken = localStorage.getItem("LIFF_STORE:1656423908-z2DErD50:accessToken");
+    setAccessToken(accessToken)
     getProfileFromLineUserId();
   }, []);
 
