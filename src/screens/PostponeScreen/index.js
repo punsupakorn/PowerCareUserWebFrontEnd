@@ -64,8 +64,8 @@ export default function PostponeScreen() {
     return result;
   };
 
-  const ReplaceToPostponeConfirm = () => {
-    history.replace("/postponeconfirm", {
+  const ReplaceToPostponeSelect = () => {
+    history.replace("/postponeselect", {
       username: username,
       doctorname: doctorname,
       olddate: date,
@@ -276,7 +276,7 @@ export default function PostponeScreen() {
               {/* <Link to="/postponeselect"> */}
               <div className="mb-6">
                 <button
-                  onClick={ReplaceToPostponeConfirm}
+                  onClick={ReplaceToPostponeSelect}
                   type="submit"
                   className="w-full px-3 py-3 text-white bg-indigo-300 rounded-md focus:bg-indigo-200 focus:outline-none"
                 >
