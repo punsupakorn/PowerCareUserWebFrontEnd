@@ -31,17 +31,19 @@ export default function AppointmentConfirmScreen() {
         })
         .then((res) => {
           const data = res.data;
-
-          setfirstname(data.FirstName);
-          setlastname(data.LastName);
-          setdateofbirth(data.DateOfBirth);
-          setsex(data.Sex);
-          setaddress(data.Address);
-          setphone(data.Phone);
-          setemail(data.Email);
-          setuserid(data.UserID);
+          window.alert(data);
+          // setfirstname(data.FirstName);
+          // setlastname(data.LastName);
+          // setdateofbirth(data.DateOfBirth);
+          // setsex(data.Sex);
+          // setaddress(data.Address);
+          // setphone(data.Phone);
+          // setemail(data.Email);
+          // setuserid(data.UserID);
         });
-    } catch (error) {}
+    } catch (error) {
+      window.alert(error)
+    }
   };
 
   useEffect(() => {
