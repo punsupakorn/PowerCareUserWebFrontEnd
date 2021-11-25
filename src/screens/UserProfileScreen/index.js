@@ -10,7 +10,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { server, YES } from "../../constants";
 import { AuthContext } from "../../Auth";
-// import liff from "@line/liff";
+import liff from "@line/liff";
 
 export default function UserProfileScreen() {
   const [date, setDate] = useState();
