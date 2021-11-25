@@ -34,7 +34,7 @@ export default function UserProfileScreen() {
       // window.location.href = `https://${window.location.host}/menuhome`;
       // history.push("/menuhome");
       liff.openWindow({
-        url: `https://${window.location.host}/menuhome`,
+        url: `${window.location.href}/menuhome`,
         external: false
       })
     }
