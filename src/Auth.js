@@ -13,13 +13,13 @@ export const AuthProvider = ({ children }) => {
   const [checkUser, setcheckUser] = useState(Boolean);
   const [accessToken, setAccessToken] = useState(null);
 
-  useEffect(async() => {
-     await initLine();
-    // localStorage.setItem("Auth", "YES");
-    // setAccessToken(
-    //   "eyJhbGciOiJIUzI1NiJ9.fHapFYYJtaWcdhiFRRDzVsqHFCJ8M3lDQdiFoumcAXkLYv_CmLQpIDfeCr4JfNaT9KAtQodPYm0p13msduJWEBez6fjYr9PPOTmDOwqlCN3EA47DjJxue5y0b-Vt2cItvEjJt4AKTrw0Z460d2js8UecnxTxyt0DpuPEj9dGCiQ.5TCq9dE5zSY_nRXRgE0y49IkbIaU66TfLZjopp-gD38"
-    // );
-    // setloading(false);
+  useEffect(async () => {
+    //  await initLine();
+    localStorage.setItem("Auth", "YES");
+    setAccessToken(
+      "eyJhbGciOiJIUzI1NiJ9.rcvNf7FMG3bowHlL8Ei0_GZzinyUKDwfauuGxOeij5ccyY7kUAFIo9qv_nUcJiS6L4upZmZ0NylaidLNiS-vpjd3mioRNTq6Spm_Ed9zFA8CJtMtJnwSz57lkJKvADpjqp8xCmjffRs7loR0ZfPEQJyFTos6QX0nQ-hxTHHeH2E.JK1oB7ykzebBuHc3m8qadFoKhJ1wSGW6bfjWvb2Vf0A"
+    );
+    setloading(false);
   }, []);
 
   const runApp = () => {
@@ -32,7 +32,11 @@ export const AuthProvider = ({ children }) => {
     liff.init(
       { liffId: "1656423908-z2DErD50" },
       () => {
-        if (liff.isLoggedIn({ redirectUri: "https://main.d3w2lvda55pxgd.amplifyapp.com/" })) {
+        if (
+          liff.isLoggedIn({
+            redirectUri: "https://main.d3w2lvda55pxgd.amplifyapp.com/",
+          })
+        ) {
           runApp();
           setloading(false);
         } else {
