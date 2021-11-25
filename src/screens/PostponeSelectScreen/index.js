@@ -1,11 +1,38 @@
 import { BrowserRouter as Link } from "react-router-dom";
 import { useState } from "react";
 import { useLocation, useHistory } from "react-router";
+import axios from "axios";
+import { server } from "../../constants/index";
 
 export default function PostponeSelectScreen() {
   const location = useLocation();
-  const [date, setDate] = useState();
-  const { username, doctorname, olddate, oldtime } = location.state;
+  const { username, doctorname, olddate, oldtime, doctorid } = location.state;
+  const [dateArr, setdateArr] = useState([]);
+
+  useEffect(() => {
+    getNewDate();
+  }, []);
+
+  const getNewDate = () => {
+    try {
+      axios.get(`${server.POSTPONE_SELECT}/date/${doctorid}`).then((res) => {
+        const data = res.data;
+        setdateArr(data);
+      });
+    } catch (error) {
+      window.alert(error);
+    }
+  };
+
+  const displayThaiDate = (date) => {
+    const result = new Date(date).toLocaleDateString("th-TH", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      weekday: "long",
+    });
+    return result;
+  };
   return (
     <div classname="bg-indigo-200 h-screen w-screen">
       <div className="flex items-center min-h-screen bg-indigo-200 dark:bg-gray-900">
@@ -98,10 +125,12 @@ export default function PostponeSelectScreen() {
                     {" "}
                     กรุณาเลือกวันที่
                   </option>
-                  <option className="option" value="Doctor">
-                    {" "}
-                    วันจันทร์ 16 สิงหาคม 2542{" "}
-                  </option>
+                  {dateArr.map((data) => (
+                    <option className="option" value="Doctor">
+                      {" "}
+                      {displayThaiDate(data.Date)}{" "}
+                    </option>
+                  ))}
                 </select>
               </div>
               {/* <div className="mb-6">
@@ -138,6 +167,7 @@ export default function PostponeSelectScreen() {
                     {" "}
                     กรุณาเลือกเวลา
                   </option>
+
                   <option className="option" value="Doctor">
                     {" "}
                     11.00 - 12.00{" "}

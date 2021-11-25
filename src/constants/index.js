@@ -12,4 +12,5 @@ export const server = {
   APPOINTMENT_CONFIRM: `${apiURL}AppointmentConfirm`,
   EDIT_USER_PROFILE: `${apiURL}EditUserProfile`,
   POSTPONE: `${apiURL}Postpone`,
+  POSTPONE_SELECT: `${apiURL}PostponeSelect`,
 };

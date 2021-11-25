@@ -14,6 +14,7 @@ export default function PostponeScreen() {
   const [date, setdate] = useState("");
   const [time, settime] = useState("");
   const [doctorname, setdoctorname] = useState("");
+  const [doctorid, setdoctorid] = useState("");
   const history = useHistory();
 
   useEffect(() => {
@@ -49,6 +50,7 @@ export default function PostponeScreen() {
           setdate(data.Date);
           settime(data.Time);
           setdoctorname(data.DoctorName);
+          setdoctorid(data.DoctorID);
         }
       });
     } catch (error) {}
@@ -70,6 +72,7 @@ export default function PostponeScreen() {
       doctorname: doctorname,
       olddate: date,
       oldtime: time,
+      doctorid: doctorid,
     });
   };
 
