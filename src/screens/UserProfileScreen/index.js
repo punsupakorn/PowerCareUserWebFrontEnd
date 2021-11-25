@@ -143,6 +143,7 @@ export default function UserProfileScreen() {
           })
           .then((res) => {
             console.log(res);
+            
           });
       }
     } catch (error) {
