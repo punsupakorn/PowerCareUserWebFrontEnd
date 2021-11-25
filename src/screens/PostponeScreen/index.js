@@ -54,6 +54,16 @@ export default function PostponeScreen() {
     } catch (error) {}
   };
 
+  const displayShortThaiDate = (date) => {
+    const result = new Date(date).toLocaleDateString("th-TH", {
+      year: "numeric",
+      month: "2-digit",
+      day: "numeric",
+      // weekday: "short",
+    });
+    return result;
+  };
+
   return (
     <div classname="bg-indigo-200 h-screen w-screen">
       <div className="flex items-center min-h-screen bg-indigo-200 dark:bg-gray-900">
@@ -102,7 +112,7 @@ export default function PostponeScreen() {
                   id="result"
                 >
                   {" "}
-                  <b>วัน/เดือน/ปีเกิด :</b> {dateofbirth}{" "}
+                  <b>วัน/เดือน/ปีเกิด :</b> {displayShortThaiDate(dateofbirth)}{" "}
                 </p>
                 <div
                   className="
