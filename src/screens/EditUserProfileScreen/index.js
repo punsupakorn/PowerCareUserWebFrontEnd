@@ -4,8 +4,7 @@ import axios from "axios";
 import { server } from "../../constants";
 import { Modal } from "react-responsive-modal";
 import { HiCheckCircle } from "react-icons/hi";
-
-import { AuthContext } from "../../Auth";
+// import { AuthContext } from "../../Auth";
 export default function EditUserProfileScreen() {
   const [firstname, setfirstname] = useState("");
   const [lastname, setlastname] = useState("");
@@ -14,8 +13,8 @@ export default function EditUserProfileScreen() {
   const [phone, setphone] = useState("");
   const [email, setemail] = useState("");
   const [UserId, setUserId] = useState("");
-  
-  const { accessToken } = useContext(AuthContext);
+  let accessToken = localStorage.getItem("AccessToken");
+  // const { accessToken } = useContext(AuthContext);
 
   const getUserProfile = () => {
     try {
@@ -235,26 +234,26 @@ export default function EditUserProfileScreen() {
                   บันทึก
                 </button>
                 <Modal
-                    open={openFirst}
-                    onClose={() => setOpenFirst(false)}
-                    center
-                  >
-                    <center>
-                      <div className="w-80">
-                        <HiCheckCircle size="150px" color="#66bb6a" />
+                  open={openFirst}
+                  onClose={() => setOpenFirst(false)}
+                  center
+                >
+                  <center>
+                    <div className="w-80">
+                      <HiCheckCircle size="150px" color="#66bb6a" />
+                    </div>
+                    <p className="font-bold">แก้ไขข้อมูลส่วนตัวสำเร็จ</p>
+                  </center>
+                  <center>
+                    <Link to="/menuhome">
+                      <div className="mb-6">
+                        <button className="w-80 px-1 py-3 text-white bg-gray-300 rounded-md mt-3">
+                          กลับสู่หน้าหลัก
+                        </button>
                       </div>
-                      <p className="font-bold">แก้ไขข้อมูลส่วนตัวสำเร็จ</p>
-                    </center>
-                    <center>
-                      <Link to="/menuhome">
-                        <div className="mb-6">
-                          <button className="w-80 px-1 py-3 text-white bg-gray-300 rounded-md mt-3">
-                            กลับสู่หน้าหลัก
-                          </button>
-                        </div>
-                      </Link>
-                    </center>
-                  </Modal>
+                    </Link>
+                  </center>
+                </Modal>
               </div>
               <Link to="/menuhome">
                 <div className="mb-6">

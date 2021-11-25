@@ -25,7 +25,7 @@ export default function AppointmentConfirmScreen() {
   }, []);
 
   const getProfileFromLineUserId = () => {
-    let accessToken = localStorage.getItem("AccessToken");
+    let accessToken = localStorage.getItem("AccessToken"); 
     try {
       axios
         .post(`${server.APPOINTMENT_CONFIRM}/token`, {
