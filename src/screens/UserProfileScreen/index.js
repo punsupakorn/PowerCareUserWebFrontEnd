@@ -30,9 +30,13 @@ export default function UserProfileScreen() {
     // };
     if (localStorage.getItem("Auth") === YES) {
       
-       window.location.replace(`https://${window.location.host}/menuhome`);
+      //  window.location.replace(`https://${window.location.host}/menuhome`);
       // window.location.href = `https://${window.location.host}/menuhome`;
       // history.push("/menuhome");
+      liff.openWindow({
+        url: `https://${window.location.host}/menuhome`,
+        external: false
+      })
     }
   },[]);
 
