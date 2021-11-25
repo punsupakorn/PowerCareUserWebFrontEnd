@@ -30,9 +30,9 @@ export default function UserProfileScreen() {
     // };
     if (localStorage.getItem("LIFF_STORE:1656423908-z2DErD50:accessToken") != null) {
       
-       window.location.replace(`https://${window.location.host}/menuhome`);
+      //  window.location.replace(`https://${window.location.host}/menuhome`);
       // window.location.href = `https://${window.location.host}/menuhome`;
-      // history.push("/menuhome");
+      history.push("/menuhome");
       // liff.openWindow({
       //   url: `${window.location.href}menuhome`,
       //   external: false
