@@ -200,7 +200,7 @@ export default function PostponeSelectScreen() {
                       })}
                     >
                       {" "}
-                      {time.Time}{" "}
+                      {time}{" "}
                     </option>
                   ))}
                 </select>
