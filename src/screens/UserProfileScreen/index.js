@@ -68,7 +68,8 @@ export default function UserProfileScreen() {
       const check = res.data;
       if (check == true) {
         // history.push("/menuhome");
-        window.location.href = `https://${window.location.host}/menuhome`;
+        // window.location.href = `https://${window.location.host}/menuhome`;
+        window.location.replace(`https://${window.location.host}/menuhome`);
       } 
     });
   };
