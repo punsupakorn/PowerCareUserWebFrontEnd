@@ -28,10 +28,10 @@ function App() {
           <UserProfileScreen />
         </Route> */}
             {/* <Route path="/otp" component={OTPScreen}></Route> */}
-            <PrivateRoute
+            <Route
               path="/menuhome"
               component={MenuHomeScreen}
-            ></PrivateRoute>
+            ></Route>
             <Route path="/appointment" component={AppointmentScreen}></Route>
             <Route
               path="/appointmentconfirm"
