@@ -4,6 +4,7 @@ import axios from "axios";
 import { server } from "../../constants";
 import { Modal } from "react-responsive-modal";
 import { HiCheckCircle } from "react-icons/hi";
+import { useHistory } from "react-router";
 // import { AuthContext } from "../../Auth";
 export default function EditUserProfileScreen() {
   const [firstname, setfirstname] = useState("");
@@ -14,6 +15,7 @@ export default function EditUserProfileScreen() {
   const [email, setemail] = useState("");
   const [UserId, setUserId] = useState("");
   let accessToken = localStorage.getItem("AccessToken");
+  const history = useHistory();
   // const { accessToken } = useContext(AuthContext);
 
   const getUserProfile = () => {
@@ -93,6 +95,8 @@ export default function EditUserProfileScreen() {
           Phone: phone,
           Email: email,
         });
+        window.alert("แก้ไขข้อมูลสำเร็จ");
+        history.replace({ pathname: `/menuhome` });
       } catch (error) {
         return error;
       }
