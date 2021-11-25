@@ -64,6 +64,15 @@ export default function PostponeScreen() {
     return result;
   };
 
+  const ReplaceToPostponeConfirm = () => {
+    history.replace("/postponeconfirm", {
+      username: username,
+      doctorname: doctorname,
+      olddate: date,
+      oldtime: time,
+    });
+  };
+
   return (
     <div classname="bg-indigo-200 h-screen w-screen">
       <div className="flex items-center min-h-screen bg-indigo-200 dark:bg-gray-900">
@@ -264,16 +273,17 @@ export default function PostponeScreen() {
       "
                 />
               </div>
-              <Link to="/postponeselect">
-                <div className="mb-6">
-                  <button
-                    type="submit"
-                    className="w-full px-3 py-3 text-white bg-indigo-300 rounded-md focus:bg-indigo-200 focus:outline-none"
-                  >
-                    เลื่อนทำนัด
-                  </button>
-                </div>
-              </Link>
+              {/* <Link to="/postponeselect"> */}
+              <div className="mb-6">
+                <button
+                  onClick={ReplaceToPostponeConfirm}
+                  type="submit"
+                  className="w-full px-3 py-3 text-white bg-indigo-300 rounded-md focus:bg-indigo-200 focus:outline-none"
+                >
+                  เลื่อนทำนัด
+                </button>
+              </div>
+              {/* </Link> */}
               <Link to="/menuhome">
                 <div className="mb-6">
                   <button className="w-full px-3 py-3 text-white bg-gray-300 rounded-md ">

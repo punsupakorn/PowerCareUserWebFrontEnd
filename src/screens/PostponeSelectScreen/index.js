@@ -1,8 +1,11 @@
 import { BrowserRouter as Link } from "react-router-dom";
 import { useState } from "react";
+import { useLocation, useHistory } from "react-router";
 
 export default function PostponeSelectScreen() {
+  const location = useLocation();
   const [date, setDate] = useState();
+  const { username, doctorname, olddate, oldtime } = location.state;
   return (
     <div classname="bg-indigo-200 h-screen w-screen">
       <div className="flex items-center min-h-screen bg-indigo-200 dark:bg-gray-900">
@@ -36,7 +39,7 @@ export default function PostponeSelectScreen() {
                   type="text"
                   name="name"
                   id="name"
-                  placeholder="นายลีโอนาโด เลิฟลี่"
+                  placeholder={username}
                   disabled
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
                 />
@@ -49,7 +52,7 @@ export default function PostponeSelectScreen() {
                   type="text"
                   name="name"
                   id="name"
-                  placeholder="นายอัลเบิด ไอน์สไตล์"
+                  placeholder={doctorname}
                   disabled
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
                 />
@@ -62,7 +65,7 @@ export default function PostponeSelectScreen() {
                   type="text"
                   name="name"
                   id="name"
-                  placeholder="3/07/2021"
+                  placeholder={olddate}
                   disabled
                   className="w-full px-3 py-2  border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
                 />
@@ -75,7 +78,7 @@ export default function PostponeSelectScreen() {
                   type="text"
                   name="name"
                   id="name"
-                  placeholder="13.00 น."
+                  placeholder={olddate}
                   disabled
                   className="w-full px-3 py-2  border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
                 />
