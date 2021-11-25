@@ -139,11 +139,11 @@ export default function UserProfileScreen() {
             Address: Address,
             Phone: Phone,
             Email: Email,
-            //      accessToken: accessToken,
+            accessToken: accessToken,
           })
           .then((res) => {
             console.log(res);
-            
+            history.replace("/menuhome")
           });
       }
     } catch (error) {
