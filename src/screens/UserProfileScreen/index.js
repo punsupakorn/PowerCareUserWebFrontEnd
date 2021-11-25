@@ -74,6 +74,7 @@ export default function UserProfileScreen() {
                 url: `${window.location.href}menuhome`,
                 external: false
               });
+              liff.closeWindow();
       } 
       
     });
