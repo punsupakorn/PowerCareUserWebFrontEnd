@@ -40,9 +40,9 @@ export default function UserProfileScreen() {
   //   }
   // },[]);
 
-  const { accessToken } = useContext(AuthContext);
+  // const { accessToken } = useContext(AuthContext);
 
-  console.log("accessToken : ", accessToken);
+  
 
     const [accessToken, setAccessToken] = useState("");
 
@@ -60,10 +60,10 @@ export default function UserProfileScreen() {
       }, err => console.error(err));
     }
 
-  const runApp = () => {
+  const runApp = async () => {
     const accessToken = liff.getAccessToken();
     setAccessToken(accessToken);
-    console.log(accessToken);
+    console.log("accessToken : ", accessToken);
     await axios.get(`${server.LOGIN}/${accessToken}`).then((res) => {
       const check = res.data;
       if (check == true) {
