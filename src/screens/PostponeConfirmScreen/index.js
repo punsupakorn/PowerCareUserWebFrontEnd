@@ -64,15 +64,17 @@ export default function PostponeConfirmScreen() {
 
   const editappointment = () => {
     try {
-      axios.put(server.POSTPONE_CONFIRM, {
-        AppointmentID: appointmentid,
-        OldTimeTableID: oldtimetableid,
-        NewTimeTableID: newtimetableid,
-        Date: newdate,
-        OldTime: oldtime,
-        NewTime: newtime,
-      });
-      setOpenFirst(true);
+      axios
+        .put(server.POSTPONE_CONFIRM, {
+          AppointmentID: appointmentid,
+          OldTimeTableID: oldtimetableid,
+          NewTimeTableID: newtimetableid,
+          Date: newdate,
+          OldTime: oldtime,
+          NewTime: newtime,
+        })
+        .then(setOpenFirst(true));
+      // setOpenFirst(true);
     } catch (error) {}
   };
 
