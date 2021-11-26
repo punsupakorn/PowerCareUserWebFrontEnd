@@ -65,7 +65,7 @@ export default function PostponeConfirmScreen() {
   const editappointment = () => {
     try {
       axios
-        .put(server.POSTPONE_CONFIRM, {
+        .post(server.POSTPONE_CONFIRM, {
           AppointmentID: appointmentid,
           OldTimeTableID: oldtimetableid,
           NewTimeTableID: newtimetableid,
