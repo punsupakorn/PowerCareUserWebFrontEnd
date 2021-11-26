@@ -83,6 +83,16 @@ export default function CancelScreen() {
     </center>
   );
 
+  const displayShortThaiDate = (date) => {
+    const result = new Date(date).toLocaleDateString("th-TH", {
+      year: "numeric",
+      month: "2-digit",
+      day: "numeric",
+      // weekday: "short",
+    });
+    return result;
+  };
+
   return (
     <div classname="bg-indigo-200 h-screen w-screen">
       <div className="flex items-center min-h-screen bg-indigo-200 dark:bg-gray-900">
@@ -115,7 +125,7 @@ export default function CancelScreen() {
                 </label>
                 <p className="text-base text-left text-gray-400" id="result">
                   {" "}
-                  <b> ชื่อ - นามสกุล :</b> ลีโอนาโด เลิฟลี่
+                  <b> ชื่อ - นามสกุล :</b> {username}
                 </p>
                 <div
                   className="
@@ -132,7 +142,8 @@ export default function CancelScreen() {
                   id="result"
                 >
                   {" "}
-                  <b>วัน/เดือน/ปีเกิด : </b>20/7/2000{" "}
+                  <b>วัน/เดือน/ปีเกิด : </b>
+                  {displayShortThaiDate(dateofbirth)}{" "}
                 </p>
                 <div
                   className="
@@ -149,7 +160,7 @@ export default function CancelScreen() {
                   id="result"
                 >
                   {" "}
-                  <b>เพศ :</b> ชาย{" "}
+                  <b>เพศ :</b> {sex}{" "}
                 </p>
                 <div
                   className="
@@ -166,8 +177,7 @@ export default function CancelScreen() {
                   id="result"
                 >
                   {" "}
-                  <b>ที่อยู่ :</b> 123 หมู่ 5 ถนนชิคาโก้ จังหวัด อิลลินอยส์
-                  52590
+                  <b>ที่อยู่ :</b> {address}
                 </p>
                 <div
                   className="
@@ -184,7 +194,7 @@ export default function CancelScreen() {
                   id="result"
                 >
                   {" "}
-                  <b>เบอร์ติดต่อ :</b> 0245678910
+                  <b>เบอร์ติดต่อ :</b> {phone}
                 </p>
                 <div
                   className="
@@ -201,7 +211,7 @@ export default function CancelScreen() {
                   id="result"
                 >
                   {" "}
-                  <b>e-mail :</b> LeoLovelove@gmail.com{" "}
+                  <b>e-mail :</b> {email}{" "}
                 </p>
                 <div
                   className="
@@ -218,7 +228,7 @@ export default function CancelScreen() {
                   id="result"
                 >
                   {" "}
-                  <b>อาการ :</b> เป็นสิวแดงนูนรักษาไม่หายสักที{" "}
+                  <b>อาการ :</b> {symptom}{" "}
                 </p>
                 <div
                   className="
@@ -235,7 +245,7 @@ export default function CancelScreen() {
                   id="result"
                 >
                   {" "}
-                  <b>วันทำนัด :</b> 3/07/2021{" "}
+                  <b>วันทำนัด :</b> {displayShortThaiDate(date)}{" "}
                 </p>
                 <div
                   className="
@@ -252,7 +262,7 @@ export default function CancelScreen() {
                   id="result"
                 >
                   {" "}
-                  <b>เวลา :</b> 13.30
+                  <b>เวลา :</b> {time}
                 </p>
                 <div
                   className="
@@ -269,7 +279,7 @@ export default function CancelScreen() {
                   id="result"
                 >
                   {" "}
-                  <b>แพทย์ :</b> แพทย์ดารีส ปินโต{" "}
+                  <b>แพทย์ :</b> {doctorname}{" "}
                 </p>
                 <div
                   className="
