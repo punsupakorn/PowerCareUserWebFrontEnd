@@ -27,6 +27,11 @@ export default function CancelScreen() {
   const [oldtimetableid, setoldtimetableid] = useState("");
   const history = useHistory();
 
+  useEffect(() => {
+    getAppointment();
+    getUser();
+  }, []);
+
   const getAppointment = () => {
     let accessToken = localStorage.getItem("AccessToken");
     try {
@@ -48,11 +53,6 @@ export default function CancelScreen() {
       });
     } catch (error) {}
   };
-
-  useEffect(() => {
-    getAppointment();
-    getUser();
-  }, []);
 
   const getUser = () => {
     let accessToken = localStorage.getItem("AccessToken");
