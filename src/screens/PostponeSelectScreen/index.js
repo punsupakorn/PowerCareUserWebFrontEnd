@@ -109,6 +109,13 @@ export default function PostponeSelectScreen() {
       // });
     }
   };
+  const backbutton = () => {
+    try {
+      history.replace("/menuhome")
+    } catch (error) {
+      
+    }
+  };
   return (
     <div classname="bg-indigo-200 h-screen w-screen">
       <div className="flex items-center min-h-screen bg-indigo-200 dark:bg-gray-900">
@@ -273,13 +280,16 @@ export default function PostponeSelectScreen() {
                 </button>
               </div>
               {/* </Link> */}
-              <Link to="/postpone">
-                <div className="mb-6">
-                  <button className="w-full px-3 py-3 text-white bg-gray-300 rounded-md ">
-                    ย้อนกลับ
-                  </button>
-                </div>
-              </Link>
+              {/* <Link to="/postpone"> */}
+              <div className="mb-6">
+                <button
+                  onClick={backbutton}
+                  className="w-full px-3 py-3 text-white bg-gray-300 rounded-md "
+                >
+                  ยกเลิก
+                </button>
+              </div>
+              {/* </Link> */}
             </div>
           </div>
         </div>

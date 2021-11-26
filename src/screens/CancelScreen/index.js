@@ -1,36 +1,104 @@
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 // import { Modal } from 'react-bootstrap';
-import React, { useState } from "react";
+import { useLocation, useHistory } from "react-router";
 import { Modal } from "react-responsive-modal";
 import "react-responsive-modal/styles.css";
 import { HiCheckCircle } from "react-icons/hi";
+import { server } from "../../constants";
+import React, { useContext, useEffect, useState } from "react";
+import axios from "axios";
 
 export default function CancelScreen() {
   const [openFirst, setOpenFirst] = React.useState(false);
   const [openSecond, setOpenSecond] = React.useState(false);
+  const [username, setusername] = useState("");
+  const [dateofbirth, setdateofbirth] = useState("");
+  const [sex, setsex] = useState("");
+  const [address, setaddress] = useState("");
+  const [email, setemail] = useState("");
+  const [phone, setphone] = useState("");
+  const [symptom, setsymptom] = useState("");
+  const [date, setdate] = useState("");
+  const [time, settime] = useState("");
+  const [doctorname, setdoctorname] = useState("");
+  const [doctorid, setdoctorid] = useState("");
+  const [appointmentid, setappointmentid] = useState("");
+  const [oldtimetableid, setoldtimetableid] = useState("");
+  const history = useHistory();
 
-  const littleLorem = (
-    <center>
-      <p>คุณต้องการยกเลิกการทำนัดนี้หรือไม่ ?</p>
-    </center>
-  );
+  const getAppointment = () => {
+    let accessToken = localStorage.getItem("AccessToken");
+    try {
+      axios.get(`${server.POSTPONE}/${accessToken}`).then((res) => {
+        const data = res.data;
+        if (data == "empty") {
+          window.alert("ขออภัย คุณไม่มีการทำนัดในระบบ");
+          history.replace("/menuhome");
+        } else {
+          setappointmentid(data.AppointmentID);
+          setoldtimetableid(data.TimeTableID);
+          setusername(data.UserName);
+          setsymptom(data.Initial_Symptoms);
+          setdate(data.Date);
+          settime(data.Time);
+          setdoctorname(data.DoctorName);
+          setdoctorid(data.DoctorID);
+        }
+      });
+    } catch (error) {}
+  };
 
-  return (
-    <div classname="bg-indigo-200 h-screen w-screen">
-      <div className="flex items-center min-h-screen bg-indigo-200 dark:bg-gray-900">
-        <div className="container mx-auto">
-          <div className="max-w-md mx-auto my-10 bg-white p-5 rounded-md shadow-sm">
-            <div className="text-center">
-              <h1 className="my-3 text-3xl font-semibold fontsize-18 text-gray-700 dark:text-gray-200">
-                รายละเอียดการทำนัด
-              </h1>
+  useEffect(() => {
+    getAppointment();
+    getUser();
+  }, []);
 
-              <p className="text-gray-400 dark:text-gray-400">
-                โปรดตรวจสอบข้อมูลของท่านให้ถูกต้อง
-              </p>
-              <div
-                className="
+  const getUser = () => {
+    let accessToken = localStorage.getItem("AccessToken");
+    try {
+      axios.get(`${server.POSTPONE}/user/${accessToken}`).then((res) => {
+        const data = res.data;
+        setdateofbirth(data.DateOfBirth);
+        setsex(data.Sex);
+        setaddress(data.Address);
+        setphone(data.Phone);
+        setemail(data.Email);
+      });
+    } catch (error) {}
+
+    const handleDelete = () => {
+      try {
+        axios.post(server.CANCEL, {
+          AppointmentID: appointmentid,
+          TimeTableID: oldtimetableid,
+          Time: time,
+        });
+        setOpenSecond(true);
+      } catch (error) {}
+    };
+
+    const littleLorem = (
+      <center>
+        <p>คุณต้องการยกเลิกการทำนัดนี้หรือไม่ ?</p>
+      </center>
+    );
+
+    return (
+      <div classname="bg-indigo-200 h-screen w-screen">
+        <div className="flex items-center min-h-screen bg-indigo-200 dark:bg-gray-900">
+          <div className="container mx-auto">
+            <div className="max-w-md mx-auto my-10 bg-white p-5 rounded-md shadow-sm">
+              <div className="text-center">
+                <h1 className="my-3 text-3xl font-semibold fontsize-18 text-gray-700 dark:text-gray-200">
+                  รายละเอียดการทำนัด
+                </h1>
+
+                <p className="text-gray-400 dark:text-gray-400">
+                  โปรดตรวจสอบข้อมูลของท่านให้ถูกต้อง
+                </p>
+                <div
+                  className="
         flex
         justify-between
         items-center
@@ -38,10 +106,10 @@ export default function CancelScreen() {
         py-2
         border-b-2 border-gray-200
       "
-              />
-            </div>
-            <div className="m-7">
-              {/* <form> */}
+                />
+              </div>
+              <div className="m-7">
+                {/* <form> */}
                 <div className="mb-6">
                   <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400 font-bold">
                     รายละเอียดการทำนัด :{" "}
@@ -60,7 +128,10 @@ export default function CancelScreen() {
         border-b-2 border-gray-100
       "
                   />
-                  <p className="mt-2 text-base text-left text-gray-400" id="result">
+                  <p
+                    className="mt-2 text-base text-left text-gray-400"
+                    id="result"
+                  >
                     {" "}
                     <b>วัน/เดือน/ปีเกิด : </b>20/7/2000{" "}
                   </p>
@@ -74,7 +145,10 @@ export default function CancelScreen() {
         border-b-2 border-gray-100
       "
                   />
-                  <p className="mt-2 text-base text-left text-gray-400" id="result">
+                  <p
+                    className="mt-2 text-base text-left text-gray-400"
+                    id="result"
+                  >
                     {" "}
                     <b>เพศ :</b> ชาย{" "}
                   </p>
@@ -88,9 +162,13 @@ export default function CancelScreen() {
         border-b-2 border-gray-100
       "
                   />
-                  <p className="mt-2 text-base text-left text-gray-400" id="result">
+                  <p
+                    className="mt-2 text-base text-left text-gray-400"
+                    id="result"
+                  >
                     {" "}
-                    <b>ที่อยู่ :</b> 123 หมู่ 5 ถนนชิคาโก้ จังหวัด อิลลินอยส์ 52590
+                    <b>ที่อยู่ :</b> 123 หมู่ 5 ถนนชิคาโก้ จังหวัด อิลลินอยส์
+                    52590
                   </p>
                   <div
                     className="
@@ -102,7 +180,10 @@ export default function CancelScreen() {
         border-b-2 border-gray-100
       "
                   />
-                  <p className="mt-2 text-base text-left text-gray-400" id="result">
+                  <p
+                    className="mt-2 text-base text-left text-gray-400"
+                    id="result"
+                  >
                     {" "}
                     <b>เบอร์ติดต่อ :</b> 0245678910
                   </p>
@@ -116,7 +197,10 @@ export default function CancelScreen() {
         border-b-2 border-gray-100
       "
                   />
-                  <p className="mt-2 text-base text-left text-gray-400" id="result">
+                  <p
+                    className="mt-2 text-base text-left text-gray-400"
+                    id="result"
+                  >
                     {" "}
                     <b>e-mail :</b> LeoLovelove@gmail.com{" "}
                   </p>
@@ -130,7 +214,10 @@ export default function CancelScreen() {
         border-b-2 border-gray-100
       "
                   />
-                  <p className="mt-2 text-base text-left text-gray-400" id="result">
+                  <p
+                    className="mt-2 text-base text-left text-gray-400"
+                    id="result"
+                  >
                     {" "}
                     <b>อาการ :</b> เป็นสิวแดงนูนรักษาไม่หายสักที{" "}
                   </p>
@@ -144,7 +231,10 @@ export default function CancelScreen() {
         border-b-2 border-gray-100
       "
                   />
-                  <p className="mt-2 text-base text-left text-gray-400" id="result">
+                  <p
+                    className="mt-2 text-base text-left text-gray-400"
+                    id="result"
+                  >
                     {" "}
                     <b>วันทำนัด :</b> 3/07/2021{" "}
                   </p>
@@ -158,7 +248,10 @@ export default function CancelScreen() {
         border-b-2 border-gray-100
       "
                   />
-                  <p className="mt-2 text-base text-left text-gray-400" id="result">
+                  <p
+                    className="mt-2 text-base text-left text-gray-400"
+                    id="result"
+                  >
                     {" "}
                     <b>เวลา :</b> 13.30
                   </p>
@@ -172,7 +265,10 @@ export default function CancelScreen() {
         border-b-2 border-gray-100
       "
                   />
-                  <p className="mt-2 text-base text-left text-gray-400" id="result">
+                  <p
+                    className="mt-2 text-base text-left text-gray-400"
+                    id="result"
+                  >
                     {" "}
                     <b>แพทย์ :</b> แพทย์ดารีส ปินโต{" "}
                   </p>
@@ -233,8 +329,8 @@ export default function CancelScreen() {
                       <button
                         type="submit"
                         className="w-80 px-1 py-3 text-white bg-red-700 rounded-md mt-3"
-                        // onClick={handleShow}
-                        onClick={() => setOpenSecond(true)}
+                        onClick={handleDelete}
+                        // onClick={() => setOpenSecond(true)}
                       >
                         ยืนยันยกเลิกการทำนัด
                       </button>
@@ -300,11 +396,12 @@ export default function CancelScreen() {
                     </button>
                   </div>
                 </Link>
-              {/* </form> */}
+                {/* </form> */}
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  };
 }

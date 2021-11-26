@@ -14,4 +14,5 @@ export const server = {
   POSTPONE: `${apiURL}Postpone`,
   POSTPONE_SELECT: `${apiURL}PostponeSelect`,
   POSTPONE_CONFIRM: `${apiURL}PostponeConfirm`,
+  CANCEL: `${apiURL}Cancel`,
 };
