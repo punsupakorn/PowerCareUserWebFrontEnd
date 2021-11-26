@@ -1,8 +1,12 @@
 import React, { useContext } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { AuthContext } from "../../Auth";
-
+import { useLocation, useHistory } from "react-router";
 export default function MenuHomeScreen() {
+  const history = useHistory();
+  const handletocancel = () => {
+    history.replace("/cancel");
+  };
   // const { currentUser } = useContext(AuthContext);
   // console.log("current : ", currentUser);
   return (
@@ -47,16 +51,17 @@ export default function MenuHomeScreen() {
                     </button>
                   </div>
                 </Link>
-                <Link to="/cancel">
-                  <div className="mb-6">
-                    <button
-                      type="submit"
-                      className="w-80 font-bold px-3 py-4 text-white bg-indigo-300 rounded-md focus:bg-indigo-200 focus:outline-none"
-                    >
-                     ยกเลิกการทำนัด
-                    </button>
-                  </div>
-                </Link>
+                {/* <Link to="/cancel"> */}
+                <div className="mb-6">
+                  <button
+                    onClick={handletocancel}
+                    type="submit"
+                    className="w-80 font-bold px-3 py-4 text-white bg-indigo-300 rounded-md focus:bg-indigo-200 focus:outline-none"
+                  >
+                    ยกเลิกการทำนัด
+                  </button>
+                </div>
+                {/* </Link> */}
                 <Link to="/edituserprofile">
                   <div className="mb-6">
                     <button
