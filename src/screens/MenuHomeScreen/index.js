@@ -51,17 +51,17 @@ export default function MenuHomeScreen() {
                     </button>
                   </div>
                 </Link>
-                {/* <Link to="/cancel"> */}
+                <Link to="/cancel">
                 <div className="mb-6">
                   <button
-                    onClick={handletocancel}
+                    // onClick={handletocancel}
                     type="submit"
                     className="w-80 font-bold px-3 py-4 text-white bg-indigo-300 rounded-md focus:bg-indigo-200 focus:outline-none"
                   >
                     ยกเลิกการทำนัด
                   </button>
                 </div>
-                {/* </Link> */}
+                </Link>
                 <Link to="/edituserprofile">
                   <div className="mb-6">
                     <button
