@@ -69,7 +69,7 @@ export default function PostponeConfirmScreen() {
         OldTimeTableID: oldtimetableid,
         NewTimeTableID: newtimetableid,
         Date: newdate,
-        OldTime: olddate,
+        OldTime: oldtime,
         NewTime: newtime,
       });
       setOpenFirst(true);

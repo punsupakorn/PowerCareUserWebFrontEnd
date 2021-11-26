@@ -92,7 +92,7 @@ export default function PostponeSelectScreen() {
         newtime: newtime,
         symptom: symptom,
         dateofbirth: dateofbirth,
-        doctorname:doctorname
+        doctorname: doctorname,
       });
       // history.push({
       //   pathname: `/summarypostpone`,
