@@ -5,8 +5,19 @@ import axios from "axios";
 import { server } from "../../constants/index";
 
 export default function PostponeSelectScreen() {
+  const history = useHistory();
   const location = useLocation();
-  const { username, doctorname, olddate, oldtime, doctorid } = location.state;
+  const {
+    appointmentid,
+    oldtimetableid,
+    username,
+    doctorname,
+    olddate,
+    oldtime,
+    doctorid,
+    symptom,
+    dateofbirth,
+  } = location.state;
   const [dateArr, setdateArr] = useState([]);
   const [timeArr, settimeArr] = useState([]);
   const [newdate, setnewdate] = useState("");
@@ -58,6 +69,45 @@ export default function PostponeSelectScreen() {
     const time = e.target.value;
     const data = JSON.parse(time);
     setnewtime(data.time);
+  };
+
+  const checkData = () => {
+    let slot = {
+      newdate: newdate,
+      newtime: newtime,
+    };
+
+    let data = Object.values(slot).every((value) => value);
+    if (data == false) {
+      window.alert("โปรดกรอกวันและเวลาที่ต้องการให้ครบ");
+    } else {
+      history.replace("/postponeconfirm", {
+        appointmentid: appointmentid,
+        oldtimetableid: oldtimetableid,
+        newtimetableid: newtimetableid,
+        olddate: olddate,
+        newdate: newdate,
+        username: username,
+        oldtime: oldtime,
+        newtime: newtime,
+        symptom: symptom,
+        dateofbirth: dateofbirth,
+        doctorname:doctorname
+      });
+      // history.push({
+      //   pathname: `/summarypostpone`,
+      //   state: {
+      //     appointmentID: appointmentID,
+      //     olddate: date,
+      //     newdate: newdate,
+      //     time: time,
+      //     newtime: newtime,
+      //     oldtimetableid: oldtimetableid,
+      //     newtimetableid: newtimetableid,
+      //     doctorId: doctorid,
+      //   },
+      // });
+    }
   };
   return (
     <div classname="bg-indigo-200 h-screen w-screen">
@@ -118,7 +168,7 @@ export default function PostponeSelectScreen() {
                   type="text"
                   name="name"
                   id="name"
-                  placeholder={olddate}
+                  placeholder={displayThaiDate(olddate)}
                   disabled
                   className="w-full px-3 py-2  border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
                 />
@@ -212,16 +262,17 @@ export default function PostponeSelectScreen() {
                   ))}
                 </select>
               </div>
-              <Link to="/postponeconfirm">
-                <div className="mb-6">
-                  <button
-                    type="submit"
-                    className="w-full px-3 py-3 text-white bg-indigo-300 rounded-md focus:bg-indigo-200 focus:outline-none"
-                  >
-                    ถัดไป
-                  </button>
-                </div>
-              </Link>
+              {/* <Link to="/postponeconfirm"> */}
+              <div className="mb-6">
+                <button
+                  type="submit"
+                  onClick={checkData}
+                  className="w-full px-3 py-3 text-white bg-indigo-300 rounded-md focus:bg-indigo-200 focus:outline-none"
+                >
+                  ถัดไป
+                </button>
+              </div>
+              {/* </Link> */}
               <Link to="/postpone">
                 <div className="mb-6">
                   <button className="w-full px-3 py-3 text-white bg-gray-300 rounded-md ">

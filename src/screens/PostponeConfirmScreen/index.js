@@ -1,14 +1,69 @@
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "react-responsive-modal/styles.css";
 import { HiCheckCircle } from "react-icons/hi";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Modal } from "react-responsive-modal";
 import { useLocation, useHistory } from "react-router";
+import axios from "axios";
+import { server } from "../../constants";
 
 export default function PostponeConfirmScreen() {
   const [openFirst, setOpenFirst] = React.useState(false);
+  const history = useHistory();
   const location = useLocation();
-  
+  let accessToken = localStorage.getItem("AccessToken");
+  const [sex, setsex] = useState("");
+  const [address, setaddress] = useState("");
+  const [phone, setphone] = useState("");
+  const [email, setemail] = useState("");
+  const [dob, setdob] = useState("");
+
+  const {
+    appointmentid,
+    oldtimetableid,
+    newtimetableid,
+    olddate,
+    newdate,
+    username,
+    oldtime,
+    newtime,
+    symptom,
+    dateofbirth,
+    doctorname,
+  } = location.state;
+
+  const getUserProfile = () => {
+    try {
+      axios
+        .post(server.EDIT_USER_PROFILE, {
+          accessToken: accessToken,
+        })
+        .then((res) => {
+          setsex(res.data.Sex);
+          setaddress(res.data.Address);
+          setphone(res.data.Phone);
+          setemail(res.data.Email);
+          setdob(res.data.DateOfBirth);
+        });
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    getUserProfile();
+  }, []);
+
+  const editappointment = () => {
+    try {
+      setOpenFirst(true);
+    } catch (error) {}
+  };
+
+  const backToMenu = () => {
+    try {
+      history.replace("/menuhome")
+    } catch (error) {}
+  };
+
   return (
     <div classname="bg-indigo-200 h-screen w-screen">
       <div className="flex items-center min-h-screen bg-indigo-200 dark:bg-gray-900">
@@ -40,7 +95,7 @@ export default function PostponeConfirmScreen() {
                 </label>
                 <p className="text-base text-left text-gray-400">
                   {" "}
-                  <b>ชื่อ - นามสกุล :</b> ลีโอนาโด เลิฟลี่
+                  <b>ชื่อ - นามสกุล :</b> {username}
                 </p>
                 <div
                   className="
@@ -54,7 +109,7 @@ export default function PostponeConfirmScreen() {
                 />
                 <p className="mt-2 text-base text-left text-gray-400">
                   {" "}
-                  <b>วัน/เดือน/ปีเกิด :</b> 20/7/2000{" "}
+                  <b>วัน/เดือน/ปีเกิด :</b> {dob}{" "}
                 </p>
                 <div
                   className="
@@ -68,7 +123,7 @@ export default function PostponeConfirmScreen() {
                 />
                 <p className="mt-2 text-base text-left text-gray-400">
                   {" "}
-                  <b> เพศ :</b> ชาย{" "}
+                  <b> เพศ :</b> {sex}{" "}
                 </p>
                 <div
                   className="
@@ -82,8 +137,7 @@ export default function PostponeConfirmScreen() {
                 />
                 <p className=" mt-2 text-base text-left text-gray-400">
                   {" "}
-                  <b>ที่อยู่ :</b> 123 หมู่ 5 ถนนชิคาโก้ จังหวัด อิลลินอยส์
-                  52590
+                  <b>ที่อยู่ :</b> {address}
                 </p>
                 <div
                   className="
@@ -97,7 +151,7 @@ export default function PostponeConfirmScreen() {
                 />
                 <p className="mt-2 text-base text-left text-gray-400">
                   {" "}
-                  <b>เบอร์ติดต่อ :</b> 0245678910
+                  <b>เบอร์ติดต่อ :</b> {phone}
                 </p>
                 <div
                   className="
@@ -111,7 +165,7 @@ export default function PostponeConfirmScreen() {
                 />
                 <p className="mt-2 text-base text-left text-gray-400">
                   {" "}
-                  <b>e-mail</b> : LeoLovelove@gmail.com{" "}
+                  <b>e-mail</b> : {email}{" "}
                 </p>
                 <div
                   className="
@@ -125,7 +179,7 @@ export default function PostponeConfirmScreen() {
                 />
                 <p className="mt-2 text-base text-left text-gray-400">
                   {" "}
-                  <b> อาการ :</b> เป็นสิวแดงนูนรักษาไม่หายสักที{" "}
+                  <b> อาการ :</b> {symptom}{" "}
                 </p>
                 <div
                   className="
@@ -139,7 +193,7 @@ export default function PostponeConfirmScreen() {
                 />
                 <p className="mt-2 text-base text-left text-gray-400">
                   {" "}
-                  <b> วันทำนัด :</b> 3/07/2021{" "}
+                  <b> วันทำนัด :</b> {newdate}{" "}
                 </p>
                 <div
                   className="
@@ -153,7 +207,7 @@ export default function PostponeConfirmScreen() {
                 />
                 <p className="mt-2 text-base text-left text-gray-400">
                   {" "}
-                  <b>เวลา :</b> 13.30
+                  <b>เวลา :</b> {newtime}
                 </p>
                 <div
                   className="
@@ -167,7 +221,7 @@ export default function PostponeConfirmScreen() {
                 />
                 <p className="mt-2 text-base text-left text-gray-400">
                   {" "}
-                  <b>แพทย์ :</b> แพทย์ดารีส ปินโต{" "}
+                  <b>แพทย์ :</b> {doctorname}{" "}
                 </p>
                 <div
                   className="
@@ -184,7 +238,7 @@ export default function PostponeConfirmScreen() {
               <div className="mb-6">
                 <button
                   className="w-full px-3 py-3  text-white bg-indigo-300 rounded-md focus:bg-indigo-200 focus:outline-none"
-                  onClick={() => setOpenFirst(true)}
+                  onClick={editappointment}
                 >
                   ยืนยันการเลื่อนนัด
                 </button>
@@ -200,13 +254,16 @@ export default function PostponeConfirmScreen() {
                     <p className="font-bold">เลื่อนทำนัดสำเร็จ </p>
                   </center>
                   <center>
-                    <Link to="/menuhome">
-                      <div className="mb-6">
-                        <button className="w-80 px-1 py-3 text-white bg-gray-300 rounded-md mt-3">
-                          กลับสู่หน้าหลัก
-                        </button>
-                      </div>
-                    </Link>
+                    {/* <Link to="/menuhome"> */}
+                    <div className="mb-6">
+                      <button
+                        onClick={backToMenu}
+                        className="w-80 px-1 py-3 text-white bg-gray-300 rounded-md mt-3"
+                      >
+                        กลับสู่หน้าหลัก
+                      </button>
+                    </div>
+                    {/* </Link> */}
                   </center>
                 </Modal>
               </div>

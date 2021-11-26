@@ -15,6 +15,8 @@ export default function PostponeScreen() {
   const [time, settime] = useState("");
   const [doctorname, setdoctorname] = useState("");
   const [doctorid, setdoctorid] = useState("");
+  const [appointmentid, setappointmentid] = useState("");
+  const [oldtimetableid, setoldtimetableid] = useState("");
   const history = useHistory();
 
   useEffect(() => {
@@ -45,6 +47,8 @@ export default function PostponeScreen() {
           window.alert("ขออภัย คุณไม่มีการทำนัดในระบบ");
           history.replace("/menuhome");
         } else {
+          setappointmentid(data.AppointmentID);
+          setoldtimetableid(data.TimeTableID);
           setusername(data.UserName);
           setsymptom(data.Initial_Symptoms);
           setdate(data.Date);
@@ -68,11 +72,15 @@ export default function PostponeScreen() {
 
   const ReplaceToPostponeSelect = () => {
     history.replace("/postponeselect", {
+      appointmentid: appointmentid,
+      oldtimetableid: oldtimetableid,
       username: username,
       doctorname: doctorname,
       olddate: date,
       oldtime: time,
       doctorid: doctorid,
+      symptom: symptom,
+      dateofbirth:dateofbirth
     });
   };
 
@@ -228,7 +236,7 @@ export default function PostponeScreen() {
                 >
                   {" "}
                   <b>วันทำนัด : </b>
-                  {date}{" "}
+                  {displayShortThaiDate(date)}{" "}
                 </p>
                 <div
                   className="
