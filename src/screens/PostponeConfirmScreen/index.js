@@ -63,6 +63,7 @@ export default function PostponeConfirmScreen() {
   }, []);
 
   const editappointment = () => {
+    let accessToken = localStorage.getItem("AccessToken");
     try {
       axios
         .post(server.POSTPONE_CONFIRM, {
@@ -76,6 +77,7 @@ export default function PostponeConfirmScreen() {
           doctorname: doctorname,
           symptom: symptom,
           username: username,
+          accessToken: accessToken,
         })
         .then(setOpenFirst(true));
       // setOpenFirst(true);
