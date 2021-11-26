@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
-// import { Modal } from 'react-bootstrap';
 import { useLocation, useHistory } from "react-router";
 import { Modal } from "react-responsive-modal";
 import "react-responsive-modal/styles.css";
@@ -28,8 +27,8 @@ export default function CancelScreen() {
   const history = useHistory();
 
   useEffect(() => {
-    getAppointment();
-    getUser();
+    // getAppointment();
+    // getUser();
   }, []);
 
   const getAppointment = () => {
