@@ -72,6 +72,10 @@ export default function PostponeConfirmScreen() {
           Date: newdate,
           OldTime: oldtime,
           NewTime: newtime,
+          olddate: olddate,
+          doctorname: doctorname,
+          symptom: symptom,
+          username: username,
         })
         .then(setOpenFirst(true));
       // setOpenFirst(true);
