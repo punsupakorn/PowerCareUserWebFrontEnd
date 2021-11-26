@@ -32,6 +32,16 @@ export default function PostponeConfirmScreen() {
     doctorname,
   } = location.state;
 
+  const displayShortThaiDate = (date) => {
+    const result = new Date(date).toLocaleDateString("th-TH", {
+      year: "numeric",
+      month: "2-digit",
+      day: "numeric",
+      // weekday: "short",
+    });
+    return result;
+  };
+
   const getUserProfile = () => {
     try {
       axios
@@ -54,13 +64,21 @@ export default function PostponeConfirmScreen() {
 
   const editappointment = () => {
     try {
+      axios.put(`${server.POSTPONE_CONFIRM}`, {
+        AppointmentID: appointmentid,
+        OldTimeTableID: oldtimetableid,
+        NewTimeTableID: newtimetableid,
+        Date: newdate,
+        OldTime: olddate,
+        NewTime: newtime,
+      });
       setOpenFirst(true);
     } catch (error) {}
   };
 
   const backToMenu = () => {
     try {
-      history.replace("/menuhome")
+      history.replace("/menuhome");
     } catch (error) {}
   };
 
@@ -109,7 +127,7 @@ export default function PostponeConfirmScreen() {
                 />
                 <p className="mt-2 text-base text-left text-gray-400">
                   {" "}
-                  <b>วัน/เดือน/ปีเกิด :</b> {dob}{" "}
+                  <b>วัน/เดือน/ปีเกิด :</b> {displayShortThaiDate(dob)}{" "}
                 </p>
                 <div
                   className="
@@ -193,7 +211,7 @@ export default function PostponeConfirmScreen() {
                 />
                 <p className="mt-2 text-base text-left text-gray-400">
                   {" "}
-                  <b> วันทำนัด :</b> {newdate}{" "}
+                  <b> วันทำนัด :</b> {displayShortThaiDate(newdate)}{" "}
                 </p>
                 <div
                   className="
@@ -267,13 +285,13 @@ export default function PostponeConfirmScreen() {
                   </center>
                 </Modal>
               </div>
-              <Link to="/postponeselect">
+              {/* <Link to="/postponeselect">
                 <div className="mb-6">
                   <button className="w-full px-3 py-3 text-white bg-gray-300 rounded-md ">
                     ย้อนกลับ
                   </button>
                 </div>
-              </Link>
+              </Link> */}
             </div>
           </div>
         </div>

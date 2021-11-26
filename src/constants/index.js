@@ -13,4 +13,5 @@ export const server = {
   EDIT_USER_PROFILE: `${apiURL}EditUserProfile`,
   POSTPONE: `${apiURL}Postpone`,
   POSTPONE_SELECT: `${apiURL}PostponeSelect`,
+  POSTPONE_CONFIRM: `${apiURL}PostponeConfirm`,
 };
