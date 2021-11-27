@@ -34,7 +34,9 @@ export default function EditUserProfileScreen() {
           setemail(res.data.Email);
           setUserId(res.data.UserID);
         })
-        .then(setloading(false));
+        .then((res) => {
+          setloading(false);
+        });
     } catch (error) {}
   };
 
