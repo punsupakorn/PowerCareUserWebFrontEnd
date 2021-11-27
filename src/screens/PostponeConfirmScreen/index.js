@@ -54,9 +54,8 @@ export default function PostponeConfirmScreen() {
           setphone(res.data.Phone);
           setemail(res.data.Email);
           setdob(res.data.DateOfBirth);
-          setloading(false);
-        });
-      // .then(setloading(false));
+        })
+        .then((res) => setloading(false));
     } catch (error) {}
   };
 

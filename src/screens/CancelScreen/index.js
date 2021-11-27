@@ -68,7 +68,7 @@ export default function CancelScreen() {
           setphone(data.Phone);
           setemail(data.Email);
         })
-        .then(setloading(false));
+        .then((res) => setloading(false));
     } catch (error) {}
   };
   const handleDelete = () => {
