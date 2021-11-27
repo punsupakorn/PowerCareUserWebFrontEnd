@@ -9,7 +9,7 @@ import { HiCheckCircle } from "react-icons/hi";
 
 export default function AppointmentConfirmScreen() {
   
-  
+  const [openSecond, setOpenSecond] = React.useState(false);
   const [openFirst, setOpenFirst] = React.useState(false);
   const location = useLocation();
   const { symptom, date, doctorname, doctorid, timetableid, time } =
@@ -86,17 +86,19 @@ export default function AppointmentConfirmScreen() {
           Initial_Symtoms: symptom,
           AccessToken: accessToken,
         })
-        // .then((res) => {
-        //   const data = res.data;
-        //   if (data == "exist") {
-        //     window.alert("ขออภัย คุณมีการทำนัดเอาไว้อยู่แล้ว");
-        //     history.replace("/menuhome");
-        //   } else {
-        //     window.alert("ทำนัดสำเร็จ กลับสู่หน้าหลัก");
-        //     history.replace("/menuhome");
-        //   }
-        // });
-        .then(setOpenFirst(true));
+        .then((res) => {
+          const data = res.data;
+          if (data == "exist") {
+            // window.alert("ขออภัย คุณมีการทำนัดเอาไว้อยู่แล้ว");
+            // history.replace("/menuhome");
+            setOpenSecond(true)
+          } else {
+            setOpenFirst(true)
+            // window.alert("ทำนัดสำเร็จ กลับสู่หน้าหลัก");
+            // history.replace("/menuhome");
+          }
+        });
+        // .then(setOpenFirst(true)).then;
     } catch (error) {
       return error;
     }
@@ -288,6 +290,31 @@ export default function AppointmentConfirmScreen() {
                     <Modal
                     open={openFirst}
                     onClose={() => setOpenFirst(false)}
+                    center
+                  >
+                    <center>
+                      <div className="w-80">
+                        <HiCheckCircle size="150px" color="#66bb6a" />
+                      </div>
+                      <p className="font-bold">ทำนัดสำเร็จ </p>
+                    </center>
+                    <center>
+                
+                      <div className="mb-6">
+                        <button
+                          onClick={backToMenu}
+                          className="w-80 px-1 py-3 text-white bg-gray-300 rounded-md mt-3"
+                        >
+                          กลับสู่หน้าหลัก
+                        </button>
+                      </div>
+                     
+                    </center>
+                  </Modal>
+
+                  <Modal
+                    open={openSecond}
+                    onClose={() => setOpenSecond(false)}
                     center
                   >
                     <center>
