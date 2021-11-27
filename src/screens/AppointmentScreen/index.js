@@ -154,7 +154,7 @@ export default function AppointmentScreen() {
               <form>
                 <div className="mb-6">
                   <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
-                    อาการ :{" "}
+                    อาการ :{" "}  <h className="text-red-600"> * </h>
                   </label>
                   <textarea
                     rows={5}
@@ -169,7 +169,7 @@ export default function AppointmentScreen() {
                 </div>
                 <div className="mb-6">
                   <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
-                    เลือกวันที่
+                    เลือกวันที่  <h className="text-red-600"> * </h>
                   </label>
                   <select
                     onChange={handleDate}
@@ -198,7 +198,7 @@ export default function AppointmentScreen() {
                 </div>
                 <div className="mb-6">
                   <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
-                    เลือกแพทย์ :{" "}
+                    เลือกแพทย์ :{" "}  <h className="text-red-600"> * </h> 
                   </label>
                   <select
                     // id="position"
@@ -227,7 +227,7 @@ export default function AppointmentScreen() {
                 </div>
                 <div className="mb-6">
                   <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
-                    เลือกเวลา :{" "}
+                    เลือกเวลา :{" "}  <h className="text-red-600"> * </h>
                   </label>
                   <select
                     // id="position"
