@@ -98,9 +98,10 @@ export default function EditUserProfileScreen() {
           Address: address,
           Phone: phone,
           Email: email,
-        });
-        window.alert("แก้ไขข้อมูลสำเร็จ");
-        history.replace({ pathname: `/menuhome` });
+        })
+        // window.alert("แก้ไขข้อมูลสำเร็จ");
+        // history.replace({ pathname: `/menuhome` });
+        .then(setOpenFirst(true));
       } catch (error) {
         return error;
       }

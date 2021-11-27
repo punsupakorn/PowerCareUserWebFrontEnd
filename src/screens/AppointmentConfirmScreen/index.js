@@ -6,6 +6,9 @@ import axios from "axios";
 import { server } from "../../constants";
 import { Modal } from "react-responsive-modal";
 import { HiCheckCircle } from "react-icons/hi";
+import { MdCancel } from "react-icons/md";
+
+
 
 export default function AppointmentConfirmScreen() {
   
@@ -319,7 +322,7 @@ export default function AppointmentConfirmScreen() {
                   >
                     <center>
                       <div className="w-80">
-                        <HiCheckCircle size="150px" color="#66bb6a" />
+                        <MdCancel  size="150px" color="#cb534a" />
                       </div>
                       <p className="font-bold">ขออภัย คุณมีการทำนัดเอาไว้อยู่แล้ว </p>
                     </center>
