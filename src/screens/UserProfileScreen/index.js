@@ -153,7 +153,7 @@ export default function UserProfileScreen() {
     }
   };
 if(loading ===  true){
-  return (<div>loading</div>)
+  return (<div>loading...</div>)
 }else{
   return (
     <div classname="bg-indigo-200 h-screen w-screen">

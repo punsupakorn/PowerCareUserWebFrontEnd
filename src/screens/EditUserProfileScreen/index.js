@@ -109,7 +109,7 @@ export default function EditUserProfileScreen() {
 
   const [openFirst, setOpenFirst] = React.useState(false);
   if (loading === true) {
-    return <div>loading</div>;
+    return <div>loading...</div>;
   } else {
     return (
       <div classname="bg-indigo-200 h-screen w-screen">

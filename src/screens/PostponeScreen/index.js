@@ -80,7 +80,7 @@ export default function PostponeScreen() {
       oldtime: time,
       doctorid: doctorid,
       symptom: symptom,
-      dateofbirth:dateofbirth
+      dateofbirth: dateofbirth,
     });
   };
 
