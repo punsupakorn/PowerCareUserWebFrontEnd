@@ -321,7 +321,7 @@ export default function AppointmentConfirmScreen() {
                       <div className="w-80">
                         <HiCheckCircle size="150px" color="#66bb6a" />
                       </div>
-                      <p className="font-bold">ทำนัดสำเร็จ </p>
+                      <p className="font-bold">ขออภัย คุณมีการทำนัดเอาไว้อยู่แล้ว </p>
                     </center>
                     <center>
                 
