@@ -9,7 +9,6 @@ export default function AppointmentScreen() {
   const [DateSlot, setDateSlot] = useState([]);
   const [DoctorName, setDoctorName] = useState([]);
   const [Time, setTime] = useState([]);
-
   const [symptom, setsymptom] = useState("");
   const [date, setdate] = useState("");
   const [doctorid, setdoctorid] = useState("");
@@ -112,7 +111,7 @@ export default function AppointmentScreen() {
     if (data == false) {
       window.alert("โปรดกรอกข้อมูลให้ครบถ้วน");
     } else {
-      history.push({
+      history.replace({
         pathname: `/appointmentconfirm`,
         state: {
           symptom: symptom,

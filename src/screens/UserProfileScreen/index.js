@@ -14,7 +14,6 @@ import liff from "@line/liff";
 
 export default function UserProfileScreen() {
   const [date, setDate] = useState();
-
   const [FirstName, setFirstName] = useState("");
   const [LastName, setLastName] = useState("");
   const [DateOfBirth, setDateOfBirth] = useState("");
@@ -23,13 +22,14 @@ export default function UserProfileScreen() {
   const [Phone, setPhone] = useState("");
   const [Email, setEmail] = useState("");
   const history = useHistory();
+  const [loading, setloading] = useState(true)
 
   // useEffect(() => {
   //   // const isAuthenticated = () => {
   //   //   return localStorage.getItem("Auth") === YES;
   //   // };
   //   if (localStorage.getItem("Auth") === YES) {
-      
+
   //     //  window.location.replace(`https://${window.location.host}/menuhome`);
   //     // window.location.href = `https://${window.location.host}/menuhome`;
   //     history.push("/menuhome");
@@ -42,23 +42,29 @@ export default function UserProfileScreen() {
 
   // const { accessToken } = useContext(AuthContext);
 
-  
+  const [accessToken, setAccessToken] = useState("");
 
-    const [accessToken, setAccessToken] = useState("");
+  useEffect(() => {
+    initLine();
+  });
 
-      useEffect(() => {
-      initLine();
-    });
-
-   const initLine = async () => {
-      liff.init({ liffId: '1656423908-z2DErD50' }, () => {
-        if (liff.isLoggedIn({ redirectUri: "https://main.d3w2lvda55pxgd.amplifyapp.com" })) {
-         runApp();
+  const initLine = async () => {
+    liff.init(
+      { liffId: "1656423908-z2DErD50" },
+      () => {
+        if (
+          liff.isLoggedIn({
+            redirectUri: "https://main.d3w2lvda55pxgd.amplifyapp.com",
+          })
+        ) {
+          runApp();
         } else {
           liff.login();
         }
-      }, err => console.error(err));
-    }
+      },
+      (err) => console.error(err)
+    );
+  };
 
   const runApp = async () => {
     const accessToken = liff.getAccessToken();
@@ -67,15 +73,11 @@ export default function UserProfileScreen() {
     await axios.get(`${server.LOGIN}/${accessToken}`).then((res) => {
       const check = res.data;
       if (check === true) {
+        localStorage.setItem("AccessToken", accessToken);
         history.replace("/menuhome");
-        //  window.location.href = `https://${window.location.host}/menuhome`;
-        // window.location.replace(`https://${window.location.host}/menuhome`);
-        // liff.openWindow({
-        //         url: `${window.location.href}menuhome`,
-        //         external: false
-        //       });
-      } 
-      
+      }else{
+        setloading(false);
+      }
     });
   };
 
@@ -139,18 +141,20 @@ export default function UserProfileScreen() {
             Address: Address,
             Phone: Phone,
             Email: Email,
-            //      accessToken: accessToken,
+            accessToken: accessToken,
           })
           .then((res) => {
             console.log(res);
-            
+            history.replace("/menuhome");
           });
       }
     } catch (error) {
       return error;
     }
   };
-
+if(loading ===  true){
+  return (<div>loading...</div>)
+}else{
   return (
     <div classname="bg-indigo-200 h-screen w-screen">
       <div className="flex items-center min-h-screen bg-indigo-200 dark:bg-gray-900">
@@ -317,4 +321,5 @@ export default function UserProfileScreen() {
       </div>
     </div>
   );
+}
 }
