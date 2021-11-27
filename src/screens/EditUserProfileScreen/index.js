@@ -118,8 +118,8 @@ export default function EditUserProfileScreen() {
  
 
   if (loading === true) {
-    return <div className="loading"> <SyncLoader color={"FFFFFF"} loading={loading} css={override} size={50} /></div>;
-    // return <div>loading...</div>;
+    // return <div className="loading"> <SyncLoader color={"FFFFFF"} loading={loading} css={override} size={50} /></div>;
+    return <div>loading...</div>;
 
   } else {
     return (
