@@ -2,10 +2,28 @@ import React, { useContext } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { AuthContext } from "../../Auth";
 import { useLocation, useHistory } from "react-router";
+import axios from "axios";
+import { server } from "../../constants";
 export default function MenuHomeScreen() {
   const history = useHistory();
-  const handletocancel = () => {
-    history.replace("/cancel");
+  // const handletocancel = () => {
+  //   history.replace("/cancel");
+  // };
+
+  const checkExistAppointment = () => {
+    let accessToken = localStorage.getItem("AccessToken");
+    try {
+      axios.get(`${server.APPOINTMENT}/check/${accessToken}`).then((res) => {
+        const data = res.data;
+        if (data == true) {
+          history.replace("/appointment");
+        } else {
+          window.alert("ไม่สามารถทำนัดได้ เนื่องคุณมีการทำนัดเอาไว้อยู่แล้ว");
+        }
+      });
+    } catch (error) {
+      window.alert(error);
+    }
   };
   // const { currentUser } = useContext(AuthContext);
   // console.log("current : ", currentUser);
@@ -31,16 +49,17 @@ export default function MenuHomeScreen() {
               />
 
               <div className=" mt-3">
-                <Link to="/appointment">
-                  <div className="mb-6">
-                    <button
-                      type="submit"
-                      className="w-80 font-bold px-3 py-4 text-white font-bold bg-indigo-300 rounded-md focus:bg-indigo-200 focus:outline-none"
-                    >
-                      ทำนัด
-                    </button>
-                  </div>
-                </Link>
+                {/* <Link to="/appointment"> */}
+                <div className="mb-6">
+                  <button
+                    onClick={checkExistAppointment}
+                    type="submit"
+                    className="w-80 font-bold px-3 py-4 text-white font-bold bg-indigo-300 rounded-md focus:bg-indigo-200 focus:outline-none"
+                  >
+                    ทำนัด
+                  </button>
+                </div>
+                {/* </Link> */}
                 <Link to="/postpone">
                   <div className="mb-6">
                     <button
@@ -52,15 +71,15 @@ export default function MenuHomeScreen() {
                   </div>
                 </Link>
                 <Link to="/cancel">
-                <div className="mb-6">
-                  <button
-                    // onClick={handletocancel}
-                    type="submit"
-                    className="w-80 font-bold px-3 py-4 text-white bg-indigo-300 rounded-md focus:bg-indigo-200 focus:outline-none"
-                  >
-                    ยกเลิกการทำนัด
-                  </button>
-                </div>
+                  <div className="mb-6">
+                    <button
+                      // onClick={handletocancel}
+                      type="submit"
+                      className="w-80 font-bold px-3 py-4 text-white bg-indigo-300 rounded-md focus:bg-indigo-200 focus:outline-none"
+                    >
+                      ยกเลิกการทำนัด
+                    </button>
+                  </div>
                 </Link>
                 <Link to="/edituserprofile">
                   <div className="mb-6">
