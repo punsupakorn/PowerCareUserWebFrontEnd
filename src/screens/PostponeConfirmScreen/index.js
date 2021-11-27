@@ -297,13 +297,13 @@ export default function PostponeConfirmScreen() {
                     </center>
                   </Modal>
                 </div>
-                {/* <Link to="/postponeselect">
+                <Link to="/menuhome">
                   <div className="mb-6">
                     <button className="w-full px-3 py-3 text-white bg-gray-300 rounded-md ">
-                      ย้อนกลับ
+                      ยกเลิก
                     </button>
                   </div>
-                </Link> */}
+                </Link>
               </div>
             </div>
           </div>
