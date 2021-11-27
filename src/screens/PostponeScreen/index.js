@@ -17,46 +17,53 @@ export default function PostponeScreen() {
   const [doctorid, setdoctorid] = useState("");
   const [appointmentid, setappointmentid] = useState("");
   const [oldtimetableid, setoldtimetableid] = useState("");
+  const [loading, setloading] = useState(true);
   const history = useHistory();
 
   useEffect(() => {
     getAppointment();
-    getUser();
+    // getUser();
   }, []);
 
   const getUser = () => {
     let accessToken = localStorage.getItem("AccessToken");
     try {
-      axios.get(`${server.POSTPONE}/user/${accessToken}`).then((res) => {
-        const data = res.data;
-        setdateofbirth(data.DateOfBirth);
-        setsex(data.Sex);
-        setaddress(data.Address);
-        setphone(data.Phone);
-        setemail(data.Email);
-      });
+      axios
+        .get(`${server.POSTPONE}/user/${accessToken}`)
+        .then((res) => {
+          const data = res.data;
+          setdateofbirth(data.DateOfBirth);
+          setsex(data.Sex);
+          setaddress(data.Address);
+          setphone(data.Phone);
+          setemail(data.Email);
+        })
+        .then((res) => setloading(false));
     } catch (error) {}
   };
 
   const getAppointment = () => {
     let accessToken = localStorage.getItem("AccessToken");
     try {
-      axios.get(`${server.POSTPONE}/${accessToken}`).then((res) => {
-        const data = res.data;
-        if (data == "empty") {
-          window.alert("ขออภัย คุณไม่มีการทำนัดในระบบ");
-          history.replace("/menuhome");
-        } else {
-          setappointmentid(data.AppointmentID);
-          setoldtimetableid(data.TimeTableID);
-          setusername(data.UserName);
-          setsymptom(data.Initial_Symptoms);
-          setdate(data.Date);
-          settime(data.Time);
-          setdoctorname(data.DoctorName);
-          setdoctorid(data.DoctorID);
-        }
-      });
+      axios
+        .get(`${server.POSTPONE}/${accessToken}`)
+        .then((res) => {
+          const data = res.data;
+          if (data == "empty") {
+            window.alert("ขออภัย คุณไม่มีการทำนัดในระบบ");
+            history.replace("/menuhome");
+          } else {
+            setappointmentid(data.AppointmentID);
+            setoldtimetableid(data.TimeTableID);
+            setusername(data.UserName);
+            setsymptom(data.Initial_Symptoms);
+            setdate(data.Date);
+            settime(data.Time);
+            setdoctorname(data.DoctorName);
+            setdoctorid(data.DoctorID);
+          }
+        })
+        .then((res) => getUser());
     } catch (error) {}
   };
 
