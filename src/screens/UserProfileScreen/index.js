@@ -75,12 +75,6 @@ export default function UserProfileScreen() {
       if (check === true) {
         localStorage.setItem("AccessToken", accessToken);
         history.replace("/menuhome");
-        //  window.location.href = `https://${window.location.host}/menuhome`;
-        // window.location.replace(`https://${window.location.host}/menuhome`);
-        // liff.openWindow({
-        //         url: `${window.location.href}menuhome`,
-        //         external: false
-        //       });
       }else{
         setloading(false);
       }
