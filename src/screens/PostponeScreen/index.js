@@ -63,7 +63,7 @@ export default function PostponeScreen() {
             setdoctorid(data.DoctorID);
           }
         })
-        .then((res) => getUser());
+        .then(getUser());
     } catch (error) {}
   };
 
