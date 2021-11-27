@@ -6,7 +6,7 @@ import { Modal } from "react-responsive-modal";
 import { HiCheckCircle } from "react-icons/hi";
 import { useHistory } from "react-router";
 
-import SyncLoader from "react-spinners/SyncLoader";
+
 
 // import { AuthContext } from "../../Auth";
 export default function EditUserProfileScreen() {
@@ -118,8 +118,7 @@ export default function EditUserProfileScreen() {
  
 
   if (loading === true) {
-    // return <div className="loading"> <SyncLoader color={"FFFFFF"} loading={loading} css={override} size={50} /></div>;
-    return <div>loading...</div>;
+    return <div className="loading">loading...</div>;
 
   } else {
     return (
