@@ -71,36 +71,6 @@ export default function AppointmentConfirmScreen() {
     return result;
   };
 
-  // const createAppointment = () => {
-  //   let accessToken = localStorage.getItem("AccessToken");
-  //   try {
-  //     axios
-  //       .post(server.APPOINTMENT_CONFIRM, {
-  //         DoctorID: doctorid,
-  //         DoctorName: doctorname,
-  //         Date: date,
-  //         Time: time,
-  //         TimeTableID: timetableid,
-  //         UserID: userid,
-  //         UserName: { firstname, lastname },
-  //         Initial_Symtoms: symptom,
-  //         AccessToken: accessToken,
-  //       })
-  //       .then((res) => {
-  //         const data = res.data;
-  //         if (data == "exist") {
-  //           window.alert("ขออภัย คุณมีการทำนัดเอาไว้อยู่แล้ว");
-  //           history.replace("/menuhome");
-  //         } else {
-  //           window.alert("ทำนัดสำเร็จ กลับสู่หน้าหลัก");
-  //           history.replace("/menuhome");
-  //         }
-  //       });
-  //   } catch (error) {
-  //     return error;
-  //   }
-  // };
-
   const createAppointment = () => {
     let accessToken = localStorage.getItem("AccessToken");
     try {
@@ -116,48 +86,22 @@ export default function AppointmentConfirmScreen() {
           Initial_Symtoms: symptom,
           AccessToken: accessToken,
         })
-        
-        .then((res) => {
-          const data = res.data;
-          if (data == "exist") {
-            window.alert("ขออภัย คุณมีการทำนัดเอาไว้อยู่แล้ว");
-            history.replace("/menuhome");
-          } 
-          else {
-            return(
-              <Modal
-              open={openFirst}
-              onClose={() => setOpenFirst(false)}
-              center
-            >
-              <center>
-                <div className="w-80">
-                  <HiCheckCircle size="150px" color="#66bb6a" />
-                </div>
-                <p className="font-bold">ทำนัดสำเร็จ </p>
-              </center>
-              <center>
-          
-                <div className="mb-6">
-                  <button
-                    onClick={backToMenu}
-                    className="w-80 px-1 py-3 text-white bg-gray-300 rounded-md mt-3"
-                  >
-                    กลับสู่หน้าหลัก
-                  </button>
-                </div>
-               
-              </center>
-            </Modal>
-            )
-            // window.alert("ทำนัดสำเร็จ กลับสู่หน้าหลัก");
-            // history.replace("/menuhome");
-          }
-        });
+        // .then((res) => {
+        //   const data = res.data;
+        //   if (data == "exist") {
+        //     window.alert("ขออภัย คุณมีการทำนัดเอาไว้อยู่แล้ว");
+        //     history.replace("/menuhome");
+        //   } else {
+        //     window.alert("ทำนัดสำเร็จ กลับสู่หน้าหลัก");
+        //     history.replace("/menuhome");
+        //   }
+        // });
+        .then(setOpenFirst(true));
     } catch (error) {
       return error;
     }
   };
+
   if (loading === true) {
     return <div>loading...</div>;
   } else {
@@ -341,7 +285,7 @@ export default function AppointmentConfirmScreen() {
                       ยืนยันการทำนัด
                     </button>
 
-                    {/* <Modal
+                    <Modal
                     open={openFirst}
                     onClose={() => setOpenFirst(false)}
                     center
@@ -364,7 +308,7 @@ export default function AppointmentConfirmScreen() {
                       </div>
                      
                     </center>
-                  </Modal> */}
+                  </Modal>
                   </div>
 
                   <Link to="/menuhome">
