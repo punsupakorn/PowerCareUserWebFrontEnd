@@ -202,7 +202,7 @@ export default function PostponeSelectScreen() {
 
                 <div className="mb-6">
                   <label className="block font-bold mb-2 text-sm text-gray-600 dark:text-gray-400">
-                    วันที่ / เวลา ทำนัดใหม่ :{" "}
+                    วันที่ / เวลา ทำนัดใหม่  <h className="text-red-600"> * </h>
                   </label>
                   <select
                     // id="position"
@@ -250,7 +250,7 @@ export default function PostponeSelectScreen() {
                 </div> */}
                 <div className="mb-6">
                   <label className="block mb-2 text-sm text-gray-600 dark:text-gray-400">
-                    เลือกเวลา :{" "}
+                    เลือกเวลา  <h className="text-red-600"> * </h>
                   </label>
                   <select
                     id="position"
