@@ -5,6 +5,9 @@ import { server } from "../../constants";
 import { Modal } from "react-responsive-modal";
 import { HiCheckCircle } from "react-icons/hi";
 import { useHistory } from "react-router";
+
+import SyncLoader from "react-spinners/SyncLoader";
+
 // import { AuthContext } from "../../Auth";
 export default function EditUserProfileScreen() {
   const [firstname, setfirstname] = useState("");
@@ -17,6 +20,7 @@ export default function EditUserProfileScreen() {
   let accessToken = localStorage.getItem("AccessToken");
   const [loading, setloading] = useState(true);
   const history = useHistory();
+  
   // const { accessToken } = useContext(AuthContext);
 
   const getUserProfile = () => {
@@ -109,8 +113,13 @@ export default function EditUserProfileScreen() {
   };
 
   const [openFirst, setOpenFirst] = React.useState(false);
+
+
+ 
+
   if (loading === true) {
-    return <div>loading...</div>;
+    return <div className="loading"> <ClipLoader color={"FFFFFF"} loading={loading} css={override} size={50} /></div>;
+
   } else {
     return (
       <div classname="bg-indigo-200 h-screen w-screen">
