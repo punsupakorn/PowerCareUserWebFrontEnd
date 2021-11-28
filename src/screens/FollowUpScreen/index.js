@@ -14,7 +14,7 @@ export default function OTPScreen() {
                 ประกาศความเป็นส่วนตัว
               </h5>
               <div class="container mx-auto py-10 flex justify-center h-screen">
-        <div class="w-4/12 pl-4  h-full flex flex-col">
+        <div class="w-12/12 pl-4  h-full flex flex-col">
           <div class="bg-white text-sm text-gray-500 font-bold px-5 py-2 shadow border-b border-gray-300">
             เงื่อนไข
           </div>
