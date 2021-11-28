@@ -306,7 +306,7 @@ export default function UserProfileScreen() {
                   />
                 </div>
                 <div className="mb-6">
-                  <Link to="otp">
+                  {/* <Link to="otp"> */}
                     <button
                       type="button"
                       className="w-full px-3 py-3 text-white bg-indigo-300 rounded-md focus:bg-indigo-200 focus:outline-none"
@@ -314,7 +314,7 @@ export default function UserProfileScreen() {
                     >
                       ลงทะเบียน
                     </button>
-                  </Link>
+                  {/* </Link> */}
                 </div>
               </form>
             </div>
