@@ -14,6 +14,14 @@ export default function PDPAScreen() {
     useEffect(() => {
       initLine();
     });
+
+    const userprofile = () => {
+        try {
+            history.replace("/userprofile")
+        } catch (error) {
+            
+        }
+    }
   
     const initLine = async () => {
       liff.init(
@@ -54,7 +62,7 @@ export default function PDPAScreen() {
         <div className="container mx-auto">
           <div className="max-w-md mx-auto my-10 bg-white p-5 rounded-md shadow-sm">
             <div className="text-center">
-              <h5 className="my-3 text-3xl font-semibold fontsize-18 text-gray-700 dark:text-gray-200">
+              <h5 className="my-3 text-xl font-semibold fontsize-18 text-gray-700 dark:text-gray-200">
                 ประกาศความเป็นส่วนตัว
               </h5>
               <div class="container mx-auto py-10 flex justify-center h-screen">
@@ -174,11 +182,11 @@ export default function PDPAScreen() {
               กฎหมายที่ใช้บังคับข้อกำหนดและเงื่อนไขนี้ให้ใช้บังคับและตีความตามกฎหมายไทยและให้ศาลไทยเป็นศาลที่มีเขตอำนาจ
             </p>
             <div className="mb-6">
-                <Link to ="/userprofile">
-              <button className="w-80 px-3 py-3 text-white justify-center  bg-indigo-300 rounded-md ">
+                {/* <Link to ="/userprofile"> */}
+              <button onclick={userprofile} className="w-80 px-3 py-3 text-white justify-center  bg-indigo-300 rounded-md ">
                 เข้าใจ และยืนยัน
               </button>
-              </Link>
+              {/* </Link> */}
             </div>
           </div>
         </div>
