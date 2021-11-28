@@ -22,7 +22,7 @@ export default function UserProfileScreen() {
   const [Phone, setPhone] = useState("");
   const [Email, setEmail] = useState("");
   const history = useHistory();
-  const [loading, setloading] = useState(true)
+  // const [loading, setloading] = useState(true)
 
   // useEffect(() => {
   //   // const isAuthenticated = () => {
@@ -43,7 +43,7 @@ export default function UserProfileScreen() {
   // const { accessToken } = useContext(AuthContext);
 
 
-  
+
   const [accessToken, setAccessToken] = useState("");
 
   // useEffect(() => {
@@ -154,9 +154,9 @@ export default function UserProfileScreen() {
       return error;
     }
   };
-if(loading ===  true){
-  return (<div>loading...</div>)
-}else{
+// if(loading ===  true){
+//   return (<div>loading...</div>)
+// }else{
   return (
     <div classname="bg-indigo-200 h-screen w-screen">
       <div className="flex items-center min-h-screen bg-indigo-200 dark:bg-gray-900">
@@ -324,4 +324,4 @@ if(loading ===  true){
     </div>
   );
 }
-}
+

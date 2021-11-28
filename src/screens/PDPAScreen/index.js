@@ -183,7 +183,7 @@ export default function PDPAScreen() {
             </p>
             <div className="mb-6">
                 {/* <Link to ="/userprofile"> */}
-              <button onClick ={userprofile} className="w-80 px-3 py-3 text-white justify-center  bg-indigo-300 rounded-md ">
+              <button onClick ={userprofile} className="w-100 px-3 py-3 text-white justify-center  bg-indigo-300 rounded-md ">
                 เข้าใจ และยืนยัน
               </button>
               {/* </Link> */}
