@@ -12,6 +12,8 @@ import {
   EditUserProfileScreen,
   FollowUpScreen,
   PDPAScreen,
+  ShowAppointment,
+
 } from "./screens";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "./Auth";
@@ -59,6 +61,9 @@ function App() {
               component={EditUserProfileScreen}
             ></Route>
             <Route path="/followup" component={FollowUpScreen}></Route>
+            <Route path="/showappointment" component={ShowAppointment}></Route>
+            
+
           </Switch>
         </div>
       </BrowserRouter>

@@ -72,6 +72,16 @@ export default function MenuHomeScreen() {
                     </button>
                   </div>
                 </Link>
+                <Link to="/showappointment">
+                  <div className="mb-6">
+                    <button
+                      type="submit"
+                      className="w-80 font-bold px-3 py-4 text-white bg-indigo-300 rounded-md focus:bg-indigo-200 focus:outline-none"
+                    >
+                      ข้อมูลการทำนัด
+                    </button>
+                  </div>
+                </Link>
               </div>
             </div>
           </div>
