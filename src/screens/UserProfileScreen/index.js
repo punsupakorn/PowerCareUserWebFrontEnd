@@ -1,16 +1,11 @@
 import React, { useContext } from "react";
-import {
-  useHistory,
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { server, YES } from "../../constants";
 import { AuthContext } from "../../Auth";
 import liff from "@line/liff";
+import { useLocation, useHistory } from "react-router";
 
 export default function UserProfileScreen() {
   const [date, setDate] = useState();
@@ -23,7 +18,6 @@ export default function UserProfileScreen() {
   const [Email, setEmail] = useState("");
   const history = useHistory();
 
-  
   // const [loading, setloading] = useState(true)
 
   // useEffect(() => {
@@ -43,8 +37,6 @@ export default function UserProfileScreen() {
   // },[]);
 
   // const { accessToken } = useContext(AuthContext);
-
-
 
   // const [accessToken, setAccessToken] = useState("");
 
@@ -157,9 +149,9 @@ export default function UserProfileScreen() {
       return error;
     }
   };
-// if(loading ===  true){
-//   return (<div>loading...</div>)
-// }else{
+  // if(loading ===  true){
+  //   return (<div>loading...</div>)
+  // }else{
   return (
     <div classname="bg-indigo-200 h-screen w-screen">
       <div className="flex items-center min-h-screen bg-indigo-200 dark:bg-gray-900">
@@ -310,13 +302,13 @@ export default function UserProfileScreen() {
                 </div>
                 <div className="mb-6">
                   {/* <Link to="otp"> */}
-                    <button
-                      type="button"
-                      className="w-full px-3 py-3 text-white bg-indigo-300 rounded-md focus:bg-indigo-200 focus:outline-none"
-                      onClick={handleSubmit}
-                    >
-                      ลงทะเบียน
-                    </button>
+                  <button
+                    type="button"
+                    className="w-full px-3 py-3 text-white bg-indigo-300 rounded-md focus:bg-indigo-200 focus:outline-none"
+                    onClick={handleSubmit}
+                  >
+                    ลงทะเบียน
+                  </button>
                   {/* </Link> */}
                 </div>
               </form>
@@ -327,4 +319,3 @@ export default function UserProfileScreen() {
     </div>
   );
 }
-
