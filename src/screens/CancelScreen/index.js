@@ -40,6 +40,11 @@ export default function CancelScreen() {
           if (data == "empty") {
             window.alert("ขออภัย คุณไม่มีการทำนัดในระบบ");
             history.replace("/menuhome");
+          } else if (data == "wait") {
+            window.alert(
+              "ไม่สามารถเลื่อนนัดได้ เนื่องจากอยู่ในสถานะรอพบแพทย์ หากต้องการยกเลิกนัดโปรดติดต่อเจ้าหน้าที่"
+            );
+            history.replace("/menuhome");
           } else {
             setappointmentid(data.AppointmentID);
             setoldtimetableid(data.TimeTableID);

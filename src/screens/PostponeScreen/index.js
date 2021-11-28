@@ -53,7 +53,9 @@ export default function PostponeScreen() {
             window.alert("ขออภัย คุณไม่มีการทำนัดในระบบ");
             history.replace("/menuhome");
           } else if (data == "wait") {
-            window.alert("ไม่สามารถเลื่อนนัดได้ เนื่องจากอยู่ในสถานะพบแพทย์");
+            window.alert(
+              "ม่สามารถเลื่อนนัดได้ เนื่องจากอยู่ในสถานะรอพบแพทย์ หากต้องการเลื่อนนัดโปรดติดต่อเจ้าหน้าที่"
+            );
             history.replace("/menuhome");
           } else {
             setappointmentid(data.AppointmentID);
