@@ -17,6 +17,7 @@ export default function UserProfileScreen() {
   const [Phone, setPhone] = useState("");
   const [Email, setEmail] = useState("");
   const history = useHistory();
+  let accessToken = localStorage.getItem("AccessToken");
 
   // const [loading, setloading] = useState(true)
 
@@ -128,7 +129,6 @@ export default function UserProfileScreen() {
       if (data == false) {
         window.alert("โปรดกรอกข้อมูลให้ครบถ้วน");
       } else {
-        let accessToken = localStorage.getItem("AccessToken");
         axios
           .post(server.USERPROFILE, {
             FirstName: FirstName,
