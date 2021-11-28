@@ -72,7 +72,7 @@ export default function MenuHomeScreen() {
                     </button>
                   </div>
                 </Link>
-                <Link to="/showappointment">
+                {/* <Link to="/showappointment">
                   <div className="mb-6">
                     <button
                       type="submit"
@@ -81,7 +81,7 @@ export default function MenuHomeScreen() {
                       ข้อมูลการทำนัด
                     </button>
                   </div>
-                </Link>
+                </Link> */}
               </div>
             </div>
           </div>
