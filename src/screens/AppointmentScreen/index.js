@@ -71,6 +71,7 @@ export default function AppointmentScreen() {
 
   useEffect(async () => {
     // getDate();
+    checkuserappointment();
   }, []);
 
   const displayThaiDate = (date) => {
