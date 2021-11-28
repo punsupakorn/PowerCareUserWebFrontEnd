@@ -11,6 +11,7 @@ export default function PDPAScreen() {
     const history = useHistory();
     const [loading, setloading] = useState(true)
 
+
     useEffect(() => {
       initLine();
     });
@@ -55,7 +56,9 @@ export default function PDPAScreen() {
         }
       });
     };
-
+if(loading ===  true){
+  return (<div>loading...</div>)
+}else{
   return (
     <div classname="bg-indigo-200 h-screen w-screen">
       <div className="flex items-center min-h-screen bg-indigo-200 dark:bg-gray-900">
@@ -197,4 +200,5 @@ export default function PDPAScreen() {
       </div>
     </div>
   );
+}
 }

@@ -22,6 +22,8 @@ export default function UserProfileScreen() {
   const [Phone, setPhone] = useState("");
   const [Email, setEmail] = useState("");
   const history = useHistory();
+
+  
   // const [loading, setloading] = useState(true)
 
   // useEffect(() => {
