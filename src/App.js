@@ -11,6 +11,7 @@ import {
   CancelScreen,
   EditUserProfileScreen,
   FollowUpScreen,
+  PDPAScreen,
 } from "./screens";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "./Auth";
@@ -22,7 +23,13 @@ function App() {
         <div className="App">
           <Switch>
           {/* <AuthProvider> */}
-            <Route exact path="/" component={UserProfileScreen} />
+          <Route
+          exact path="/" 
+              // path="/pdpa"
+              component={PDPAScreen}
+            ></Route>
+          
+            <Route exact path="/userprofile" component={UserProfileScreen} />
             {/* </AuthProvider> */}
             {/* <Route path="/userprofile">
           <UserProfileScreen />

@@ -130,7 +130,7 @@ export default function OTPScreen() {
               กฎหมายที่ใช้บังคับข้อกำหนดและเงื่อนไขนี้ให้ใช้บังคับและตีความตามกฎหมายไทยและให้ศาลไทยเป็นศาลที่มีเขตอำนาจ
             </p>
             <div className="mb-6">
-              <button className="w-80 px-3 py-3 text-white  bg-gray-300 rounded-md ">
+              <button className="w-80 px-3 py-3 text-white justify-center  bg-gray-300 rounded-md ">
                 เข้าใจ และยืนยัน
               </button>
             </div>

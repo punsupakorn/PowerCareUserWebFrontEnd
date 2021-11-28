@@ -10,3 +10,6 @@ export { default as PostponeConfirmScreen} from "./PostponeConfirmScreen";
 export { default as CancelScreen} from "./CancelScreen";
 export { default as EditUserProfileScreen} from "./EditUserProfileScreen";
 export { default as FollowUpScreen} from "./FollowUpScreen";
+export { default as PDPAScreen} from "./PDPAScreen";
+
+

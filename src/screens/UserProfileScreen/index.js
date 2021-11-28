@@ -42,44 +42,46 @@ export default function UserProfileScreen() {
 
   // const { accessToken } = useContext(AuthContext);
 
+
+  
   const [accessToken, setAccessToken] = useState("");
 
-  useEffect(() => {
-    initLine();
-  });
+  // useEffect(() => {
+  //   initLine();
+  // });
 
-  const initLine = async () => {
-    liff.init(
-      { liffId: "1656423908-z2DErD50" },
-      () => {
-        if (
-          liff.isLoggedIn({
-            redirectUri: "https://main.d3w2lvda55pxgd.amplifyapp.com",
-          })
-        ) {
-          runApp();
-        } else {
-          liff.login();
-        }
-      },
-      (err) => console.error(err)
-    );
-  };
+  // const initLine = async () => {
+  //   liff.init(
+  //     { liffId: "1656423908-z2DErD50" },
+  //     () => {
+  //       if (
+  //         liff.isLoggedIn({
+  //           redirectUri: "https://main.d3w2lvda55pxgd.amplifyapp.com",
+  //         })
+  //       ) {
+  //         runApp();
+  //       } else {
+  //         liff.login();
+  //       }
+  //     },
+  //     (err) => console.error(err)
+  //   );
+  // };
 
-  const runApp = async () => {
-    const accessToken = liff.getAccessToken();
-    setAccessToken(accessToken);
-    console.log("accessToken : ", accessToken);
-    await axios.get(`${server.LOGIN}/${accessToken}`).then((res) => {
-      const check = res.data;
-      if (check === true) {
-        localStorage.setItem("AccessToken", accessToken);
-        history.replace("/menuhome");
-      }else{
-        setloading(false);
-      }
-    });
-  };
+  // const runApp = async () => {
+  //   const accessToken = liff.getAccessToken();
+  //   setAccessToken(accessToken);
+  //   console.log("accessToken : ", accessToken);
+  //   await axios.get(`${server.LOGIN}/${accessToken}`).then((res) => {
+  //     const check = res.data;
+  //     if (check === true) {
+  //       localStorage.setItem("AccessToken", accessToken);
+  //       history.replace("/menuhome");
+  //     }else{
+  //       setloading(false);
+  //     }
+  //   });
+  // };
 
   const handleFirstName = (e) => {
     const firstname = e.target.value;
