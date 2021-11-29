@@ -17,7 +17,7 @@ export default function UserProfileScreen() {
   const [Phone, setPhone] = useState("");
   const [Email, setEmail] = useState("");
   const history = useHistory();
-  let accessToken = localStorage.getItem("AccessToken");
+  const accessToken = localStorage.getItem("AccessToken");
 
   // const [loading, setloading] = useState(true)
 
