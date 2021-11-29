@@ -125,29 +125,29 @@ export default function UserProfileScreen() {
       //   accessToken,
     };
     let data = Object.values(user).every((value) => value);
-    try {
-      if (data == false) {
-        window.alert("โปรดกรอกข้อมูลให้ครบถ้วน");
-      } else {
-        axios
-          .post(server.USERPROFILE, {
-            FirstName: FirstName,
-            LastName: LastName,
-            DateOfBirth: DateOfBirth,
-            Sex: Sex,
-            Address: Address,
-            Phone: Phone,
-            Email: Email,
-            accessToken: accessToken,
-          })
-          .then((res) => {
-            console.log(res);
-            history.replace("/menuhome");
-          });
-      }
-    } catch (error) {
-      return error;
+    // try {
+    if (data == false) {
+      window.alert("โปรดกรอกข้อมูลให้ครบถ้วน");
+    } else {
+      axios
+        .post(server.USERPROFILE, {
+          FirstName: FirstName,
+          LastName: LastName,
+          DateOfBirth: DateOfBirth,
+          Sex: Sex,
+          Address: Address,
+          Phone: Phone,
+          Email: Email,
+          accessToken: accessToken,
+        })
+        .then((res) => {
+          console.log(res);
+          history.replace("/menuhome");
+        });
     }
+    // } catch (error) {
+    //   return error;
+    // }
   };
   // if(loading ===  true){
   //   return (<div>loading...</div>)
