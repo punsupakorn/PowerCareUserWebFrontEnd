@@ -140,12 +140,10 @@ export default function UserProfileScreen() {
             Email: Email,
             accessToken: accessToken,
           })
-          .then(
-            // (res) => {
-            // console.log(res);
-            history.replace("/menuhome")
-            // }
-          );
+          .then((res) => {
+            console.log(res);
+            history.replace("/menuhome");
+          });
       }
     } catch (error) {
       return error;
