@@ -8,7 +8,6 @@ import liff from "@line/liff";
 import { useLocation, useHistory } from "react-router";
 
 export default function UserProfileScreen() {
-  const [date, setDate] = useState();
   const [FirstName, setFirstName] = useState("");
   const [LastName, setLastName] = useState("");
   const [DateOfBirth, setDateOfBirth] = useState("");
@@ -17,33 +16,16 @@ export default function UserProfileScreen() {
   const [Phone, setPhone] = useState("");
   const [Email, setEmail] = useState("");
   const history = useHistory();
-  const accessToken = localStorage.getItem("AccessToken");
-
+  // const accessToken = localStorage.getItem("AccessToken");
   // const [loading, setloading] = useState(true)
-
-  // useEffect(() => {
-  //   // const isAuthenticated = () => {
-  //   //   return localStorage.getItem("Auth") === YES;
-  //   // };
-  //   if (localStorage.getItem("Auth") === YES) {
-
-  //     //  window.location.replace(`https://${window.location.host}/menuhome`);
-  //     // window.location.href = `https://${window.location.host}/menuhome`;
-  //     history.push("/menuhome");
-  //     // liff.openWindow({
-  //     //   url: `${window.location.href}menuhome`,
-  //     //   external: false
-  //     // });
-  //   }
-  // },[]);
-
   // const { accessToken } = useContext(AuthContext);
+  const [accessToken, setAccessToken] = useState("");
 
-  // const [accessToken, setAccessToken] = useState("");
-
-  // useEffect(() => {
-  //   initLine();
-  // });
+  useEffect(() => {
+    const acc = localStorage.getItem("AccessToken");
+    setAccessToken(acc);
+    // initLine();
+  });
 
   // const initLine = async () => {
   //   liff.init(
@@ -61,21 +43,6 @@ export default function UserProfileScreen() {
   //     },
   //     (err) => console.error(err)
   //   );
-  // };
-
-  // const runApp = async () => {
-  //   const accessToken = liff.getAccessToken();
-  //   setAccessToken(accessToken);
-  //   console.log("accessToken : ", accessToken);
-  //   await axios.get(`${server.LOGIN}/${accessToken}`).then((res) => {
-  //     const check = res.data;
-  //     if (check === true) {
-  //       localStorage.setItem("AccessToken", accessToken);
-  //       history.replace("/menuhome");
-  //     }else{
-  //       setloading(false);
-  //     }
-  //   });
   // };
 
   const handleFirstName = (e) => {
@@ -122,32 +89,31 @@ export default function UserProfileScreen() {
       Address,
       Phone,
       Email,
-      //   accessToken,
     };
     let data = Object.values(user).every((value) => value);
-    // try {
-    if (data == false) {
-      window.alert("โปรดกรอกข้อมูลให้ครบถ้วน");
-    } else {
-      axios
-        .post(server.USERPROFILE, {
-          FirstName: FirstName,
-          LastName: LastName,
-          DateOfBirth: DateOfBirth,
-          Sex: Sex,
-          Address: Address,
-          Phone: Phone,
-          Email: Email,
-          accessToken: accessToken,
-        })
-        .then((res) => {
-          console.log(res);
-          history.replace("/menuhome");
-        });
+    try {
+      if (data == false) {
+        window.alert("โปรดกรอกข้อมูลให้ครบถ้วน");
+      } else {
+        axios
+          .post(server.USERPROFILE, {
+            FirstName: FirstName,
+            LastName: LastName,
+            DateOfBirth: DateOfBirth,
+            Sex: Sex,
+            Address: Address,
+            Phone: Phone,
+            Email: Email,
+            accessToken: accessToken,
+          })
+          .then((res) => {
+            console.log(res);
+            history.replace("/menuhome");
+          });
+      }
+    } catch (error) {
+      return error;
     }
-    // } catch (error) {
-    //   return error;
-    // }
   };
   // if(loading ===  true){
   //   return (<div>loading...</div>)
