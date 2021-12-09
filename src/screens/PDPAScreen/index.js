@@ -52,6 +52,7 @@ export default function PDPAScreen() {
           localStorage.setItem("AccessToken", accessToken);
           history.replace("/menuhome");
         }else{
+          localStorage.setItem("AccessToken", accessToken);
           setloading(false);
         }
       });
